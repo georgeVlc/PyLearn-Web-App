@@ -1,0 +1,27 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Pylearn</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <header>
+        <h1>Welcome to Pylearn!</h1>
+        <nav>
+            <a href="{% url 'home' %}">Home</a>
+            <a href="{% url 'users:view_users' %}">View Users</a>
+            {% if request.user.is_authenticated %}
+                <a href="{% url 'users:view_user_attempts' request.user.id %}">View My Attempts</a>
+          
+            {% endif %}
+            <a href="{% url 'lessons:view_lessons' %}">View Lessons</a>
+            
+        </nav>
+    </header>
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+</body>
+</html>

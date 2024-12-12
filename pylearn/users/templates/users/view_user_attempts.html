@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h2>Quiz Attempts for {{ user_progress.user.username }}</h2>
+  <ul>
+  {% for attempt in attempts %}
+    <li>Quiz: {{ attempt.quiz.question }} - Score: {{ attempt.score }} - Passed: {{ attempt.passed }}</li>
+  {% endfor %}
+  </ul>
+{% endblock %}
