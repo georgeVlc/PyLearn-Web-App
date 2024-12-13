@@ -3,8 +3,22 @@
 {% block content %}
 <h2>Lessons</h2>
 <ul>
-{% for lesson in lessons %}
-    <li>{{ lesson.title }}</li>
-{% endfor %}
+    {% for lesson in lessons %}
+    <li>
+        <strong>Title:</strong> {{ lesson.title }}<br>
+        <strong>Content:</strong> {{ lesson.content }}<br>
+        <strong>Order:</strong> {{ lesson.order }}<br>
+        <strong>Quizzes:</strong><br>
+        <ul>
+            {% for quiz in lesson.quizzes.all %}
+            <li>
+                <strong>Question:</strong> {{ quiz.question }}
+            </li>
+            {% empty %}
+            <li>No quizzes available for this lesson.</li>
+            {% endfor %}
+        </ul>
+    </li>
+    {% endfor %}
 </ul>
 {% endblock %}

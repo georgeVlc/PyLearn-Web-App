@@ -8,6 +8,7 @@ class Lesson(models.Model):
     order = models.IntegerField()  # Lesson order in the curriculum
 
     def __str__(self):
+        print(f'Title: {self.title}\nContent: {self.content}')
         return self.title
 
 class Quiz(models.Model):

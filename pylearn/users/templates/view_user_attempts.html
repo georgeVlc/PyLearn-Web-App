@@ -4,7 +4,14 @@
   <h2>Quiz Attempts for {{ user_progress.user.username }}</h2>
   <ul>
   {% for attempt in attempts %}
-    <li>Quiz: {{ attempt.quiz.question }} - Score: {{ attempt.score }} - Passed: {{ attempt.passed }}</li>
+    <li>
+      <strong>Quiz for Lesson:</strong> {{ attempt.quiz.lesson.title }}<br>
+      <strong>Question:</strong> {{ attempt.quiz.question }}<br>
+      <strong>Score:</strong> {{ attempt.score }}<br>
+      <strong>Passed:</strong> {{ attempt.passed }}
+    </li>
+  {% empty %}
+    <li>No quiz attempts available for this user.</li>
   {% endfor %}
   </ul>
 {% endblock %}

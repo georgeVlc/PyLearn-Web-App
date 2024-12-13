@@ -15,12 +15,12 @@ def view_users(request):
 
 def view_user_attempts(request, user_id):
     user_progress = get_object_or_404(UserProgress, user_id=user_id)
-    attempts = user_progress.quiz_attempts.all()
+    attempts = QuizAttempt.objects.filter(user_progress=user_progress)  # get all quiz attempts for the user's progress
     return render(request, 'view_user_attempts.html', {
         'attempts': attempts,
-        'user_progress': user_progress,  # Include this in the context
+        'user_progress': user_progress,
     })
-
+    
 def signup(request):
     if request.method == 'POST':
         username = request.POST['username']
