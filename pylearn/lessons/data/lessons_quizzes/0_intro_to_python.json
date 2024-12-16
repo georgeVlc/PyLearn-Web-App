@@ -1,0 +1,52 @@
+[
+    {
+        "question": "What is Python primarily known for?",
+        "answer_choices": {
+            "a": "Complex syntax",
+            "b": "Readability and versatility",
+            "c": "Being a database management system",
+            "d": "Complicated error handling"
+        },
+        "correct_answer": "b"
+    },
+    {
+        "question": "Which function is used to print output in Python?",
+        "answer_choices": {
+            "a": "output()",
+            "b": "display()",
+            "c": "print()",
+            "d": "show()"
+        },
+        "correct_answer": "c"
+    },
+    {
+        "question": "What symbol is used for comments in Python?",
+        "answer_choices": {
+            "a": "//",
+            "b": "#",
+            "c": "<!-- -->",
+            "d": "%"
+        },
+        "correct_answer": "b"
+    },
+    {
+        "question": "Which of the following is a valid variable declaration in Python?",
+        "answer_choices": {
+            "a": "int x = 5;",
+            "b": "x = 5",
+            "c": "declare x = 5;",
+            "d": "var x = 5;"
+        },
+        "correct_answer": "b"
+    },
+    {
+        "question": "What happens if you don’t indent a block of code properly in Python?",
+        "answer_choices": {
+            "a": "The program runs but gives incorrect output",
+            "b": "The program runs without errors",
+            "c": "The program raises an error",
+            "d": "The program ignores the block"
+        },
+        "correct_answer": "c"
+    }
+]

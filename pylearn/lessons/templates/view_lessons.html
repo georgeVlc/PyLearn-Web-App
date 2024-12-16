@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Lessons</h2>
+<ul>
+    {% for lesson in lessons %}
+    <li>
+        <strong>Title:</strong> {{ lesson.title }}<br>
+        <strong>Content:</strong> {{ lesson.content|safe }}<br>
+        <strong>Order:</strong> {{ lesson.order }}<br>
+        {% if lesson.quizzes.all %}
+        <strong><a href="{% url 'lessons:view_lesson_test' lesson.id %}">View Lesson's Test</a></strong>
+        {% else %}
+        <strong>No test is available for this lesson</strong>
+        {% endif %}
+    </li>
+    {% endfor %}
+</ul>
+{% endblock %}

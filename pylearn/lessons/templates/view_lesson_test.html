@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block content %}
+<head>
+    <link rel="stylesheet" type="text/css" href="styles/test_style.css">
+</head>
+<h2>Test for Lesson: {{ lesson.title }}</h2>
+<ul>
+    {% for quiz in quizzes %}
+    <li>
+        <strong>Question:</strong> {{ quiz.question }}<br>
+        <strong>Choices:</strong>
+        <ul>
+            {% for key, choice in quiz.answer_choices.items %}
+            <li>{{ key }}: {{ choice }}</li>
+            {% endfor %}
+        </ul>
+        <strong>Correct Answer:</strong> {{ quiz.correct_answer }}
+    </li>
+    {% empty %}
+    <li>No test available for this lesson.</li>
+    {% endfor %}
+</ul>
+<a href="{% url 'view_lessons' %}">Back to Lessons</a>
+{% endblock %}

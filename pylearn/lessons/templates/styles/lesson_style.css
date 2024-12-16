@@ -1,0 +1,25 @@
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    margin: 20px;
+    color: #333;
+}
+
+h1, h2 {
+    color: #007BFF;
+}
+
+code {
+    background-color: #f8f9fa;
+    padding: 2px 4px;
+    font-family: Consolas, monospace;
+    font-size: 0.9em;
+    color: #d63384;
+}
+
+.note {
+    background-color: #e9f7df;
+    padding: 10px;
+    border-left: 4px solid #28a745;
+    margin: 10px 0;
+}
