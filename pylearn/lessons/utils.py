@@ -15,7 +15,7 @@ def load_lessons_and_quizzes():
                 lesson_tokens = lesson_file.split(".") # Splitting the lesson file-name on '.'
                 lesson_tokens = lesson_tokens[0].split("_") # Splitting on '_' and excluding the file extention
                 lesson_id = int(lesson_tokens[0])  # Extract lesson ID from filename
-                lesson_title = (' ').join(lesson_tokens[1:])
+                lesson_title = ' '.join([token.capitalize() for token in lesson_tokens[1:]])  # Capitalize each token
                 print(f'{lesson_id=}, {lesson_title=}')
                 
                 with open(os.path.join(lessons_path, lesson_file), "r") as file:

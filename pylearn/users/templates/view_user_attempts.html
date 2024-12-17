@@ -41,11 +41,10 @@
     {% for lesson in lessons_with_attempts %}
         <div class="lesson-progress">
             <p class="lesson-title">{{ lesson.title }}</p>
-            <p>Total Attempts: {{ lesson.total_attempts }}</p>
-            <p>Correct Attempts: {{ lesson.correct_attempts }}</p>
+            <p>Total Attempts: {{ total_attempts_count }}</p>
             <div class="accuracy-bar">
                 <div class="accuracy-bar-inner">
-                    {{ lesson.correct_attempts|floatformat:0 }}%
+                    {{ average_accuracy|floatformat:2 }}%
                 </div>
             </div>
         </div>

@@ -20,9 +20,9 @@ def view_users(request):
 def view_user_attempts(request, user_id):
     user_progress = get_object_or_404(UserProgress, user_id=user_id)
     
-    # Group quiz attempts by lesson
+    # Group quiz attempts by lesson (test level)
     lessons_with_attempts = Lesson.objects.annotate(
-        total_attempts=Count('quizzes__quizattempt', filter=Q(quizzes__quizattempt__user_progress=user_progress)),
+        total_attempts=Sum('quizzes__quizattempt__id', filter=Q(quizzes__quizattempt__user_progress=user_progress)),
         correct_attempts=Sum('quizzes__quizattempt__score', filter=Q(quizzes__quizattempt__user_progress=user_progress))
     ).filter(total_attempts__gt=0)
 
