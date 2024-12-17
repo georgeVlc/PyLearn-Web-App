@@ -51,3 +51,8 @@ def load_lessons_and_quizzes():
         print("Database not ready. Skipping lesson preloading.")
         # Path to lessons and quizzes data
 
+
+def delete_all_lessons_and_quizzes():
+    Quiz.objects.all().delete()
+    Lesson.objects.all().delete()
+    print("All lessons and quizzes have been deleted from the database.")

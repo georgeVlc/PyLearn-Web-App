@@ -1,0 +1,89 @@
+/* CSS styles for the sidebar and main content */
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow: hidden; /* Prevent full-page scroll */
+    font-family: Arial, sans-serif;
+}
+
+.container {
+    display: flex;
+    flex-direction: row;
+    height: 100vh; /* Full viewport height */
+    gap: 0;
+}
+
+.sidebar {
+    width: 25%;
+    background-color: #f8f8f8;
+    padding: 15px;
+    border-right: 1px solid #ddd;
+    overflow-y: auto; /* Sidebar scrolls if its content is long */
+    height: 100%;
+}
+
+.sidebar h3 {
+    margin-top: 0;
+}
+
+.sidebar ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar ul li {
+    margin: 10px 0;
+}
+
+.sidebar ul li a {
+    text-decoration: none;
+    color: #333;
+    display: block;
+    padding: 8px;
+    border-radius: 5px;
+}
+
+.sidebar ul li a.active,
+.sidebar ul li a:hover {
+    background-color: #007bff;
+    color: #fff;
+}
+
+.lesson-content {
+flex: 1; /* Take up remaining space */
+padding: 20px;
+overflow-y: auto; /* Enable scrolling for content */
+height: calc(100vh - 100px); /* Subtract any padding/margins if needed */
+box-sizing: border-box;
+}
+
+
+.lesson-content h2 {
+    margin-top: 0;
+}
+
+.btn {
+    display: inline-block;
+    padding: 10px 15px;
+    margin-top: 10px;
+    background-color: #007bff;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.btn:hover {
+    background-color: #0056b3;
+}
+
+.next-btn {
+    display: block;
+    margin-top: 20px;
+    background-color: #28a745;
+}
+
+.next-btn:hover {
+    background-color: #218838;
+}

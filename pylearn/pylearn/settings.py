@@ -52,12 +52,20 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'pylearn.urls'
+STATIC_URL = '/static/'
+STATIC_ROOT = BASE_DIR / 'staticfiles'  # Directory where collected static files will be stored
+STATICFILES_DIRS = [BASE_DIR / "static", 
+                    BASE_DIR / "lessons/templates",
+                ]  # Additional static files directory for development
 
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'templates'],  # Add the global templates directory here
-        'APP_DIRS': True,  # This must be True to look in app directories
+        'DIRS': [  # Add both global and app-specific template directories
+            BASE_DIR / 'templates',
+            BASE_DIR / 'lessons/templates',
+        ],
+        'APP_DIRS': True,  # This should be True to look in app directories
         'OPTIONS': {
             'context_processors': [
                 'django.template.context_processors.debug',
@@ -69,8 +77,8 @@ TEMPLATES = [
     },
 ]
 
-STATIC_URL = '/static/'
-STATICFILES_DIRS = [BASE_DIR / "static"]
+# STATIC_URL = '/static/'
+# STATICFILES_DIRS = [BASE_DIR / "static"]
 
 WSGI_APPLICATION = 'pylearn.wsgi.application'
 

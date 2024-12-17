@@ -1,19 +1,50 @@
 {% extends 'base.html' %}
-
 {% block content %}
-<h2>Lessons</h2>
-<ul>
-    {% for lesson in lessons %}
-    <li>
-        <strong>Title:</strong> {{ lesson.title }}<br>
-        <strong>Content:</strong> {{ lesson.content|safe }}<br>
-        <strong>Order:</strong> {{ lesson.order }}<br>
-        {% if lesson.quizzes.all %}
-        <strong><a href="{% url 'lessons:view_lesson_test' lesson.id %}">View Lesson's Test</a></strong>
+<head>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'styles/lesson_sidebar.css' %}"></head>
+<div class="container">
+    <!-- Sidebar for lessons -->
+    <div class="sidebar">
+        <h3>Lessons</h3>
+        <ul>
+            {% for lesson in lessons %}
+            <li>
+                <a href="{% url 'lessons:view_lessons' lesson.id %}" 
+                   class="{% if lesson.id == current_lesson.id %}active{% endif %}">
+                   {{ lesson.title }}
+                </a>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <!-- Main content for the selected lesson -->
+    <div class="lesson-content">
+        {% if current_lesson %}
+        <h2>{{ current_lesson.title }}</h2>
+        <p>{{ current_lesson.content|safe }}</p>
+        <p><strong>Order:</strong> {{ current_lesson.order }}</p>
+
+        <!-- Test options -->
+        {% if current_lesson.quizzes.all %}
+        <p>
+            <a href="{% url 'lessons:view_lesson_test' current_lesson.id %}" class="btn">View Lesson's Test</a>
+            <a href="{% url 'lessons:take_lesson_test' current_lesson.id %}" class="btn">Take Lesson's Test</a>
+        </p>
         {% else %}
-        <strong>No test is available for this lesson</strong>
+        <p><strong>No test is available for this lesson</strong></p>
         {% endif %}
-    </li>
-    {% endfor %}
-</ul>
+
+        <!-- Next Lesson Button -->
+        {% if next_lesson %}
+        <a href="{% url 'lessons:view_lessons' next_lesson.id %}" class="btn next-btn">Next Lesson: {{ next_lesson.title }}</a>
+        {% else %}
+        <p><strong>This is the last lesson.</strong></p>
+        {% endif %}
+        {% else %}
+        <p>No lesson selected.</p>
+        {% endif %}
+    </div>
+</div>
 {% endblock %}

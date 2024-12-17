@@ -1,0 +1,38 @@
+{% block content %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'styles/test_results_style.css' %}">
+    <title>Test Results - {{ lesson.title }}</title>
+</head>
+<body>
+    <div class="results-container">
+        <h2>Test Results for "{{ lesson.title }}"</h2>
+        <p class="score">Your Score: {{ score_percentage|floatformat:2 }}%</p>
+        <p>Correct Answers: {{ correct_count }} / {{ total_quizzes }}</p>
+
+        {% if mistakes %}
+            <div class="incorrect-answers">
+                <h3>Incorrect Answers</h3>
+                <ul>
+                    {% for mistake in mistakes %}
+                        <li>
+                            <strong>Question:</strong> {{ mistake.question }}<br>
+                            <strong>Your Answer:</strong> 
+                            <span class="your-answer">{{ mistake.user_answer.option }}: {{ mistake.user_answer.answer }}</span><br>
+                            <strong>Correct Answer:</strong> 
+                            <span class="correct-answer">{{ mistake.correct_answer.option }}: {{ mistake.correct_answer.answer }}</span>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        {% else %}
+            <p class="congrats">Congratulations! You answered all questions correctly.</p>
+        {% endif %}
+
+        <a href="{% url 'lessons:view_lessons' lesson.id %}" class="back-link">← Back to Lessons</a>
+    </div>
+</body>
+{% endblock %}
+

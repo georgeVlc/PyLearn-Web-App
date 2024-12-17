@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block content %}
+<head>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'styles/test_style.css' %}">
+</head>
+<form method="post" action="{% url 'lessons:take_lesson_test' lesson.id %}" id="quizForm">
+    {% csrf_token %}
+    <ul>
+        {% for quiz in quizzes %}
+        <li>
+            <strong>Question:</strong> {{ quiz.question }}<br>
+            {% for key, choice in quiz.answer_choices.items %}
+            <label>
+                <input type="radio" name="quiz_{{ quiz.id }}" value="{{ key }}">
+                {{ key }}: {{ choice }}
+            </label><br>
+            {% endfor %}
+        </li>
+        {% empty %}
+        <li>No test available for this lesson.</li>
+        {% endfor %}
+    </ul>
+    <button type="submit">Submit Answers</button>
+</form>
+<div id="feedback"></div>
+<br>
+<a href="{% url 'view_lessons' %}">Back to Lessons</a>
+{% endblock %}

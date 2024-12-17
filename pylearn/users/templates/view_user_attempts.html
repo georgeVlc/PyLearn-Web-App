@@ -1,17 +1,56 @@
 {% extends 'base.html' %}
-
 {% block content %}
-  <h2>Quiz Attempts for {{ user_progress.user.username }}</h2>
-  <ul>
-  {% for attempt in attempts %}
-    <li>
-      <strong>Quiz for Lesson:</strong> {{ attempt.quiz.lesson.title }}<br>
-      <strong>Question:</strong> {{ attempt.quiz.question }}<br>
-      <strong>Score:</strong> {{ attempt.score }}<br>
-      <strong>Passed:</strong> {{ attempt.passed }}
-    </li>
-  {% empty %}
-    <li>No quiz attempts available for this user.</li>
-  {% endfor %}
-  </ul>
+<head>
+    <style>
+        .progress-container {
+            margin: 20px;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            background-color: #f9f9f9;
+        }
+        .lesson-progress {
+            margin-bottom: 15px;
+        }
+        .lesson-title {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        .accuracy-bar {
+            height: 15px;
+            border-radius: 5px;
+            background-color: #d9edf7;
+        }
+        .accuracy-bar-inner {
+            height: 100%;
+            border-radius: 5px;
+            background-color: #5bc0de;
+            text-align: center;
+            color: white;
+            font-size: 12px;
+        }
+    </style>
+</head>
+
+<div class="progress-container">
+    <h2>Your Progress</h2>
+    <p><strong>Average Test Accuracy:</strong> {{ average_accuracy|floatformat:2 }}%</p>
+    <p><strong>Total Attempts:</strong> {{ total_attempts_count }}</p>
+    
+    <h3>Lesson-wise Attempts:</h3>
+    {% for lesson in lessons_with_attempts %}
+        <div class="lesson-progress">
+            <p class="lesson-title">{{ lesson.title }}</p>
+            <p>Total Attempts: {{ lesson.total_attempts }}</p>
+            <p>Correct Attempts: {{ lesson.correct_attempts }}</p>
+            <div class="accuracy-bar">
+                <div class="accuracy-bar-inner">
+                    {{ lesson.correct_attempts|floatformat:0 }}%
+                </div>
+            </div>
+        </div>
+    {% empty %}
+        <p>You have not attempted any quizzes yet.</p>
+    {% endfor %}
+</div>
 {% endblock %}

@@ -43,3 +43,18 @@ ul ul li {
     margin: 3px 0;
     list-style-position: inside; /* Align bullets with text */
 }
+
+code {
+    background-color: #f8f9fa;
+    padding: 2px 4px;
+    font-family: Consolas, monospace;
+    font-size: 0.9em;
+    color: #d63384;
+}
+
+.note {
+    background-color: #e9f7df;
+    padding: 10px;
+    border-left: 4px solid #28a745;
+    margin: 10px 0;
+}
