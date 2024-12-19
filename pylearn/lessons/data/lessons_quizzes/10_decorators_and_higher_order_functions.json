@@ -1,0 +1,52 @@
+[
+    {
+        "question": "What is a decorator in Python?",
+        "answer_choices": {
+            "a": "A function that returns a function",
+            "b": "A function that modifies its arguments",
+            "c": "A function that runs a loop",
+            "d": "A keyword used in Python"
+        },
+        "correct_answer": "a"
+    },
+    {
+        "question": "How do you define a higher-order function in Python?",
+        "answer_choices": {
+            "a": "A function that returns another function",
+            "b": "A function that takes another function as an argument",
+            "c": "A function that contains only loops",
+            "d": "A function with no arguments"
+        },
+        "correct_answer": "a"
+    },
+    {
+        "question": "What does the `@staticmethod` decorator do?",
+        "answer_choices": {
+            "a": "Converts a method into a static method",
+            "b": "Converts a method into a class method",
+            "c": "Makes a method non-mutable",
+            "d": "Makes a method private"
+        },
+        "correct_answer": "a"
+    },
+    {
+        "question": "Can a decorator take arguments?",
+        "answer_choices": {
+            "a": "Yes, using parentheses",
+            "b": "No",
+            "c": "Only if it's an instance method",
+            "d": "Only if it is a class method"
+        },
+        "correct_answer": "a"
+    },
+    {
+        "question": "Which of the following is a common use case for decorators?",
+        "answer_choices": {
+            "a": "To add logging to functions",
+            "b": "To create global variables",
+            "c": "To make a function static",
+            "d": "To create new keywords in Python"
+        },
+        "correct_answer": "a"
+    }
+]

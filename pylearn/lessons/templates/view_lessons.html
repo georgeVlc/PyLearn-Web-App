@@ -2,15 +2,16 @@
 {% block content %}
 <head>
     {% load static %}
-    <link rel="stylesheet" type="text/css" href="{% static 'styles/lesson_sidebar.css' %}"></head>
+    <link rel="stylesheet" type="text/css" href="{% static 'styles/lesson_sidebar.css' %}">
+</head>
 <div class="container">
-    <!-- Sidebar for lessons -->
+    <!-- Sidebar for lessons in the chapter -->
     <div class="sidebar">
-        <h3>Lessons</h3>
+        <h3>Lessons in Chapter {{ chapter_id }}</h3>
         <ul>
             {% for lesson in lessons %}
             <li>
-                <a href="{% url 'lessons:view_lessons' lesson.id %}" 
+                <a href="{% url 'lessons:view_lessons' chapter_id lesson.id %}" 
                    class="{% if lesson.id == current_lesson.id %}active{% endif %}">
                    {{ lesson.title }}
                 </a>
@@ -38,9 +39,11 @@
 
         <!-- Next Lesson Button -->
         {% if next_lesson %}
-        <a href="{% url 'lessons:view_lessons' next_lesson.id %}" class="btn next-btn">Next Lesson: {{ next_lesson.title }}</a>
+        <a href="{% url 'lessons:view_lessons' chapter_id next_lesson.id %}" class="btn next-btn">
+            Next Lesson: {{ next_lesson.title }}
+        </a>
         {% else %}
-        <p><strong>This is the last lesson.</strong></p>
+        <p><strong>This is the last lesson in this chapter.</strong></p>
         {% endif %}
         {% else %}
         <p>No lesson selected.</p>

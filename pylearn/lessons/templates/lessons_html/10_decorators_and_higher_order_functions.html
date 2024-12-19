@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Decorators and Higher-Order Functions in Python</title>
+</head>
+<body>
+    <h1>Decorators and Higher-Order Functions in Python</h1>
+    <p>Python provides powerful features like decorators and higher-order functions that allow for more concise and reusable code.</p>
+
+    <h2>Understanding Decorators</h2>
+    <p>Decorators are a way to modify or extend the behavior of functions or methods without changing their source code. They are commonly used for logging, access control, and memoization.</p>
+    <pre><code>@decorator_name
+def my_function():
+    # function code
+</code></pre>
+    <h3>Commonly Used Decorators</h3>
+    <ul>
+        <li><code>@staticmethod</code>: Converts a method into a static method.</li>
+        <li><code>@classmethod</code>: Allows a method to access class variables and methods.</li>
+        <li><code>@property</code>: Converts a method into a property.</li>
+    </ul>
+
+    <h2>Higher-Order Functions</h2>
+    <p>Higher-order functions are functions that either accept other functions as arguments or return them as results.</p>
+    <pre><code>def apply_operation(a, b, operation):
+    return operation(a, b)
+
+result = apply_operation(5, 3, lambda x, y: x + y)
+print(result)  # Outputs 8
+</code></pre>
+
+    <h2>Combining Decorators with Higher-Order Functions</h2>
+    <p>Decorators can be created using higher-order functions to extend their capabilities, making your code cleaner and more reusable.</p>
+    <pre><code>def decorator_with_args(arg):
+    def actual_decorator(func):
+        def wrapper(*args, **kwargs):
+            print(f"Argument: {arg}")
+            return func(*args, **kwargs)
+        return wrapper
+    return actual_decorator
+
+@decorator_with_args("some argument")
+def sample_function():
+    print("Sample function executed")
+
+sample_function()
+</code></pre>
+
+    <h2>Conclusion</h2>
+    <p>This lesson covered decorators and higher-order functions in Python, offering insights into their use and advantages in Python programming.</p>
+</body>
+</html>

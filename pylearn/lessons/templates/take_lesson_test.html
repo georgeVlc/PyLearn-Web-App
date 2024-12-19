@@ -9,11 +9,11 @@
     <ul>
         {% for quiz in quizzes %}
         <li>
-            <strong>Question:</strong> {{ quiz.question }}<br>
+            <strong>Question:</strong> {{ quiz.question|safe }}<br>
             {% for key, choice in quiz.answer_choices.items %}
             <label>
                 <input type="radio" name="quiz_{{ quiz.id }}" value="{{ key }}">
-                {{ key }}: {{ choice }}
+                {{ key }}: {{ choice|safe }}
             </label><br>
             {% endfor %}
         </li>
@@ -25,5 +25,5 @@
 </form>
 <div id="feedback"></div>
 <br>
-<a href="{% url 'view_lessons' %}">Back to Lessons</a>
+<a href="{% url 'lessons:view_lessons' 1 lesson.id %}">Back to Lessons</a>
 {% endblock %}

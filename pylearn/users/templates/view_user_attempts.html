@@ -43,7 +43,8 @@
         <!-- Overall Stats -->
         <div class="overall-stats">
             <h3>Overall Stats</h3>
-            <p><strong>Total Lesson Attempts:</strong> {{ total_attempts_count }}</p>
+            <p><strong>Total Test Attempts:</strong> {{ total_attempts_count }}</p>
+            <p><strong>Total Tests Passed:</strong> {{ total_lessons_passed }}</p>
             <p><strong>Overall Accuracy:</strong> {{ overall_accuracy }}%</p>
         </div>
 
@@ -59,6 +60,7 @@
                         <div class="card-body">
                             <p><strong>Total Questions:</strong> {{ lesson.total_quizzes }}</p>
                             <p><strong>Correct Answers:</strong> {{ lesson.correct_answers }}</p>
+                            <p><strong>Passed:</strong> {{ lesson.passed }}</p>
                             <p><strong>Accuracy:</strong> {{ lesson.accuracy }}%</p>
                         </div>
                     </div>

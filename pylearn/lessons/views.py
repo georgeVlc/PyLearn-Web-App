@@ -4,22 +4,59 @@ from users.models import UserProgress, QuizAttempt
 from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
 
+CHAPTER_SIZE = 10
+
 @login_required
-def view_lessons(request, lesson_id=None):
-    lessons = Lesson.objects.order_by('order')  # All lessons ordered
+def view_chapters(request):
+    lessons = Lesson.objects.order_by('order')  # Fetch all lessons
+    chapters = {}
+
+    # Group lessons into chapters
+    current_chapter = []
+    chapter_number = 1
+    for idx, lesson in enumerate(lessons):
+        current_chapter.append(lesson)
+
+        # After 10 lessons, close the chapter and start a new one
+        if (idx + 1) % CHAPTER_SIZE == 0 or idx == len(lessons) - 1:
+            chapters[chapter_number] = current_chapter
+            current_chapter = []
+            chapter_number += 1
+
+    context = {
+        'chapters': chapters,
+    }
+    return render(request, 'view_chapters.html', context)
+
+@login_required
+def view_lessons(request, chapter_id=None, lesson_id=None):
+    # Determine the lessons for the requested chapter
+    if chapter_id == 1 and lesson_id >= CHAPTER_SIZE:
+        chapter_id = lesson_id // CHAPTER_SIZE + 1
+
+    start_order = (chapter_id - 1) * CHAPTER_SIZE
+    end_order = chapter_id * CHAPTER_SIZE
+    
+    lessons = Lesson.objects.filter(order__gte=start_order, order__lt=end_order).order_by('order')
     current_lesson = None
 
+    
     if lesson_id is not None:
-        current_lesson = get_object_or_404(Lesson, id=lesson_id)
+        if lesson_id == 0:
+            current_lesson = get_object_or_404(Lesson, id=(chapter_id-1)*CHAPTER_SIZE)
+        else:
+            current_lesson = get_object_or_404(Lesson, id=lesson_id)
     else:
-        current_lesson = lessons.first()  # Default to the first lesson if none is selected
-    # Get the next lesson
+        current_lesson = lessons.first()  # Default to the first lesson in the chapter
+
+    # Get the next lesson within the chapter
     next_lesson = lessons.filter(order__gt=current_lesson.order).order_by('order').first()
 
     context = {
         'lessons': lessons,
         'current_lesson': current_lesson,
         'next_lesson': next_lesson,
+        'chapter_id': chapter_id,
     }
     return render(request, 'view_lessons.html', context)
 

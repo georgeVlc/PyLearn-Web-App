@@ -21,5 +21,5 @@
     <li>No test available for this lesson.</li>
     {% endfor %}
 </ul>
-<a href="{% url 'view_lessons' %}">Back to Lessons</a>
+<a href="{% url 'lessons:view_lessons' 1 lesson.id %}">Back to Lessons</a>
 {% endblock %}

@@ -1,0 +1,132 @@
+[
+    {
+        "question": "What symbol is used for comments in Python?",
+        "answer_choices": {
+            "a": "//",
+            "b": "#",
+            "c": "/* */",
+            "d": "<!-- -->"
+        },
+        "correct_answer": "b"
+    },
+    {
+        "question": "Which data structure is used to store key-value pairs in Python?",
+        "answer_choices": {
+            "a": "List",
+            "b": "Tuple",
+            "c": "Set",
+            "d": "Dictionary"
+        },
+        "correct_answer": "d"
+    },
+    {
+        "question": "Which of the following is a valid Python function definition?",
+        "answer_choices": {
+            "a": "def myFunction() {}",
+            "b": "def myFunction():",
+            "c": "function myFunction():",
+            "d": "def myFunction() ->"
+        },
+        "correct_answer": "b"
+    },
+    {
+        "question": "What does the <code>open()</code> function do in Python?",
+        "answer_choices": {
+            "a": "Opens a variable",
+            "b": "Opens a file for reading or writing",
+            "c": "Opens a new Python shell",
+            "d": "Opens a module"
+        },
+        "correct_answer": "b"
+    },
+    {
+        "question": "What is the output of the following code?\n\n<pre><code>print(2 ** 3)</code></pre>",
+        "answer_choices": {
+            "a": "6",
+            "b": "8",
+            "c": "9",
+            "d": "12"
+        },
+        "correct_answer": "b"
+    },
+    {
+        "question": "What will the following code do?\n\n<pre><code>try:\n    x = 10 / 0\nexcept ZeroDivisionError:\n    print(\"Cannot divide by zero!\")</code></pre>",
+        "answer_choices": {
+            "a": "Raise a runtime error",
+            "b": "Print 'Cannot divide by zero!'",
+            "c": "Print nothing",
+            "d": "Exit the program"
+        },
+        "correct_answer": "b"
+    },
+    {
+        "question": "How do you iterate over a list in Python?",
+        "answer_choices": {
+            "a": "for i in list",
+            "b": "for i in range(len(list))",
+            "c": "for i of list",
+            "d": "for i in my_list"
+        },
+        "correct_answer": "d"
+    },
+    {
+        "question": "What is the purpose of the <code>self</code> keyword in a Python class?",
+        "answer_choices": {
+            "a": "It refers to the current instance of the class.",
+            "b": "It refers to the superclass.",
+            "c": "It is used to declare static methods.",
+            "d": "It is a placeholder for class variables."
+        },
+        "correct_answer": "a"
+    },
+    {
+        "question": "Which of these is a correct way to create a list comprehension?",
+        "answer_choices": {
+            "a": "[x for x in range(5)]",
+            "b": "{x for x in range(5)}",
+            "c": "(x for x in range(5))",
+            "d": "x for x in range(5)"
+        },
+        "correct_answer": "a"
+    },
+    {
+        "question": "Which function is used to read an entire file into a string in Python?",
+        "answer_choices": {
+            "a": "read()",
+            "b": "readline()",
+            "c": "readlines()",
+            "d": "input()"
+        },
+        "correct_answer": "a"
+    },
+    {
+        "question": "Which of the following is used to import a specific function from a module?",
+        "answer_choices": {
+            "a": "import module.function",
+            "b": "import module as alias",
+            "c": "from module import function",
+            "d": "import function from module"
+        },
+        "correct_answer": "c"
+    },
+    {
+        "question": "What is the primary benefit of using packages in Python?",
+        "answer_choices": {
+            "a": "To organize your code for reusability and better structure",
+            "b": "To speed up execution",
+            "c": "To create larger projects",
+            "d": "To reduce file size"
+        },
+        "correct_answer": "a"
+    },
+    {
+        "question": "What is the purpose of inheritance in OOP?",
+        "answer_choices": {
+            "a": "To hide data",
+            "b": "To make a class immutable",
+            "c": "To reuse properties and methods",
+            "d": "To perform calculations"
+        },
+        "correct_answer": "c"
+    }
+]

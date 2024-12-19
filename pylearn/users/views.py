@@ -27,8 +27,7 @@ def view_user_attempts(request, user_id):
         total_quizzes=Count('quizzes', distinct=True)
     ).distinct()
 
-    # Calculate lesson-level accuracy using a dictionary
-    lesson_accuracy_dict = {}
+    # Calculate lesson-level accuracy
     for lesson in lessons_with_attempts:
         user_correct_answers = QuizAttempt.objects.filter(
             user_progress=user_progress,
@@ -44,8 +43,11 @@ def view_user_attempts(request, user_id):
             if total_attempts and total_quizzes > 0
             else 0
         )
-        print(f'{(user_correct_answers / total_quizzes) * 100}')
-
+        lesson.accuracy = round(lesson.accuracy, 2)
+        lesson.correct_answers = user_correct_answers
+        lesson.passed = True if lesson.accuracy >= 50 else False
+        print(f'{lesson.accuracy=}, {lesson.passed=}')
+        
     # Calculate overall stats across all lessons (quiz-level stats)
     overall_attempts = QuizAttempt.objects.filter(user_progress=user_progress)
     total_quizzes_attempted = overall_attempts.values('quiz').distinct().count()  # Distinct quizzes
@@ -62,8 +64,9 @@ def view_user_attempts(request, user_id):
     context = {
         'user_progress': user_progress,
         'lessons_with_attempts': lessons_with_attempts,
-        'overall_accuracy': overall_accuracy,
+        'overall_accuracy': round(overall_accuracy, 2),
         'total_attempts_count': lessons_with_attempts.aggregate(total_attempts=Count('total_attempts'))['total_attempts'] or 0,
+        'total_lessons_passed': len([lesson for lesson in lessons_with_attempts if lesson.passed])
     }
 
     return render(request, 'view_user_attempts.html', context)

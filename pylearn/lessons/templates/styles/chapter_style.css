@@ -1,0 +1,56 @@
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.chapter-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.chapter-item {
+    flex: 1 1 calc(33.333% - 20px);
+    background: #ffffff; /* Changed background to white for better contrast */
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    text-align: center;
+    transition: transform 0.2s ease-in-out;
+    border: 1px solid #ddd; /* Added border for better definition */
+}
+
+.chapter-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Slightly stronger shadow on hover */
+}
+
+.chapter-icon {
+    background: #4CAF50; /* Darker green background for icon */
+    color: #fff;
+    padding: 20px;
+    border-radius: 50%;
+    font-size: 36px; /* Increased size */
+    line-height: 1; /* Ensures icon is centered correctly */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.chapter-info {
+    padding: 15px;
+    text-align: center;
+}
+
+.chapter-info h3 {
+    margin: 0;
+    font-size: 1.2em;
+    color: #333;
+}
+
+.chapter-info p {
+    margin: 10px 0 0;
+    color: #666;
+}
