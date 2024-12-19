@@ -8,6 +8,6 @@ class LessonsConfig(AppConfig):
         try:
             from .utils import load_lessons_and_quizzes, delete_all_lessons_and_quizzes
             # delete_all_lessons_and_quizzes()
-            # load_lessons_and_quizzes()
+            load_lessons_and_quizzes()
         except Exception as e:
             print(f"Error during lesson preloading: {e}")

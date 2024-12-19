@@ -1,0 +1,52 @@
+[
+    {
+        "question": "What is the main concept of OOP?",
+        "answer_choices": {
+            "a": "Functional Programming",
+            "b": "Procedural Programming",
+            "c": "Object-Oriented Programming",
+            "d": "Declarative Programming"
+        },
+        "correct_answer": "c"
+    },
+    {
+        "question": "What is a class in Python?",
+        "answer_choices": {
+            "a": "A set of instructions for a program",
+            "b": "A type of function",
+            "c": "A blueprint for creating objects",
+            "d": "A collection of functions"
+        },
+        "correct_answer": "c"
+    },
+    {
+        "question": "What is an object in OOP?",
+        "answer_choices": {
+            "a": "A piece of data",
+            "b": "An instance of a class",
+            "c": "A variable",
+            "d": "A method"
+        },
+        "correct_answer": "b"
+    },
+    {
+        "question": "How do you call a method from an object in Python?",
+        "answer_choices": {
+            "a": "object.method()",
+            "b": "method()",
+            "c": "call object.method",
+            "d": "method(object)"
+        },
+        "correct_answer": "a"
+    },
+    {
+        "question": "What is the purpose of inheritance in OOP?",
+        "answer_choices": {
+            "a": "To hide data",
+            "b": "To make a class immutable",
+            "c": "To reuse properties and methods",
+            "d": "To perform calculations"
+        },
+        "correct_answer": "c"
+    }
+]

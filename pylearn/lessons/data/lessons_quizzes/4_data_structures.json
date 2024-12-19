@@ -1,0 +1,52 @@
+[
+    {
+        "question": "What is a key feature of lists in Python?",
+        "answer_choices": {
+            "a": "Ordered and immutable",
+            "b": "Unordered and mutable",
+            "c": "Ordered and mutable",
+            "d": "Unordered and immutable"
+        },
+        "correct_answer": "c"
+    },
+    {
+        "question": "How do you remove an element from a set?",
+        "answer_choices": {
+            "a": "remove()",
+            "b": "pop()",
+            "c": "delete()",
+            "d": "discard()"
+        },
+        "correct_answer": "a"
+    },
+    {
+        "question": "Which method returns the number of times a value appears in a list?",
+        "answer_choices": {
+            "a": "index()",
+            "b": "count()",
+            "c": "pop()",
+            "d": "remove()"
+        },
+        "correct_answer": "b"
+    },
+    {
+        "question": "What type of data structure is immutable?",
+        "answer_choices": {
+            "a": "Lists",
+            "b": "Sets",
+            "c": "Tuples",
+            "d": "Dictionaries"
+        },
+        "correct_answer": "c"
+    },
+    {
+        "question": "How can you access the value associated with a key in a dictionary?",
+        "answer_choices": {
+            "a": "using the index",
+            "b": "using the `get()` method",
+            "c": "using the `keys()` method",
+            "d": "using the `remove()` method"
+        },
+        "correct_answer": "b"
+    }
+]

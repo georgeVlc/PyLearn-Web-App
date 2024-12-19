@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Functions in Python</title>
+</head>
+<body>
+    <h1>Functions in Python</h1>
+    <p>Learn how to define and use functions in Python. Functions are reusable blocks of code that perform a specific task.</p>
+
+    <h2>Defining Functions</h2>
+    <p>Functions are defined using the `def` keyword followed by the function name and parentheses. You can include parameters inside these parentheses.</p>
+    <pre><code>def greet(name):
+    return "Hello, " + name</code></pre>
+
+    <h3>Example Usage</h3>
+    <pre><code>def add(a, b):
+    return a + b
+print(add(2, 3))  # Output: 5</code></pre>
+
+    <h2>Parameters and Arguments</h2>
+    <p>Functions can accept multiple arguments, which can be positional or keyword arguments.</p>
+    <pre><code>def multiply(x, y):
+    return x * y
+
+print(multiply(4, 5))  # Positional arguments
+print(multiply(x=4, y=5))  # Keyword arguments</code></pre>
+
+    <h2>Returning Values</h2>
+    <p>Functions can return values using the `return` keyword:</p>
+    <pre><code>def square(n):
+    return n ** 2</code></pre>
+
+    <h3>Example Usage</h3>
+    <pre><code>result = square(3)  # result is 9</code></pre>
+
+    <h2>Function Scope</h2>
+    <p>Variables defined inside a function are local to that function and do not affect variables outside:</p>
+    <pre><code>def modify_list(lst):
+    lst.append(4)
+    return lst
+
+numbers = [1, 2, 3]
+modify_list(numbers)
+print(numbers)  # Output: [1, 2, 3, 4]</code></pre>
+
+    <h2>Conclusion</h2>
+    <p>This lesson covered functions in Python. In the next lesson, we'll explore data structures.</p>
+</body>
+</html>

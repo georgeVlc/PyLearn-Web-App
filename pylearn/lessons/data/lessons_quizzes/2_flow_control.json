@@ -1,0 +1,52 @@
+[
+    {
+        "question": "What is the purpose of an if statement in Python?",
+        "answer_choices": {
+            "a": "To define a loop",
+            "b": "To execute code only if a condition is true",
+            "c": "To declare variables",
+            "d": "To handle exceptions"
+        },
+        "correct_answer": "b"
+    },
+    {
+        "question": "How does a `for` loop work in Python?",
+        "answer_choices": {
+            "a": "It runs until a condition becomes false",
+            "b": "It iterates through a range of values",
+            "c": "It waits for user input",
+            "d": "It exits immediately after the first iteration"
+        },
+        "correct_answer": "b"
+    },
+    {
+        "question": "What is the purpose of the `and` logical operator in Python?",
+        "answer_choices": {
+            "a": "To check if a condition is false",
+            "b": "To check if at least one of the conditions is true",
+            "c": "To combine multiple conditions",
+            "d": "To repeat a block of code"
+        },
+        "correct_answer": "c"
+    },
+    {
+        "question": "What happens if a condition in an `if` statement is false?",
+        "answer_choices": {
+            "a": "The code block is skipped",
+            "b": "The program terminates",
+            "c": "An error occurs",
+            "d": "The code block executes regardless"
+        },
+        "correct_answer": "a"
+    },
+    {
+        "question": "What is the result of the following code? `x = 5; y = 10; if x > 0 and y > 0:`",
+        "answer_choices": {
+            "a": "The code block executes",
+            "b": "An error occurs",
+            "c": "The code block does not execute",
+            "d": "The program exits"
+        },
+        "correct_answer": "a"
+    }
+]

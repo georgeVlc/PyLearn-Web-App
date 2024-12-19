@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modules and Packages in Python</title>
+</head>
+<body>
+    <h1>Modules and Packages in Python</h1>
+    <p>Python allows you to organize code into modules and packages, which are a way of structuring your code for better reusability and maintainability.</p>
+
+    <h2>What is a Module?</h2>
+    <p>A module is a single file containing Python code. It can define functions, classes, and variables. You can use the `import` statement to use a module in your script:</p>
+    <pre><code># Importing a module
+import math
+
+# Using a function from the math module
+result = math.sqrt(16)
+print(result)  # Output: 4.0</code></pre>
+
+    <h3>Creating Your Own Modules</h3>
+    <p>You can create your own modules by defining functions, classes, and variables in separate `.py` files. Then, you can import and use these modules in your Python scripts:</p>
+    <pre><code># my_module.py
+def greet(name):
+    return f"Hello, {name}!"
+
+# main.py
+import my_module
+
+print(my_module.greet("Alice"))  # Output: Hello, Alice</code></pre>
+
+    <h2>What is a Package?</h2>
+    <p>A package is a collection of modules organized into a directory. The directory should contain an `__init__.py` file that marks the directory as a package:</p>
+    <pre><code# my_package/
+    __init__.py
+    module1.py
+    module2.py</code></pre>
+
+    <p>To use a package, you use dot notation to access modules within it:</p>
+    <pre><code># Importing a package
+import my_package.module1
+my_package.module1.function1()</code></pre>
+
+    <h2>Using `from ... import ...`</h2>
+    <p>The `from ... import ...` statement allows you to import specific functions or classes from a module or package directly into your script:</p>
+    <pre><code# Importing a function from a module
+from math import sqrt
+result = sqrt(16)
+print(result)  # Output: 4.0</code></pre>
+
+    <h2>Conclusion</h2>
+    <p>This lesson covered modules and packages in Python. In the next lesson, we'll explore working with dates and times in Python.</p>
+</body>
+</html>

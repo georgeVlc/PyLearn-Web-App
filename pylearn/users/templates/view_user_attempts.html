@@ -1,55 +1,74 @@
-{% extends 'base.html' %}
-{% block content %}
+<!DOCTYPE html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Attempts Overview</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
     <style>
-        .progress-container {
-            margin: 20px;
-            padding: 20px;
-            border: 1px solid #ddd;
-            border-radius: 10px;
-            background-color: #f9f9f9;
+        .card {
+            margin: 1rem auto;
+            max-width: 900px;
         }
-        .lesson-progress {
-            margin-bottom: 15px;
-        }
-        .lesson-title {
-            font-weight: bold;
-            margin-bottom: 5px;
-        }
-        .accuracy-bar {
-            height: 15px;
-            border-radius: 5px;
-            background-color: #d9edf7;
-        }
-        .accuracy-bar-inner {
-            height: 100%;
-            border-radius: 5px;
-            background-color: #5bc0de;
+        .stat-header {
             text-align: center;
-            color: white;
-            font-size: 12px;
+            margin-bottom: 2rem;
+        }
+        .lesson-box {
+            margin-bottom: 1.5rem;
+        }
+        .lesson-box .card-body {
+            background: #f8f9fa;
+            border-radius: 10px;
+        }
+        .overall-stats {
+            padding: 1rem;
+            background-color: #e3f2fd;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+        }
+        .table {
+            margin-top: 1rem;
         }
     </style>
 </head>
-
-<div class="progress-container">
-    <h2>Your Progress</h2>
-    <p><strong>Average Test Accuracy:</strong> {{ average_accuracy|floatformat:2 }}%</p>
-    <p><strong>Total Attempts:</strong> {{ total_attempts_count }}</p>
-    
-    <h3>Lesson-wise Attempts:</h3>
-    {% for lesson in lessons_with_attempts %}
-        <div class="lesson-progress">
-            <p class="lesson-title">{{ lesson.title }}</p>
-            <p>Total Attempts: {{ total_attempts_count }}</p>
-            <div class="accuracy-bar">
-                <div class="accuracy-bar-inner">
-                    {{ average_accuracy|floatformat:2 }}%
-                </div>
-            </div>
+<body class="bg-light">
+    <div class="container py-4">
+        <!-- Header -->
+        <div class="stat-header">
+            <h1>User Attempts Overview</h1>
+            <h2>{{ user_progress.user.username }}'s Progress</h2>
         </div>
-    {% empty %}
-        <p>You have not attempted any quizzes yet.</p>
-    {% endfor %}
-</div>
-{% endblock %}
+
+        <!-- Overall Stats -->
+        <div class="overall-stats">
+            <h3>Overall Stats</h3>
+            <p><strong>Total Lesson Attempts:</strong> {{ total_attempts_count }}</p>
+            <p><strong>Overall Accuracy:</strong> {{ overall_accuracy }}%</p>
+        </div>
+
+        <!-- Lessons with Attempts -->
+        <h3>Lesson Breakdown</h3>
+        {% if lessons_with_attempts %}
+            {% for lesson in lessons_with_attempts %}
+                <div class="lesson-box">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4>{{ lesson.title }}</h4>
+                        </div>
+                        <div class="card-body">
+                            <p><strong>Total Questions:</strong> {{ lesson.total_quizzes }}</p>
+                            <p><strong>Correct Answers:</strong> {{ lesson.correct_answers }}</p>
+                            <p><strong>Accuracy:</strong> {{ lesson.accuracy }}%</p>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        {% else %}
+            <p>No attempts recorded for this user yet.</p>
+        {% endif %}
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

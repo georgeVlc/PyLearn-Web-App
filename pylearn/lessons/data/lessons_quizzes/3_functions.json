@@ -1,0 +1,52 @@
+[
+    {
+        "question": "How do you define a function in Python?",
+        "answer_choices": {
+            "a": "function myFunc() {}",
+            "b": "def myFunc()",
+            "c": "create function myFunc()",
+            "d": "func myFunc()"
+        },
+        "correct_answer": "b"
+    },
+    {
+        "question": "What is the purpose of the `return` keyword in a function?",
+        "answer_choices": {
+            "a": "To print the result",
+            "b": "To end the function execution",
+            "c": "To send data back to the caller",
+            "d": "To declare a variable"
+        },
+        "correct_answer": "c"
+    },
+    {
+        "question": "What happens to variables defined inside a function?",
+        "answer_choices": {
+            "a": "They are accessible outside the function",
+            "b": "They are local to the function",
+            "c": "They are global variables",
+            "d": "They are ignored"
+        },
+        "correct_answer": "b"
+    },
+    {
+        "question": "Which of the following is an example of a positional argument in a function?",
+        "answer_choices": {
+            "a": "add(x=5, y=10)",
+            "b": "add(5, 10)",
+            "c": "add(5, y=10)",
+            "d": "add(x=5, y=5)"
+        },
+        "correct_answer": "b"
+    },
+    {
+        "question": "How can you pass multiple arguments to a function in Python?",
+        "answer_choices": {
+            "a": "Using only positional arguments",
+            "b": "Using only keyword arguments",
+            "c": "Using a combination of both",
+            "d": "Using global variables"
+        },
+        "correct_answer": "c"
+    }
+]

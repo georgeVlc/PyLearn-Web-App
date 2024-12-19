@@ -1,0 +1,52 @@
+[
+    {
+        "question": "What is an example of a syntax error in Python?",
+        "answer_choices": {
+            "a": "Dividing by zero",
+            "b": "Forgetting a quotation mark",
+            "c": "Trying to open a non-existent file",
+            "d": "Using the wrong type of argument in a function"
+        },
+        "correct_answer": "b"
+    },
+    {
+        "question": "Which block in a try-except statement is executed regardless of an exception occurring?",
+        "answer_choices": {
+            "a": "except",
+            "b": "finally",
+            "c": "try",
+            "d": "raise"
+        },
+        "correct_answer": "b"
+    },
+    {
+        "question": "What type of error is raised when an operation is performed on an inappropriate type of object?",
+        "answer_choices": {
+            "a": "ValueError",
+            "b": "TypeError",
+            "c": "FileNotFoundError",
+            "d": "IndexError"
+        },
+        "correct_answer": "b"
+    },
+    {
+        "question": "How do you manually raise an exception in Python?",
+        "answer_choices": {
+            "a": "raise()",
+            "b": "raise error()",
+            "c": "error.raise()",
+            "d": "raise error"
+        },
+        "correct_answer": "a"
+    },
+    {
+        "question": "What happens if you put code inside the finally block of a try-except statement?",
+        "answer_choices": {
+            "a": "It causes an error",
+            "b": "It executes regardless of whether an exception occurs",
+            "c": "It only executes if an exception occurs",
+            "d": "It does nothing"
+        },
+        "correct_answer": "b"
+    }
+]

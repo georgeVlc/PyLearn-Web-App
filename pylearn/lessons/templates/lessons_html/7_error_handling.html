@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Error Handling in Python</title>
+</head>
+<body>
+    <h1>Error Handling in Python</h1>
+    <p>Error handling is a critical aspect of writing robust Python programs. It allows you to gracefully handle exceptions and errors that may occur during the execution of your code.</p>
+
+    <h2>Understanding Errors</h2>
+    <p>Errors in Python can be categorized into two main types:</p>
+    <ul>
+        <li><strong>Syntax Errors</strong>: These occur when the code violates the syntax rules of Python. For example, forgetting to close a parenthesis or a quotation mark.</li>
+        <li><strong>Exceptions</strong>: These occur during the execution of a program when some unexpected situation arises. For instance, dividing by zero.</li>
+    </ul>
+
+    <h2>Handling Exceptions</h2>
+    <p>To handle exceptions, use a try-except block:</p>
+    <pre><code>try:
+    # code that may cause an error
+    result = 10 / 0
+except ZeroDivisionError as e:
+    print("Error:", e)</code></pre>
+
+    <h3>Types of Exceptions</h3>
+    <ul>
+        <li><code>ValueError</code>: Raised when a function receives an argument of the correct type but inappropriate value.</li>
+        <li><code>TypeError</code>: Raised when an operation or function is applied to an object of inappropriate type.</li>
+        <li><code>FileNotFoundError</code>: Raised when an attempt to open a file fails.</li>
+        <li><code>IndexError</code>: Raised when an index of a list is out of range.</li>
+    </ul>
+
+    <h2>Using the `finally` Block</h2>
+    <p>The `finally` block is used to execute code that must be run regardless of whether an exception occurs or not. It's often used for cleanup operations:</p>
+    <pre><code>try:
+    file = open('example.txt', 'r')
+    content = file.read()
+except FileNotFoundError:
+    print("File not found")
+finally:
+    file.close()</code></pre>
+
+    <h2>Raising Exceptions</h2>
+    <p>You can also raise exceptions manually using the `raise` keyword:</p>
+    <pre><code>def check_age(age):
+    if age < 18:
+        raise ValueError("Age must be 18 or older")
+    return "Access granted"</code></pre>
+
+    <h2>Conclusion</h2>
+    <p>This lesson covered error handling in Python. In the next lesson, we'll explore working with external modules in Python.</p>
+</body>
+</html>

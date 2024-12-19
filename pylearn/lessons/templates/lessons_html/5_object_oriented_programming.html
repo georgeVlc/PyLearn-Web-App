@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Object-Oriented Programming in Python</title>
+</head>
+<body>
+    <h1>Object-Oriented Programming in Python</h1>
+    <p>Learn about the principles of Object-Oriented Programming (OOP) and how they are implemented in Python.</p>
+
+    <h2>What is OOP?</h2>
+    <p>Object-Oriented Programming is a programming paradigm that uses objects and their interactions to design applications and programs. In OOP, data is represented as objects, and actions are represented as methods.</p>
+
+    <h2>Key Concepts</h2>
+    <h3>1. Classes</h3>
+    <p>Classes are blueprints for creating objects. They define a type and the properties (attributes) and behaviors (methods) of objects:</p>
+    <pre><code>class Person:
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+    
+    def greet(self):
+        return "Hello, my name is " + self.name</code></pre>
+
+    <h3>Example Usage</h3>
+    <pre><code>p = Person("Alice", 25)
+print(p.greet())  # Output: Hello, my name is Alice</code></pre>
+
+    <h3>2. Objects</h3>
+    <p>An object is an instance of a class. Objects are created using class definitions:</p>
+    <pre><code>p = Person("Alice", 25)</code></pre>
+
+    <h3>3. Attributes</h3>
+    <p>Attributes are characteristics or properties of an object. They are defined in the class’s `__init__` method:</p>
+    <pre><code>class Car:
+    def __init__(self, make, model):
+        self.make = make
+        self.model = model</code></pre>
+
+    <h3>4. Methods</h3>
+    <p>Methods are functions defined inside a class. They operate on the attributes of the object:</p>
+    <pre><code>class Car:
+    def __init__(self, make, model):
+        self.make = make
+        self.model = model
+    
+    def display_info(self):
+        return f"Car make: {self.make}, Model: {self.model}"</code></pre>
+
+    <h3>5. Inheritance</h3>
+    <p>Inheritance allows one class to inherit the properties and methods of another class:</p>
+    <pre><code>class ElectricCar(Car):
+    def __init__(self, make, model, battery_size):
+        super().__init__(make, model)
+        self.battery_size = battery_size</code></pre>
+
+    <h2>Conclusion</h2>
+    <p>This lesson covered the basics of Object-Oriented Programming in Python. In the next lesson, we'll look at file handling in Python.</p>
+</body>
+</html>

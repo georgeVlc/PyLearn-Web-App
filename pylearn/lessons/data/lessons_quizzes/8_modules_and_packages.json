@@ -1,0 +1,52 @@
+[
+    {
+        "question": "What is a module in Python?",
+        "answer_choices": {
+            "a": "A collection of scripts",
+            "b": "A file containing Python code",
+            "c": "A package",
+            "d": "A class"
+        },
+        "correct_answer": "b"
+    },
+    {
+        "question": "How do you import a module in Python?",
+        "answer_choices": {
+            "a": "import module_name",
+            "b": "require module_name",
+            "c": "import module",
+            "d": "import from module"
+        },
+        "correct_answer": "a"
+    },
+    {
+        "question": "What must be present in a directory for it to be considered a package?",
+        "answer_choices": {
+            "a": "An __init__.py file",
+            "b": "A README file",
+            "c": "A script file",
+            "d": "A documentation file"
+        },
+        "correct_answer": "a"
+    },
+    {
+        "question": "Which of the following is used to import a specific function from a module?",
+        "answer_choices": {
+            "a": "import module.function",
+            "b": "import module as alias",
+            "c": "from module import function",
+            "d": "import function from module"
+        },
+        "correct_answer": "c"
+    },
+    {
+        "question": "What is the primary benefit of using packages in Python?",
+        "answer_choices": {
+            "a": "To organize your code for reusability and better structure",
+            "b": "To speed up execution",
+            "c": "To create larger projects",
+            "d": "To reduce file size"
+        },
+        "correct_answer": "a"
+    }
+]

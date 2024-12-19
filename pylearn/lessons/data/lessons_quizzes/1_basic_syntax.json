@@ -1,0 +1,52 @@
+[
+    {
+        "question": "What is a comment in Python?",
+        "answer_choices": {
+            "a": "A line of code that is executed",
+            "b": "A way to annotate code for readability",
+            "c": "A function to comment out code",
+            "d": "A keyword used in Python"
+        },
+        "correct_answer": "b"
+    },
+    {
+        "question": "Which operator is used for addition in Python?",
+        "answer_choices": {
+            "a": "+",
+            "b": "-",
+            "c": "*",
+            "d": "/"
+        },
+        "correct_answer": "a"
+    },
+    {
+        "question": "How do you create a string variable in Python?",
+        "answer_choices": {
+            "a": "string name = 'Alice'",
+            "b": "name = 'Alice'",
+            "c": "var name = 'Alice'",
+            "d": "x = 'Alice'"
+        },
+        "correct_answer": "b"
+    },
+    {
+        "question": "What does the `%` symbol do in Python?",
+        "answer_choices": {
+            "a": "Division",
+            "b": "Exponentiation",
+            "c": "Modulus (remainder)",
+            "d": "Assignment"
+        },
+        "correct_answer": "c"
+    },
+    {
+        "question": "What is the purpose of comments in Python?",
+        "answer_choices": {
+            "a": "To add comments for debugging",
+            "b": "To explain code for readability",
+            "c": "To indicate functions",
+            "d": "To mark the end of a block"
+        },
+        "correct_answer": "b"
+    }
+]
