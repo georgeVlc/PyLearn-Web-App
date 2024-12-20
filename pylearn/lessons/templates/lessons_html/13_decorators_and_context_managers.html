@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Decorators and Context Managers in Python</title>
+</head>
+<body>
+    <h1>Decorators and Context Managers in Python</h1>
+    <p>Learn about decorators and context managers in Python to modify and manage code flow in a clean and readable way.</p>
+
+    <h2>Decorators</h2>
+    <p>A decorator is a function that modifies the behavior of another function or method without changing its code. It is commonly used for adding functionality such as logging or timing to functions.</p>
+    <pre><code>
+# Example of a decorator
+def my_decorator(func):
+    def wrapper():
+        print("Something is happening before the function runs.")
+        func()
+        print("Something is happening after the function runs.")
+    return wrapper
+
+@my_decorator
+def say_hello():
+    print("Hello!")
+
+say_hello()
+    </code></pre>
+
+    <h3>Common Uses</h3>
+    <ul>
+        <li>Adding logging to functions.</li>
+        <li>Enforcing access control.</li>
+        <li>Caching results of expensive computations.</li>
+    </ul>
+
+    <h2>Context Managers</h2>
+    <p>Context managers are used with the `with` statement to ensure that resources are properly cleaned up after usage, even if an error occurs. They implement the `__enter__()` and `__exit__()` methods.</p>
+    <pre><code>
+class MyContextManager:
+    def __enter__(self):
+        print("Entering context.")
+        return self
+
+    def __exit__(self, exc_type, exc_val, exc_tb):
+        print("Exiting context.")
+
+with MyContextManager() as cm:
+    print("Inside context")
+    # Operations within the context
+print("Outside context")
+    </code></pre>
+
+    <h3>Best Practices</h3>
+    <ul>
+        <li>Ensure that resources like files or database connections are closed properly.</li>
+        <li>Use context managers for safe handling of exceptions.</li>
+        <li>Favor context managers over exceptions for resource management.</li>
+    </ul>
+
+    <h2>Exercise</h2>
+    <p>Create a decorator that times the execution of a function and a context manager that manages the opening and closing of a file.</p>
+
+    <h2>Conclusion</h2>
+    <p>This lesson covered decorators and context managers in Python. In the next lesson, we'll explore advanced OOP concepts.</p>
+</body>
+</html>

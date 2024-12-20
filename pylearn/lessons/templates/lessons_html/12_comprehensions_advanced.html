@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comprehensions in Python (Advanced)</title>
+</head>
+<body>
+    <h1>Comprehensions in Python (Advanced)</h1>
+    <p>Learn advanced usage of list, set, and dictionary comprehensions in Python to simplify and optimize your code.</p>
+
+    <h2>List Comprehensions</h2>
+    <p>List comprehensions provide a concise way to create lists. They are commonly used for transforming and filtering elements.</p>
+    <pre><code>
+# Example of a list comprehension
+squared_numbers = [x**2 for x in range(10)]
+print(squared_numbers)  # Output: [0, 1, 4, 9, 16, 25, 36, 49, 64, 81]
+    </code></pre>
+
+    <h3>Advanced Features</h3>
+    <ul>
+        <li>Conditional list comprehensions: <code>[x for x in range(10) if x % 2 == 0]</code> to filter even numbers.</li>
+        <li>Nested comprehensions: <code>[x**2 for x in [1, 2, 3] for x in [1, 4, 9]]</code> for multiplying all combinations.</li>
+    </ul>
+
+    <h2>Set Comprehensions</h2>
+    <p>Set comprehensions are similar to list comprehensions but produce sets, which are unordered collections of unique elements.</p>
+    <pre><code>
+# Example of a set comprehension
+unique_squares = {x**2 for x in range(5)}
+print(unique_squares)  # Output: {0, 1, 4, 9, 16}
+    </code></pre>
+
+    <h2>Dictionary Comprehensions</h2>
+    <p>Dictionary comprehensions allow creating dictionaries in a very compact way. They are ideal for transforming lists into key-value pairs.</p>
+    <pre><code>
+# Example of a dictionary comprehension
+squared_dict = {x: x**2 for x in range(5)}
+print(squared_dict)  # Output: {0: 0, 1: 1, 2: 4, 3: 9, 4: 16}
+    </code></pre>
+
+    <h3>Advanced Features</h3>
+    <ul>
+        <li>Transforming multiple lists: <code>{k: v for k, v in zip(keys, values)}</code>.</li>
+        <li>Conditional dictionary comprehensions: <code>{k: v for k, v in data.items() if v > 10}</code>.</li>
+    </ul>
+
+    <h2>Exercise</h2>
+    <p>Write a dictionary comprehension to transform a list of numbers into a dictionary where the keys are numbers and the values are their cubes.</p>
+
+    <h2>Conclusion</h2>
+    <p>This lesson covered advanced comprehensions in Python. In the next lesson, we'll explore decorators and context managers.</p>
+</body>
+</html>

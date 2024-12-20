@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced OOP Concepts in Python</title>
+</head>
+<body>
+    <h1>Advanced OOP Concepts in Python</h1>
+    <p>Explore advanced object-oriented programming concepts in Python, including class inheritance, method resolution order (MRO), multiple inheritance, and more.</p>
+
+    <h2>Inheritance</h2>
+    <p>Inheritance allows a class (child) to acquire the attributes and methods of another class (parent). It's used for code reuse and to establish a hierarchy.</p>
+    <pre><code>
+# Example of inheritance
+class Animal:
+    def speak(self):
+        print("Animal speaks")
+
+class Dog(Animal):
+    def bark(self):
+        print("Dog barks")
+
+dog = Dog()
+dog.speak()  # Calls parent method
+dog.bark()   # Calls child method
+    </code></pre>
+
+    <h3>Method Resolution Order (MRO)</h3>
+    <p>The MRO is the order in which base classes are searched for methods. Understanding MRO is crucial for correct inheritance.</p>
+    <pre><code>
+class A:
+    def method(self):
+        print("A method")
+
+class B(A):
+    def method(self):
+        print("B method")
+
+class C(A):
+    def method(self):
+        print("C method")
+
+class D(B, C):
+    pass
+
+d = D()
+d.method()  # Output depends on MRO
+    </code></pre>
+
+    <h2>Multiple Inheritance</h2>
+    <p>Multiple inheritance allows a class to inherit from more than one base class. While powerful, it can lead to ambiguity and complexity.</p>
+    <pre><code>
+class A:
+    def method(self):
+        print("A method")
+
+class B:
+    def method(self):
+        print("B method")
+
+class C(A, B):
+    pass
+
+c = C()
+c.method()  # Output depends on MRO
+    </code></pre>
+
+    <h3>Understanding the Diamond Problem</h3>
+    <p>Illustrates potential issues with multiple inheritance where methods from two or more base classes might conflict.</p>
+
+    <h2>Polymorphism</h2>
+    <p>Polymorphism allows an object to be treated as an instance of its parent class, but allows the use of its own methods. It's a key feature of OOP.</p>
+    <pre><code>
+class Animal:
+    def speak(self):
+        print("Animal speaks")
+
+class Dog(Animal):
+    def speak(self):
+        print("Dog barks")
+
+class Cat(Animal):
+    def speak(self):
+        print("Cat meows")
+
+animals = [Dog(), Cat()]
+for animal in animals:
+    animal.speak()  # Polymorphism in action
+    </code></pre>
+
+    <h2>Exercise</h2>
+    <p>Implement a class hierarchy with inheritance, polymorphism, and multiple inheritance. Handle conflicts in method resolution order.</p>
+
+    <h2>Conclusion</h2>
+    <p>This lesson covered advanced OOP concepts in Python. In the next lesson, we'll explore exception handling best practices.</p>
+</body>
+</html>

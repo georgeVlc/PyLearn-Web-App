@@ -1,0 +1,52 @@
+[
+    {
+        "question": "What is the main advantage of using inheritance in OOP?",
+        "answer_choices": {
+            "a": "Reuse code and reduce redundancy.",
+            "b": "Improve method resolution order.",
+            "c": "Enforce access control.",
+            "d": "Enable multiple inheritance."
+        },
+        "correct_answer": "a"
+    },
+    {
+        "question": "Which of these is true about method resolution order (MRO)?",
+        "answer_choices": {
+            "a": "It's used for enforcing access control.",
+            "b": "It's the order in which base classes are searched for methods.",
+            "c": "It determines the constructor of a class.",
+            "d": "It ensures single inheritance."
+        },
+        "correct_answer": "b"
+    },
+    {
+        "question": "What is the 'Diamond Problem' in multiple inheritance?",
+        "answer_choices": {
+            "a": "Conflict when methods from multiple base classes conflict.",
+            "b": "Overriding methods in a derived class.",
+            "c": "Handling multiple polymorphic methods.",
+            "d": "Implementing method resolution order."
+        },
+        "correct_answer": "a"
+    },
+    {
+        "question": "Which of the following is an example of polymorphism?",
+        "answer_choices": {
+            "a": "Overriding methods in derived classes.",
+            "b": "Using an object as an instance of its parent class.",
+            "c": "Creating multiple constructors.",
+            "d": "Managing multiple inheritance."
+        },
+        "correct_answer": "b"
+    },
+    {
+        "question": "What is a potential downside of multiple inheritance?",
+        "answer_choices": {
+            "a": "It increases code readability.",
+            "b": "It reduces flexibility.",
+            "c": "It can lead to conflicts in method resolution order.",
+            "d": "It simplifies method overriding."
+        },
+        "correct_answer": "c"
+    }
+]

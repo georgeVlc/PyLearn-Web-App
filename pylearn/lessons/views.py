@@ -1,10 +1,10 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from lessons.models import Lesson, Quiz
+from lessons.models import Lesson, Quiz, chapter_size, chapter_titles, chapter_difficulties
 from users.models import UserProgress, QuizAttempt
 from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
+from .utils import *
 
-CHAPTER_SIZE = 10
 
 @login_required
 def view_chapters(request):
@@ -12,15 +12,18 @@ def view_chapters(request):
     chapters = {}
 
     # Group lessons into chapters
-    current_chapter = []
+    current_chapter = {}
     chapter_number = 1
     for idx, lesson in enumerate(lessons):
-        current_chapter.append(lesson)
+        current_chapter.setdefault('lessons', []).append(lesson)
 
         # After 10 lessons, close the chapter and start a new one
-        if (idx + 1) % CHAPTER_SIZE == 0 or idx == len(lessons) - 1:
+        if (idx + 1) % chapter_size == 0 or idx == len(lessons) - 1:
+            current_chapter['title'] = chapter_titles[chapter_number-1]
+            current_chapter['difficulty'] = chapter_difficulties[chapter_number-1]
+            current_chapter['number'] = chapter_number
             chapters[chapter_number] = current_chapter
-            current_chapter = []
+            current_chapter = {}
             chapter_number += 1
 
     context = {
@@ -31,11 +34,11 @@ def view_chapters(request):
 @login_required
 def view_lessons(request, chapter_id=None, lesson_id=None):
     # Determine the lessons for the requested chapter
-    if chapter_id == 1 and lesson_id >= CHAPTER_SIZE:
-        chapter_id = lesson_id // CHAPTER_SIZE + 1
+    if chapter_id == 1 and lesson_id >= chapter_size:
+        chapter_id = lesson_id // chapter_size + 1
 
-    start_order = (chapter_id - 1) * CHAPTER_SIZE
-    end_order = chapter_id * CHAPTER_SIZE
+    start_order = (chapter_id - 1) * chapter_size
+    end_order = chapter_id * chapter_size
     
     lessons = Lesson.objects.filter(order__gte=start_order, order__lt=end_order).order_by('order')
     current_lesson = None
@@ -43,7 +46,7 @@ def view_lessons(request, chapter_id=None, lesson_id=None):
     
     if lesson_id is not None:
         if lesson_id == 0:
-            current_lesson = get_object_or_404(Lesson, id=(chapter_id-1)*CHAPTER_SIZE)
+            current_lesson = get_object_or_404(Lesson, id=(chapter_id-1)*chapter_size)
         else:
             current_lesson = get_object_or_404(Lesson, id=lesson_id)
     else:
@@ -73,54 +76,9 @@ def take_lesson_test(request, lesson_id):
     
     if request.method == 'POST':
         user_progress, created = UserProgress.objects.get_or_create(user=request.user)
-        mistakes = []
-        correct_count = 0  # Track correct answers
+        update_quiz_attempts(request, quizzes, user_progress, lesson)
+        correct_count, mistakes = track_test_results(request, quizzes)
         
-        # Check if this is a new lesson attempt
-        lesson_attempts = QuizAttempt.objects.filter(
-            user_progress=user_progress, quiz__lesson=lesson
-        ).values('user_progress').distinct().count()
-        
-        # Increment lesson attempts (only count when a test is taken)
-        lesson_attempts += 1
-        
-        for quiz in quizzes:
-            user_answer_key = request.POST.get(f'quiz_{quiz.id}')  # Key chosen by user
-            correct_answer_key = quiz.correct_answer  # Key for the correct answer
-            passed = user_answer_key == correct_answer_key
-
-            # Update or create quiz attempts
-            existing_attempt = QuizAttempt.objects.filter(user_progress=user_progress, quiz=quiz).first()
-            if existing_attempt:
-                existing_attempt.score = 1 if passed else 0
-                existing_attempt.passed = passed
-                existing_attempt.attempts = lesson_attempts  # Track by lesson attempt
-                existing_attempt.save()
-            else:
-                QuizAttempt.objects.create(
-                    user_progress=user_progress,
-                    quiz=quiz,
-                    score=1 if passed else 0,
-                    passed=passed,
-                    attempts=lesson_attempts
-                )
-
-            # Track mistakes with full answers
-            if passed:
-                correct_count += 1
-            else:
-                mistakes.append({
-                    'question': quiz.question,
-                    'user_answer': {
-                        'option': user_answer_key,
-                        'answer': quiz.answer_choices.get(user_answer_key, "No answer selected")
-                    },
-                    'correct_answer': {
-                        'option': correct_answer_key,
-                        'answer': quiz.answer_choices.get(correct_answer_key)
-                    }
-                })
-
         # Calculate score percentage for the entire lesson
         total_quizzes = len(quizzes)
         score_percentage = (correct_count / total_quizzes) * 100
@@ -136,8 +94,13 @@ def take_lesson_test(request, lesson_id):
             'mistakes': mistakes,
             'total_quizzes': total_quizzes,
             'correct_count': correct_count,
-            'lesson_attempts': lesson_attempts
         }
+        
+        if is_recap_lesson(lesson):
+            recommendations = generate_recommendations(mistakes, Lesson.objects.all())
+            print(f'{recommendations=}')
+            context['recommendations'] = recommendations
+
         return render(request, 'view_test_results.html', context)
 
     # If not POST, render the test page

@@ -18,11 +18,11 @@
                 <ul>
                     {% for mistake in mistakes %}
                         <li>
-                            <strong>Question:</strong> {{ mistake.question }}<br>
+                            <strong>Question:</strong> {{ mistake.question|safe }}<br>
                             <strong>Your Answer:</strong> 
-                            <span class="your-answer">{{ mistake.user_answer.option }}: {{ mistake.user_answer.answer }}</span><br>
+                            <span class="your-answer">{{ mistake.user_answer.option }}: {{ mistake.user_answer.answer|safe }}</span><br>
                             <strong>Correct Answer:</strong> 
-                            <span class="correct-answer">{{ mistake.correct_answer.option }}: {{ mistake.correct_answer.answer }}</span>
+                            <span class="correct-answer">{{ mistake.correct_answer.option }}: {{ mistake.correct_answer.answer|safe }}</span>
                         </li>
                     {% endfor %}
                 </ul>
@@ -31,8 +31,23 @@
             <p class="congrats">Congratulations! You answered all questions correctly.</p>
         {% endif %}
 
-        <a href="{% url 'lessons:view_lessons' lesson.id %}" class="back-link">← Back to Lessons</a>
+        {% if recommendations %}
+            <div class="lesson-recommendations">
+                <h3>Recommended Lessons to Review</h3>
+                <ul>
+                    {% for rec in recommendations %}
+                        <li>
+                            <a href="{% url 'lessons:take_lesson_test' rec.lesson.id %}">
+                                {{ rec.lesson.title }}
+                            </a> 
+                            ({{ rec.count }} related mistakes, Similarity: {{ rec.similarity|floatformat:2 }})
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        {% endif %}
+
+        <a href="{% url 'lessons:view_lessons' 1 lesson.id %}" class="back-link">← Back to Lessons</a>
     </div>
 </body>
 {% endblock %}
-

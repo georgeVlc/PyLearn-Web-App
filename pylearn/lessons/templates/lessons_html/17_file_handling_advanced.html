@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced File Handling in Python</title>
+</head>
+<body>
+    <h1>Advanced File Handling in Python</h1>
+    <p>Dive into more advanced file handling techniques in Python, including file manipulation, reading/writing CSVs, and working with binary files.</p>
+
+    <h2>Working with Files</h2>
+    <p>Python provides several functions and methods for handling files, such as <code>open()</code>, <code>read()</code>, <code>write()</code>, <code>close()</code>, and context managers.</p>
+    <pre><code>
+# Opening a file
+with open('file.txt', 'r') as file:
+    content = file.read()
+    print(content)
+
+# Writing to a file
+with open('file.txt', 'w') as file:
+    file.write("Hello, world!")
+    </code></pre>
+
+    <h3>Reading and Writing CSV Files</h3>
+    <p>CSV files can be read using the <code>csv</code> module in Python, which provides the <code>reader</code> and <code>writer</code> classes.</p>
+    <pre><code>
+import csv
+
+# Writing to a CSV file
+with open('data.csv', 'w', newline='') as file:
+    writer = csv.writer(file)
+    writer.writerow(['Name', 'Age', 'City'])
+    writer.writerow(['Alice', 30, 'New York'])
+    writer.writerow(['Bob', 25, 'Los Angeles'])
+
+# Reading from a CSV file
+with open('data.csv', 'r') as file:
+    reader = csv.reader(file)
+    for row in reader:
+        print(row)
+    </code></pre>
+
+    <h2>Binary File Handling</h2>
+    <p>Handling binary files involves reading and writing data in binary format, such as images, audio, and video files.</p>
+    <pre><code>
+# Writing a binary file
+with open('image.png', 'wb') as file:
+    file.write(b'\x89PNG\r\n\x1a\n...')
+    
+# Reading a binary file
+with open('image.png', 'rb') as file:
+    data = file.read()
+    print(data[:10])  # Show the first 10 bytes
+    </code></pre>
+
+    <h3>Exercises</h3>
+    <p>Write a program that reads a binary file and processes its contents to extract image metadata.</p>
+
+    <h2>Conclusion</h2>
+    <p>This lesson covered advanced file handling techniques in Python. In the next lesson, we'll explore data science with Python.</p>
+</body>
+</html>

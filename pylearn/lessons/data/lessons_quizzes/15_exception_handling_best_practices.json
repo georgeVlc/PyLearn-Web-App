@@ -1,0 +1,52 @@
+[
+    {
+        "question": "What is the purpose of the `try` block in exception handling?",
+        "answer_choices": {
+            "a": "To handle specific exceptions.",
+            "b": "To try a block of code for syntax errors.",
+            "c": "To raise exceptions.",
+            "d": "To execute code unconditionally."
+        },
+        "correct_answer": "b"
+    },
+    {
+        "question": "What is a good practice when handling exceptions?",
+        "answer_choices": {
+            "a": "Catch the base exception type (<code>BaseException</code>)",
+            "b": "Catch only specific exceptions that are relevant.",
+            "c": "Use <code>except</code> without specifying an exception type.",
+            "d": "Handle all exceptions generically."
+        },
+        "correct_answer": "b"
+    },
+    {
+        "question": "Which block is always executed regardless of an exception in a `try` block?",
+        "answer_choices": {
+            "a": "finally",
+            "b": "except",
+            "c": "else",
+            "d": "catch"
+        },
+        "correct_answer": "a"
+    },
+    {
+        "question": "What is the main difference between <code>try-except</code> and <code>try-except-finally</code>?",
+        "answer_choices": {
+            "a": "The <code>try-except</code> block does not handle exceptions.",
+            "b": "The <code>finally</code> block always executes after <code>try</code> regardless of exceptions.",
+            "c": "The <code>except</code> block catches all exceptions.",
+            "d": "The <code>try-except</code> block is used for catching syntax errors only."
+        },
+        "correct_answer": "b"
+    },
+    {
+        "question": "When should exceptions be raised in a program?",
+        "answer_choices": {
+            "a": "When handling them is not necessary.",
+            "b": "When an error condition cannot be handled locally.",
+            "c": "When input is invalid.",
+            "d": "All of the above."
+        },
+        "correct_answer": "b"
+    }
+]

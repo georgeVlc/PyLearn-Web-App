@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Science with Python</title>
+</head>
+<body>
+    <h1>Data Science with Python</h1>
+    <p>Learn about the role of Python in data science, the tools and libraries used, and common tasks performed in data science projects.</p>
+
+    <h2>Introduction to Data Science</h2>
+    <p>Data science involves extracting knowledge and insights from structured and unstructured data using various methods, tools, and algorithms.</p>
+    <pre><code>
+import pandas as pd
+import numpy as np
+
+# Creating a DataFrame
+df = pd.DataFrame({
+    'Name': ['Alice', 'Bob', 'Charlie'],
+    'Age': [25, 30, 35],
+    'City': ['New York', 'Los Angeles', 'Chicago']
+})
+
+# Basic operations with pandas
+print(df.head())
+print(df.describe())
+    </code></pre>
+
+    <h3>Pandas and Numpy</h3>
+    <p>Pandas is a powerful library for data manipulation and analysis. It provides data structures like DataFrames, which are perfect for structured data.</p>
+
+    <h2>Data Visualization</h2>
+    <p>Matplotlib and Seaborn are popular Python libraries used for creating visual representations of data.</p>
+    <pre><code>
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+# Simple plot using Matplotlib
+plt.plot(df['Age'], df['Name'], 'o-')
+plt.title('Age vs Name')
+plt.xlabel('Age')
+plt.ylabel('Name')
+plt.show()
+
+# Using Seaborn for a better visualization
+sns.pairplot(df, hue='City')
+plt.show()
+    </code></pre>
+
+    <h3>Exercises</h3>
+    <p>Using the Pandas library, create a time series plot showing the average age of individuals in each city over time.</p>
+
+    <h2>Conclusion</h2>
+    <p>This lesson covered the basics of data science with Python. In the next lesson, we'll recap the advanced concepts covered in Chapter 2.</p>
+</body>
+</html>

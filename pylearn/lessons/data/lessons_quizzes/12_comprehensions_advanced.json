@@ -1,0 +1,52 @@
+[
+    {
+        "question": "What is a common use for list comprehensions in Python?",
+        "answer_choices": {
+            "a": "To perform complex calculations.",
+            "b": "To create new lists from existing ones.",
+            "c": "To write complex algorithms.",
+            "d": "To manipulate file data directly."
+        },
+        "correct_answer": "b"
+    },
+    {
+        "question": "Which of the following is a valid set comprehension?",
+        "answer_choices": {
+            "a": "{x**2 for x in range(5)}",
+            "b": "[x**2 for x in range(5)]",
+            "c": "x: x**2 for x in range(5)",
+            "d": "x -> x**2 for x in range(5)"
+        },
+        "correct_answer": "a"
+    },
+    {
+        "question": "How can you create a dictionary with keys from a list and values as their squares?",
+        "answer_choices": {
+            "a": "{x: x**2 for x in range(5)}",
+            "b": "list(x**2 for x in range(5))",
+            "c": "dict(range(5))",
+            "d": "set(x**2 for x in range(5))"
+        },
+        "correct_answer": "a"
+    },
+    {
+        "question": "Which of the following correctly demonstrates a conditional dictionary comprehension?",
+        "answer_choices": {
+            "a": "{x: x**2 for x in range(5) if x > 2}",
+            "b": "[x**2 for x in range(5) if x > 2]",
+            "c": "{k: v for k, v in zip(range(5), range(5)) if k > 2}",
+            "d": "dict(x**2 for x in range(5) if x > 2)"
+        },
+        "correct_answer": "a"
+    },
+    {
+        "question": "What does a dictionary comprehension provide that a regular dictionary creation statement does not?",
+        "answer_choices": {
+            "a": "Efficient memory usage.",
+            "b": "Ability to transform lists into key-value pairs.",
+            "c": "Ability to filter elements.",
+            "d": "Access to private data."
+        },
+        "correct_answer": "b"
+    }
+]

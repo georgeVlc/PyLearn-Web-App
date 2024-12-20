@@ -1,0 +1,52 @@
+[
+    {
+        "question": "What is the purpose of using `with` statement for file handling?",
+        "answer_choices": {
+            "a": "To open and close files automatically.",
+            "b": "To read file content.",
+            "c": "To write to a file.",
+            "d": "To delete a file after reading."
+        },
+        "correct_answer": "a"
+    },
+    {
+        "question": "Which module can be used for reading and writing CSV files?",
+        "answer_choices": {
+            "a": "xml",
+            "b": "csv",
+            "c": "file",
+            "d": "json"
+        },
+        "correct_answer": "b"
+    },
+    {
+        "question": "What is the main difference between binary and text files?",
+        "answer_choices": {
+            "a": "Binary files cannot be written.",
+            "b": "Text files are faster to read.",
+            "c": "Binary files store data in binary format.",
+            "d": "Text files cannot be read line by line."
+        },
+        "correct_answer": "c"
+    },
+    {
+        "question": "How can you read a binary file in Python?",
+        "answer_choices": {
+            "a": "Using the `read()` method.",
+            "b": "Using the `open()` method with 'w' mode.",
+            "c": "Using the `write()` method.",
+            "d": "Using the `readlines()` method."
+        },
+        "correct_answer": "a"
+    },
+    {
+        "question": "What method can be used to append data to a binary file?",
+        "answer_choices": {
+            "a": "open()",
+            "b": "write()",
+            "c": "append()",
+            "d": "writelines()"
+        },
+        "correct_answer": "b"
+    }
+]

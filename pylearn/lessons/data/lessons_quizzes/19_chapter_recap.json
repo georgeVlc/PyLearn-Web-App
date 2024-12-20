@@ -1,0 +1,142 @@
+[
+    {
+        "question": "What is a generator in Python?",
+        "answer_choices": {
+            "a": "A function that returns a single value.",
+            "b": "A function that returns an iterator.",
+            "c": "A method for error handling.",
+            "d": "A data structure for storing large datasets."
+        },
+        "correct_answer": "b"
+    },
+    {
+        "question": "Which of the following is a valid list comprehension?",
+        "answer_choices": {
+            "a": "[x for x in range(1, 6)]",
+            "b": "set(x for x in range(1, 6))",
+            "c": "{x: x**2 for x in range(1, 6)}",
+            "d": "all(x ** 2 for x in range(1, 6))"
+        },
+        "correct_answer": "a"
+    },
+    {
+        "question": "What is the purpose of a decorator in Python?",
+        "answer_choices": {
+            "a": "To modify the scope of a variable.",
+            "b": "To create new data structures.",
+            "c": "To enhance functions or methods.",
+            "d": "To handle exceptions globally."
+        },
+        "correct_answer": "c"
+    },
+    {
+        "question": "What is a context manager?",
+        "answer_choices": {
+            "a": "A class used for object-oriented programming.",
+            "b": "A function used for type checking.",
+            "c": "A method for managing resources.",
+            "d": "A library for handling errors."
+        },
+        "correct_answer": "c"
+    },
+    {
+        "question": "When should the `finally` block be used in exception handling?",
+        "answer_choices": {
+            "a": "To catch all exceptions.",
+            "b": "To perform cleanup actions regardless of an exception.",
+            "c": "To prevent exceptions.",
+            "d": "To modify the exception object."
+        },
+        "correct_answer": "b"
+    },
+    {
+        "question": "How can you create a time series plot using pandas?",
+        "answer_choices": {
+            "a": "Using the `plot()` method on a Series.",
+            "b": "Using the `time_series()` method.",
+            "c": "Using the `plot()` method on a DataFrame.",
+            "d": "Using the `plot_time_series()` method."
+        },
+        "correct_answer": "c"
+    },
+    {
+        "question": "What is the main benefit of using Seaborn for visualization?",
+        "answer_choices": {
+            "a": "It is faster for large datasets.",
+            "b": "It simplifies creating complex visualizations.",
+            "c": "It works better with categorical data.",
+            "d": "It supports interactive plots."
+        },
+        "correct_answer": "b"
+    },
+    {
+        "question": "Which library is primarily used for data manipulation in Python?",
+        "answer_choices": {
+            "a": "numpy",
+            "b": "pandas",
+            "c": "matplotlib",
+            "d": "seaborn"
+        },
+        "correct_answer": "b"
+    },
+    {
+        "question": "What is a key feature of lists in Python?",
+        "answer_choices": {
+            "a": "Ordered and immutable",
+            "b": "Unordered and mutable",
+            "c": "Ordered and mutable",
+            "d": "Unordered and immutable"
+        },
+        "correct_answer": "c"
+    },
+    {
+        "question": "How do you remove an element from a set?",
+        "answer_choices": {
+            "a": "remove()",
+            "b": "pop()",
+            "c": "delete()",
+            "d": "discard()"
+        },
+        "correct_answer": "a"
+    },
+    {
+        "question": "What is the primary purpose of exception handling in Python?",
+        "answer_choices": {
+            "a": "To prevent errors from crashing the program.",
+            "b": "To simplify code structure.",
+            "c": "To create more readable code.",
+            "d": "To catch specific types of errors only."
+        },
+        "correct_answer": "a"
+    },
+    {
+        "question": "What is the purpose of the `with` statement in Python?",
+        "answer_choices": {
+            "a": "To create and manage resources automatically.",
+            "b": "To manage global variables.",
+            "c": "To iterate through lists.",
+            "d": "To handle exceptions."
+        },
+        "correct_answer": "a"
+    },
+    {
+        "question": "Which of the following is not a valid exception type in Python?",
+        "answer_choices": {
+            "a": "TypeError",
+            "b": "ZeroDivisionError",
+            "c": "FileNotFoundException",
+            "d": "ValueError"
+        },
+        "correct_answer": "c"
+    },
+    {
+        "question": "How can you catch an exception without crashing the program?",
+        "answer_choices": {
+            "a": "Use a `try`...`except` block.",
+            "b": "Use a `for` loop.",
+            "c": "Use a `while` loop.",
+            "d": "Use a `with` statement."
+        },
+        "correct_answer": "a"
+    }
+]

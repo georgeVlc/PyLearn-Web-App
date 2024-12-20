@@ -1,0 +1,52 @@
+[
+    {
+        "question": "What is the key method an object must implement to become an iterator?",
+        "answer_choices": {
+            "a": "__iter__() and __next__()",
+            "b": "__call__() and __next__()",
+            "c": "__init__() and __str__()",
+            "d": "__len__() and __getitem__()"
+        },
+        "correct_answer": "a"
+    },
+    {
+        "question": "What keyword is used to create a generator in Python?",
+        "answer_choices": {
+            "a": "return",
+            "b": "yield",
+            "c": "def",
+            "d": "lambda"
+        },
+        "correct_answer": "b"
+    },
+    {
+        "question": "Which of the following statements is true about generators?",
+        "answer_choices": {
+            "a": "Generators store all values in memory at once.",
+            "b": "Generators are a type of iterator.",
+            "c": "Generators cannot be used in for-loops.",
+            "d": "Generators do not implement the __next__() method."
+        },
+        "correct_answer": "b"
+    },
+    {
+        "question": "What happens when a generator function reaches the end of its code?",
+        "answer_choices": {
+            "a": "It raises a ValueError.",
+            "b": "It returns None.",
+            "c": "It raises a StopIteration exception.",
+            "d": "It continues indefinitely."
+        },
+        "correct_answer": "c"
+    },
+    {
+        "question": "Which of these use cases is a good fit for a generator?",
+        "answer_choices": {
+            "a": "Reading a large file line-by-line.",
+            "b": "Sorting a list of numbers.",
+            "c": "Finding the maximum of a list.",
+            "d": "Computing factorials in a loop."
+        },
+        "correct_answer": "a"
+    }
+]

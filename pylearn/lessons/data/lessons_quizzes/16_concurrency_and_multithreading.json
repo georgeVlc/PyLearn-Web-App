@@ -1,0 +1,52 @@
+[
+    {
+        "question": "What is the main advantage of using threads in Python?",
+        "answer_choices": {
+            "a": "Increases program speed by allowing multiple tasks.",
+            "b": "Simplifies error handling.",
+            "c": "Manages large datasets efficiently.",
+            "d": "Reduces memory usage."
+        },
+        "correct_answer": "a"
+    },
+    {
+        "question": "Which module is used for creating threads in Python?",
+        "answer_choices": {
+            "a": "os",
+            "b": "thread",
+            "c": "threading",
+            "d": "time"
+        },
+        "correct_answer": "c"
+    },
+    {
+        "question": "What is a deadlock in multithreading?",
+        "answer_choices": {
+            "a": "A thread waiting for a resource indefinitely.",
+            "b": "A thread that has finished execution.",
+            "c": "A race condition.",
+            "d": "An unresponsive thread."
+        },
+        "correct_answer": "a"
+    },
+    {
+        "question": "How can deadlocks be prevented?",
+        "answer_choices": {
+            "a": "By using a global lock for all threads.",
+            "b": "By acquiring locks in the same order for all threads.",
+            "c": "By reducing the number of threads.",
+            "d": "By using a sleep function."
+        },
+        "correct_answer": "b"
+    },
+    {
+        "question": "What is the purpose of the `join()` method in threads?",
+        "answer_choices": {
+            "a": "To start a thread.",
+            "b": "To wait for a thread to complete.",
+            "c": "To terminate a thread.",
+            "d": "To block the main thread indefinitely."
+        },
+        "correct_answer": "b"
+    }
+]

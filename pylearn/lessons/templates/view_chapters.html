@@ -9,15 +9,16 @@
 <div class="container">
     <h2>Choose a Chapter</h2>
     <div class="chapter-list">
-        {% for chapter_id, lessons in chapters.items %}
+        {% for chapter_id, chapter_data in chapters.items %}
         <div class="chapter-item">
             <a href="{% url 'lessons:view_lessons' chapter_id 0 %}">
                 <div class="chapter-icon">
                     <i class="fas fa-book-reader"></i> <!-- Font Awesome book-reader icon for each chapter -->
                 </div>
                 <div class="chapter-info">
-                    <h3>Chapter {{ chapter_id }}</h3>
-                    <p>Lessons: {{ lessons|length }}</p>
+                    <h2>Chapter {{ chapter_data.number }}: {{ chapter_data.title }}</h2>
+                    <p>Difficulty: {{ chapter_data.difficulty }}</p>
+                    <p>Lessons: {{ chapter_data.lessons|length }}</p>
                 </div>
             </a>
         </div>

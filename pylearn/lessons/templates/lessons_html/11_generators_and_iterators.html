@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generators and Iterators in Python</title>
+</head>
+<body>
+    <h1>Generators and Iterators in Python</h1>
+    <p>Learn how to use generators and iterators in Python to efficiently handle large datasets and improve memory usage.</p>
+
+    <h2>Iterators</h2>
+    <p>An iterator is an object that contains a sequence of values and provides a way to access elements one at a time. Iterators implement the <code>__iter__()</code> and <code>__next__()</code> methods.</p>
+    <pre><code>
+# Example of an iterator
+class MyIterator:
+    def __init__(self, limit):
+        self.limit = limit
+        self.current = 0
+
+    def __iter__(self):
+        return self
+
+    def __next__(self):
+        if self.current < self.limit:
+            value = self.current
+            self.current += 1
+            return value
+        else:
+            raise StopIteration
+iterator = MyIterator(5)
+for value in iterator:
+    print(value)
+    </code></pre>
+
+    <h2>Generators</h2>
+    <p>Generators are a simpler way to create iterators. They use the <code>yield</code> keyword to produce values one at a time as the generator function is iterated.</p>
+    <pre><code>
+# Example of a generator
+def my_generator():
+    for i in range(5):
+        yield i
+for value in my_generator():
+    print(value)
+    </code></pre>
+
+    <h2>Advantages of Generators</h2>
+    <ul>
+        <li>Memory Efficient: Generate values on the fly without storing them in memory.</li>
+        <li>Lazy Evaluation: Compute values only when needed.</li>
+        <li>Simpler Code: Reduce boilerplate for creating iterators.</li>
+    </ul>
+
+    <h2>Use Cases for Generators</h2>
+    <ul>
+        <li>Reading large files line-by-line.</li>
+        <li>Streaming data processing pipelines.</li>
+        <li>Infinite sequences like Fibonacci or prime numbers.</li>
+    </ul>
+
+    <h2>Exercise</h2>
+    <p>Write a generator function to produce the Fibonacci sequence up to a given number.</p>
+
+    <h2>Conclusion</h2>
+    <p>This lesson introduced iterators and generators in Python. In the next lesson, we'll explore advanced comprehensions.</p>
+</body>
+</html>

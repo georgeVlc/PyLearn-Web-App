@@ -55,12 +55,13 @@
                 <div class="lesson-box">
                     <div class="card">
                         <div class="card-header">
-                            <h4>{{ lesson.title }}</h4>
+                            <h4>Chapter {{lesson.chapter_id}}: {{ lesson.title }}</h4>
                         </div>
                         <div class="card-body">
                             <p><strong>Total Questions:</strong> {{ lesson.total_quizzes }}</p>
                             <p><strong>Correct Answers:</strong> {{ lesson.correct_answers }}</p>
                             <p><strong>Passed:</strong> {{ lesson.passed }}</p>
+                            <p><strong>Retake Test? </strong><a href="{% url 'lessons:take_lesson_test' lesson.id %}">{{ lesson.title }}</a> </p>
                             <p><strong>Accuracy:</strong> {{ lesson.accuracy }}%</p>
                         </div>
                     </div>

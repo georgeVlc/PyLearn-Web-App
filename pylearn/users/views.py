@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.contrib.auth.models import User
 from django.shortcuts import render, get_object_or_404
 from .models import UserProgress, QuizAttempt
+from lessons.models import chapter_size
 from django.contrib.auth import authenticate, login,  logout
 from django.contrib.auth import authenticate, login as auth_login 
 from django.shortcuts import render, redirect
@@ -9,6 +10,7 @@ from django.contrib import messages
 from django.db.models import Avg, Count, Sum, Q, F
 from django.contrib.auth.decorators import login_required
 from lessons.models import Lesson, Quiz
+from math import ceil
 # Create your views here.
 
 def view_users(request):
@@ -47,6 +49,7 @@ def view_user_attempts(request, user_id):
         lesson.correct_answers = user_correct_answers
         lesson.passed = True if lesson.accuracy >= 50 else False
         print(f'{lesson.accuracy=}, {lesson.passed=}')
+        lesson.chapter_id = lesson.id // (chapter_size) + 1
         
     # Calculate overall stats across all lessons (quiz-level stats)
     overall_attempts = QuizAttempt.objects.filter(user_progress=user_progress)

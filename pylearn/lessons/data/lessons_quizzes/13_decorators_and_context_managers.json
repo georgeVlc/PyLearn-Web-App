@@ -1,0 +1,52 @@
+[
+    {
+        "question": "What is the main purpose of a decorator in Python?",
+        "answer_choices": {
+            "a": "Modify the code of a function.",
+            "b": "Modify the behavior of a function.",
+            "c": "Change the output of a function.",
+            "d": "Override function arguments."
+        },
+        "correct_answer": "b"
+    },
+    {
+        "question": "Which of these is a valid use case for a decorator?",
+        "answer_choices": {
+            "a": "Adding logging to a function.",
+            "b": "Modifying the return value of a function.",
+            "c": "Handling exceptions inside a function.",
+            "d": "Raising an exception within a function."
+        },
+        "correct_answer": "a"
+    },
+    {
+        "question": "What are the two essential methods a context manager must implement?",
+        "answer_choices": {
+            "a": "__enter__() and __call__()",
+            "b": "__enter__() and __exit__()",
+            "c": "__exit__() and __str__()",
+            "d": "__init__() and __exit__()"
+        },
+        "correct_answer": "b"
+    },
+    {
+        "question": "Why is it recommended to use context managers over exceptions for resource management?",
+        "answer_choices": {
+            "a": "Context managers provide better exception handling.",
+            "b": "They are easier to use with multiple resources.",
+            "c": "They automatically manage resource cleanup.",
+            "d": "They are more flexible."
+        },
+        "correct_answer": "c"
+    },
+    {
+        "question": "What does a decorator return when applied to a function?",
+        "answer_choices": {
+            "a": "A new instance of the function.",
+            "b": "A new function.",
+            "c": "The same function with altered arguments.",
+            "d": "The original function with an additional parameter."
+        },
+        "correct_answer": "b"
+    }
+]

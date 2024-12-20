@@ -1,6 +1,9 @@
 from django.db import models
 
 # Create your models here.
+chapter_size = 10
+chapter_titles = ['Python Basics', 'Python Advanced', 'Python Hands On']
+chapter_difficulties = ['Easy', 'Intermidiate', 'Advanced']
 
 class Lesson(models.Model):
     title = models.CharField(max_length=200)
