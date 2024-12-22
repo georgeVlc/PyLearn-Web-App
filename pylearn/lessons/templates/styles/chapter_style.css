@@ -1,44 +1,54 @@
+/* General container styling */
 .container {
     max-width: 1200px;
     margin: 0 auto;
     padding: 20px;
 }
 
+/* Flexbox layout for the chapters */
 .chapter-list {
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
+    justify-content: space-between; /* Ensure space is distributed evenly */
 }
 
+/* Chapter item styling */
 .chapter-item {
-    flex: 1 1 calc(33.333% - 20px);
-    background: #ffffff; /* Changed background to white for better contrast */
+    flex: 1 1 calc(33.333% - 20px); /* Force 3 items per row, adjust for gaps */
+    background: #ffffff;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     overflow: hidden;
     text-align: center;
     transition: transform 0.2s ease-in-out;
-    border: 1px solid #ddd; /* Added border for better definition */
+    border: 1px solid #ddd;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px; /* Prevent last item from sticking to the bottom */
 }
 
+/* Hover effect on chapter item */
 .chapter-item:hover {
     transform: translateY(-5px);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Slightly stronger shadow on hover */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
 }
 
+/* Icon styling */
 .chapter-icon {
-    background: #4CAF50; /* Darker green background for icon */
+    background: #4CAF50;
     color: #fff;
-    padding: 20px;
-    border-radius: 50%;
-    font-size: 36px; /* Increased size */
-    line-height: 1; /* Ensures icon is centered correctly */
+    width: 80px;  /* Fixed size for the icon */
+    height: 80px; /* Fixed size for the icon */
+    border-radius: 50%; /* Ensure it stays circular */
     display: flex;
     justify-content: center;
     align-items: center;
-    text-align: center;
+    margin: 0 auto 10px; /* Center it and add space below */
+    font-size: 36px;
 }
 
+/* Info section for chapter */
 .chapter-info {
     padding: 15px;
     text-align: center;
@@ -53,4 +63,23 @@
 .chapter-info p {
     margin: 10px 0 0;
     color: #666;
+}
+
+/* Ensure last chapter item is properly spaced */
+.chapter-list > .chapter-item:nth-child(3n+1) {
+    flex-basis: calc(33.333% - 20px); /* Same as the others for the first of each row */
+}
+
+/* Make the layout responsive: two columns on medium screens */
+@media (max-width: 900px) {
+    .chapter-item {
+        flex: 1 1 calc(50% - 20px); /* Two columns */
+    }
+}
+
+/* Single column layout for smaller screens */
+@media (max-width: 600px) {
+    .chapter-item {
+        flex: 1 1 100%; /* Single column */
+    }
 }

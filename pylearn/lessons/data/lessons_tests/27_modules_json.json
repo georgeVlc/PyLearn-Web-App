@@ -1,0 +1,52 @@
+[
+    {
+        "question": "Which json function is used to serialize a Python object into a JSON string?",
+        "answer_choices": {
+            "a": "json.dump()",
+            "b": "json.dumps()",
+            "c": "json.load()",
+            "d": "json.loads()"
+        },
+        "correct_answer": "b"
+    },
+    {
+        "question": "Which json function is used to deserialize a JSON string into a Python object?",
+        "answer_choices": {
+            "a": "json.load()",
+            "b": "json.dump()",
+            "c": "json.loads()",
+            "d": "json.dumps()"
+        },
+        "correct_answer": "c"
+    },
+    {
+        "question": "Which function is used to serialize a Python object and write it to a file?",
+        "answer_choices": {
+            "a": "json.dumps()",
+            "b": "json.load()",
+            "c": "json.dump()",
+            "d": "json.loads()"
+        },
+        "correct_answer": "c"
+    },
+    {
+        "question": "What is the result of using json.loads('{\"name\": \"Alice\", \"age\": 30}')?",
+        "answer_choices": {
+            "a": "{'name': 'Alice', 'age': 30}",
+            "b": "{'name': 'Alice', 'age': '30'}",
+            "c": "{'name': 'Alice', 'age': 30, 'city': 'New York'}",
+            "d": "{'name': 'Alice', 'age': '30', 'city': 'New York'}"
+        },
+        "correct_answer": "a"
+    },
+    {
+        "question": "Which json function is used to read a JSON string from a file and deserialize it into a Python object?",
+        "answer_choices": {
+            "a": "json.load()",
+            "b": "json.dump()",
+            "c": "json.loads()",
+            "d": "json.dumps()"
+        },
+        "correct_answer": "a"
+    }
+]

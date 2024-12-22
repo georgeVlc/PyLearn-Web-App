@@ -73,11 +73,18 @@ def view_lesson_test(request, lesson_id):
 def take_lesson_test(request, lesson_id):
     lesson = get_object_or_404(Lesson, pk=lesson_id)
     quizzes = lesson.quizzes.all()
+    tasks = lesson.tasks.all()
+    # print(f'{lesson.title=}')
     
     if request.method == 'POST':
         user_progress, created = UserProgress.objects.get_or_create(user=request.user)
-        update_quiz_attempts(request, quizzes, user_progress, lesson)
-        correct_count, mistakes = track_test_results(request, quizzes)
+        if lesson.is_task_based:
+            update_task_attempts(request)
+            # correct_count, mistakes = track_test_results(request, quizzes)
+        else:
+            update_quiz_attempts(request, quizzes, user_progress, lesson)
+            correct_count, mistakes = track_test_results(request, quizzes)
+            
         
         # Calculate score percentage for the entire lesson
         total_quizzes = len(quizzes)
@@ -104,4 +111,4 @@ def take_lesson_test(request, lesson_id):
         return render(request, 'view_test_results.html', context)
 
     # If not POST, render the test page
-    return render(request, 'take_lesson_test.html', {'lesson': lesson, 'quizzes': quizzes})
+    return render(request, 'take_lesson_test.html', {'lesson': lesson, 'quizzes': quizzes, 'tasks': tasks})

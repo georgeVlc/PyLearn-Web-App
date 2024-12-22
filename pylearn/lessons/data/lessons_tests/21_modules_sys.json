@@ -1,0 +1,52 @@
+[
+    {
+        "question": "What does the sys module in Python allow you to do?",
+        "answer_choices": {
+            "a": "Perform mathematical operations",
+            "b": "Interact with the Python runtime environment",
+            "c": "Generate random numbers",
+            "d": "Work with date and time"
+        },
+        "correct_answer": "b"
+    },
+    {
+        "question": "What is stored in sys.argv?",
+        "answer_choices": {
+            "a": "A list of imported modules",
+            "b": "Command-line arguments passed to the script",
+            "c": "The Python version",
+            "d": "System environment variables"
+        },
+        "correct_answer": "b"
+    },
+    {
+        "question": "Which attribute of the sys module provides the Python version?",
+        "answer_choices": {
+            "a": "sys.version",
+            "b": "sys.argv",
+            "c": "sys.path",
+            "d": "sys.info"
+        },
+        "correct_answer": "a"
+    },
+    {
+        "question": "What does sys.exit() do?",
+        "answer_choices": {
+            "a": "Stops the script and raises an error",
+            "b": "Terminates the script with an exit code",
+            "c": "Clears all imported modules",
+            "d": "Restarts the Python runtime"
+        },
+        "correct_answer": "b"
+    },
+    {
+        "question": "Which of the following contains a list of directories Python searches for modules?",
+        "answer_choices": {
+            "a": "sys.argv",
+            "b": "sys.path",
+            "c": "sys.version",
+            "d": "sys.modules"
+        },
+        "correct_answer": "b"
+    }
+]

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 1: Designing the Task Data Structure</title>
+</head>
+<body>
+    <h1>Lesson 1: Designing the Task Data Structure</h1>
+    <p>Welcome to the "Hands-On Python" chapter! In this chapter, we will build a complete Task Management System using pure Python.</p>
+
+    <h2>Project Overview</h2>
+    <p>By the end of this chapter, you will have implemented a functional Task Management System that can:</p>
+    <ul>
+        <li>Add, edit, and delete tasks</li>
+        <li>Display tasks based on priority or status</li>
+        <li>Save tasks to a file and load them upon restart</li>
+    </ul>
+
+    <h2>What Will You Learn?</h2>
+    <p>In this lesson, you will learn how to:</p>
+    <ul>
+        <li>Design a Python class to represent tasks.</li>
+        <li>Create attributes and methods to encapsulate task-related behavior.</li>
+    </ul>
+
+    <h2>Key Concept: Classes in Python</h2>
+    <p>A class in Python is a blueprint for creating objects. Each object can have attributes (data) and methods (functions).</p>
+    <pre><code>class Example:
+    def __init__(self, name):
+        self.name = name
+    def display_name(self):
+        print(self.name)</code></pre>
+    <p>In this lesson, you'll create a <code>Task</code> class that defines what a "task" is and how it behaves.</p>
+
+    <h2>Task Class Structure</h2>
+    <p>Below is the initial structure for your <code>Task</code> class:</p>
+    <pre><code>class Task:
+    def __init__(self, title, description, priority, deadline):
+        self.title = title
+        self.description = description
+        self.priority = priority
+        self.deadline = deadline
+        self.completed = False
+
+    def mark_as_complete(self):
+        self.completed = True</code></pre>
+    <p>This class includes attributes like <code>title</code>, <code>description</code>, <code>priority</code>, and <code>deadline</code>, as well as a method to mark a task as complete.</p>
+
+    <h2>Task</h2>
+    <p>Implement the <code>Task</code> class as shown above. Once done, extend it by adding a method to display the task details in a user-friendly format.</p>
+    <pre><code>def display(self):
+    print(f"Title: {self.title}")
+    print(f"Description: {self.description}")
+    print(f"Priority: {self.priority}")
+    print(f"Deadline: {self.deadline}")
+    print(f"Completed: {self.completed}")</code></pre>
+
+    <h2>Conclusion</h2>
+    <p>Once you implement the <code>Task</code> class and its methods, you'll be ready for the next lesson, where we'll learn how to create and manage a list of tasks.</p>
+</body>
+</html>

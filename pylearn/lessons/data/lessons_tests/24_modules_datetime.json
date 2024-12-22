@@ -1,0 +1,52 @@
+[
+    {
+        "question": "Which class in the datetime module represents both date and time?",
+        "answer_choices": {
+            "a": "datetime.date",
+            "b": "datetime.time",
+            "c": "datetime.datetime",
+            "d": "datetime.timedelta"
+        },
+        "correct_answer": "c"
+    },
+    {
+        "question": "How can you get the current date and time in Python using the datetime module?",
+        "answer_choices": {
+            "a": "datetime.today()",
+            "b": "datetime.now()",
+            "c": "datetime.get_date()",
+            "d": "datetime.current()"
+        },
+        "correct_answer": "b"
+    },
+    {
+        "question": "What does the datetime.strftime() method do?",
+        "answer_choices": {
+            "a": "Formats a datetime object into a string",
+            "b": "Converts a string into a datetime object",
+            "c": "Adds time to a datetime object",
+            "d": "Subtracts a datetime object"
+        },
+        "correct_answer": "a"
+    },
+    {
+        "question": "How do you perform date arithmetic (e.g., add one week) using the datetime module?",
+        "answer_choices": {
+            "a": "Using datetime.add()",
+            "b": "Using datetime.timedelta()",
+            "c": "Using datetime.subtract()",
+            "d": "Using datetime.date()"
+        },
+        "correct_answer": "b"
+    },
+    {
+        "question": "What class in the datetime module represents a duration (difference) between two dates or times?",
+        "answer_choices": {
+            "a": "datetime.datetime",
+            "b": "datetime.date",
+            "c": "datetime.timedelta",
+            "d": "datetime.time"
+        },
+        "correct_answer": "c"
+    }
+]

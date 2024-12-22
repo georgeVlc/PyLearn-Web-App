@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Using the sys Module in Python</title>
+</head>
+<body>
+    <h1>Exploring the sys Module in Python</h1>
+    <p>The <code>sys</code> module is another powerful built-in module that provides tools for interacting with the Python runtime environment. With <code>sys</code>, you can access system-specific parameters, manipulate the Python path, handle command-line arguments, and more.</p>
+
+    <h2>Key Features of the sys Module</h2>
+    <p>Here are some of the most useful features offered by the <code>sys</code> module:</p>
+    <ul>
+        <li><code>sys.argv</code>: A list of command-line arguments passed to your script.</li>
+        <li><code>sys.exit()</code>: Allows you to terminate a script with a specific exit code.</li>
+        <li><code>sys.path</code>: A list of directories that Python searches for modules.</li>
+        <li><code>sys.version</code>: Returns the Python version being used.</li>
+        <li><code>sys.stdin, sys.stdout, sys.stderr</code>: File objects used for input, output, and error streams.</li>
+    </ul>
+
+    <h3>Example: Working with Command-Line Arguments</h3>
+    <p>The <code>sys.argv</code> list allows you to handle input passed to your script from the command line. Here’s an example:</p>
+    <pre><code># script.py
+import sys
+
+# Print all command-line arguments
+print("Arguments passed:", sys.argv)
+
+# Access specific arguments
+if len(sys.argv) > 1:
+    print("First argument:", sys.argv[1])</code></pre>
+
+    <p>You can run this script in your terminal like so:</p>
+    <pre><code>python script.py hello world</code></pre>
+    <p>Output:</p>
+    <pre><code>Arguments passed: ['script.py', 'hello', 'world']
+First argument: hello</code></pre>
+
+    <h3>Example: Accessing the Python Path</h3>
+    <p>The <code>sys.path</code> list shows where Python looks for modules:</p>
+    <pre><code># Displaying the Python path
+import sys
+
+print("Python path:")
+for path in sys.path:
+    print(path)</code></pre>
+
+    <h3>Example: Checking Python Version</h3>
+    <p>You can use <code>sys.version</code> to check the Python version in your environment:</p>
+    <pre><code># Display the Python version
+import sys
+
+print("Python version:", sys.version)</code></pre>
+
+    <h2>Conclusion</h2>
+    <p>The <code>sys</code> module is essential for system-level operations in Python. From handling command-line arguments to managing the Python environment, <code>sys</code> provides the tools you need. In the next lesson, we’ll delve into the <code>math</code> module and explore its powerful mathematical functions.</p>
+</body>
+</html>

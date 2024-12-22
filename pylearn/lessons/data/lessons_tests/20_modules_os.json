@@ -1,0 +1,52 @@
+[
+    {
+        "question": "What does the os module in Python do?",
+        "answer_choices": {
+            "a": "Provides access to operating system functionality",
+            "b": "Generates random numbers",
+            "c": "Performs mathematical operations",
+            "d": "Manages network connections"
+        },
+        "correct_answer": "a"
+    },
+    {
+        "question": "Which function is used to get the current working directory?",
+        "answer_choices": {
+            "a": "os.listdir()",
+            "b": "os.getcwd()",
+            "c": "os.mkdir()",
+            "d": "os.chdir()"
+        },
+        "correct_answer": "b"
+    },
+    {
+        "question": "How do you create a new directory with the os module?",
+        "answer_choices": {
+            "a": "os.newdir()",
+            "b": "os.mkdir(path)",
+            "c": "os.createdir(path)",
+            "d": "os.makedir()"
+        },
+        "correct_answer": "b"
+    },
+    {
+        "question": "What does os.environ provide access to?",
+        "answer_choices": {
+            "a": "Files in a directory",
+            "b": "Environment variables",
+            "c": "Current working directory",
+            "d": "System time"
+        },
+        "correct_answer": "b"
+    },
+    {
+        "question": "Which function removes a directory?",
+        "answer_choices": {
+            "a": "os.removedir()",
+            "b": "os.rmdir(path)",
+            "c": "os.deletedir(path)",
+            "d": "os.deldir()"
+        },
+        "correct_answer": "b"
+    }
+]

@@ -1,0 +1,52 @@
+[
+    {
+        "question": "Which class from the collections module is used for counting occurrences of elements in an iterable?",
+        "answer_choices": {
+            "a": "defaultdict",
+            "b": "Counter",
+            "c": "OrderedDict",
+            "d": "deque"
+        },
+        "correct_answer": "b"
+    },
+    {
+        "question": "What does defaultdict provide that a normal dict does not?",
+        "answer_choices": {
+            "a": "An ordered list of keys",
+            "b": "A default value for nonexistent keys",
+            "c": "A way to count elements",
+            "d": "A tuple subclass with named fields"
+        },
+        "correct_answer": "b"
+    },
+    {
+        "question": "Which class from the collections module maintains the order of keys as they are added?",
+        "answer_choices": {
+            "a": "Counter",
+            "b": "OrderedDict",
+            "c": "deque",
+            "d": "defaultdict"
+        },
+        "correct_answer": "b"
+    },
+    {
+        "question": "Which function creates a tuple subclass with named fields?",
+        "answer_choices": {
+            "a": "defaultdict",
+            "b": "Counter",
+            "c": "OrderedDict",
+            "d": "namedtuple"
+        },
+        "correct_answer": "d"
+    },
+    {
+        "question": "What is the main benefit of using deque over a regular list?",
+        "answer_choices": {
+            "a": "It supports fast appends and pops from both ends.",
+            "b": "It stores data in ordered pairs.",
+            "c": "It counts elements in an iterable.",
+            "d": "It maintains the order of insertion."
+        },
+        "correct_answer": "a"
+    }
+]

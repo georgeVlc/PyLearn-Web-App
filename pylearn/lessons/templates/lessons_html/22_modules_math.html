@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Using the math Module in Python</title>
+</head>
+<body>
+    <h1>Exploring the math Module in Python</h1>
+    <p>Python’s <code>math</code> module provides a rich collection of mathematical functions and constants that make it easy to perform complex mathematical computations.</p>
+
+    <h2>Key Features of the math Module</h2>
+    <p>Here are some of the most useful features offered by the <code>math</code> module:</p>
+    <ul>
+        <li><code>math.sqrt(x)</code>: Returns the square root of <code>x</code>.</li>
+        <li><code>math.pow(x, y)</code>: Raises <code>x</code> to the power of <code>y</code>.</li>
+        <li><code>math.pi</code> and <code>math.e</code>: Provides the constants π (pi) and e (Euler's number).</li>
+        <li><code>math.factorial(x)</code>: Returns the factorial of <code>x</code>.</li>
+        <li><code>math.log(x, base)</code>: Calculates the logarithm of <code>x</code> to the specified base (default is base <code>e</code>).</li>
+        <li><code>math.sin(x)</code>, <code>math.cos(x)</code>, <code>math.tan(x)</code>: Trigonometric functions.</li>
+    </ul>
+
+    <h3>Example: Calculating the Square Root</h3>
+    <p>Here’s a simple example using <code>math.sqrt</code>:</p>
+    <pre><code># Importing the math module
+import math
+
+# Calculate the square root
+number = 16
+result = math.sqrt(number)
+print(f"The square root of {number} is {result}")</code></pre>
+
+    <h3>Example: Using Constants</h3>
+    <p>You can use mathematical constants like π and e for calculations:</p>
+    <pre><code># Working with math constants
+import math
+
+# Calculate the circumference of a circle
+radius = 5
+circumference = 2 * math.pi * radius
+print(f"Circumference of the circle: {circumference}")</code></pre>
+
+    <h3>Example: Factorial and Logarithms</h3>
+    <p>Here’s an example of calculating a factorial and a logarithm:</p>
+    <pre><code># Factorial and logarithm
+import math
+
+# Factorial
+num = 5
+factorial = math.factorial(num)
+print(f"Factorial of {num} is {factorial}")
+
+# Logarithm
+log_value = math.log(100, 10)
+print(f"Logarithm base 10 of 100 is {log_value}")</code></pre>
+
+    <h2>Conclusion</h2>
+    <p>The <code>math</code> module provides a comprehensive set of tools for mathematical computations. Whether you need basic operations like square roots and powers or advanced functions like trigonometry and logarithms, <code>math</code> has you covered. In the next lesson, we’ll explore the <code>random</code> module and learn how to generate random numbers in Python.</p>
+</body>
+</html>

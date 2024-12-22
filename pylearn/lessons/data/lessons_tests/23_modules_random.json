@@ -1,0 +1,52 @@
+[
+    {
+        "question": "What does the random.random() function do?",
+        "answer_choices": {
+            "a": "Generates a random integer",
+            "b": "Generates a random float between 0.0 and 1.0",
+            "c": "Selects a random item from a sequence",
+            "d": "Shuffles a list"
+        },
+        "correct_answer": "b"
+    },
+    {
+        "question": "How do you generate a random integer between 1 and 10 using the random module?",
+        "answer_choices": {
+            "a": "random.integer(1, 10)",
+            "b": "random.rand(1, 10)",
+            "c": "random.randint(1, 10)",
+            "d": "random.number(1, 10)"
+        },
+        "correct_answer": "c"
+    },
+    {
+        "question": "Which function is used to shuffle a list in place?",
+        "answer_choices": {
+            "a": "random.shuffle()",
+            "b": "random.random()",
+            "c": "random.choice()",
+            "d": "random.sample()"
+        },
+        "correct_answer": "a"
+    },
+    {
+        "question": "What does random.choice(sequence) do?",
+        "answer_choices": {
+            "a": "Returns a random integer from a sequence",
+            "b": "Selects a random item from a sequence",
+            "c": "Shuffles a sequence in place",
+            "d": "Returns a list of random items from a sequence"
+        },
+        "correct_answer": "b"
+    },
+    {
+        "question": "Which function generates a random float between two specified values?",
+        "answer_choices": {
+            "a": "random.random()",
+            "b": "random.randint()",
+            "c": "random.uniform()",
+            "d": "random.sample()"
+        },
+        "correct_answer": "c"
+    }
+]

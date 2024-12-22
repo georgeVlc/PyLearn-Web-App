@@ -1,0 +1,52 @@
+[
+    {
+        "question": "Which pickle function is used to serialize a Python object and write it to a file?",
+        "answer_choices": {
+            "a": "pickle.load()",
+            "b": "pickle.dump()",
+            "c": "pickle.dumps()",
+            "d": "pickle.loads()"
+        },
+        "correct_answer": "b"
+    },
+    {
+        "question": "Which pickle function is used to deserialize a byte stream from a file and convert it back into a Python object?",
+        "answer_choices": {
+            "a": "pickle.load()",
+            "b": "pickle.dump()",
+            "c": "pickle.dumps()",
+            "d": "pickle.loads()"
+        },
+        "correct_answer": "a"
+    },
+    {
+        "question": "What is the output of pickle.dumps({'name': 'Alice', 'age': 30})?",
+        "answer_choices": {
+            "a": "The serialized byte stream representing the object",
+            "b": "{'name': 'Alice', 'age': 30}",
+            "c": "The Python object itself",
+            "d": "None of the above"
+        },
+        "correct_answer": "a"
+    },
+    {
+        "question": "Which function should be used to read a serialized object from a file and convert it back into a Python object?",
+        "answer_choices": {
+            "a": "pickle.load()",
+            "b": "pickle.dump()",
+            "c": "pickle.dumps()",
+            "d": "pickle.loads()"
+        },
+        "correct_answer": "a"
+    },
+    {
+        "question": "What is the primary benefit of using the pickle module?",
+        "answer_choices": {
+            "a": "To serialize and deserialize Python objects for saving and loading",
+            "b": "To encrypt Python objects",
+            "c": "To handle large amounts of data",
+            "d": "To compress Python objects"
+        },
+        "correct_answer": "a"
+    }
+]

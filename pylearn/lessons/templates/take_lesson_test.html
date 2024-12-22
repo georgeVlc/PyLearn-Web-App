@@ -4,25 +4,40 @@
     {% load static %}
     <link rel="stylesheet" type="text/css" href="{% static 'styles/test_style.css' %}">
 </head>
-<form method="post" action="{% url 'lessons:take_lesson_test' lesson.id %}" id="quizForm">
-    {% csrf_token %}
-    <ul>
-        {% for quiz in quizzes %}
-        <li>
-            <strong>Question:</strong> {{ quiz.question|safe }}<br>
-            {% for key, choice in quiz.answer_choices.items %}
-            <label>
-                <input type="radio" name="quiz_{{ quiz.id }}" value="{{ key }}">
-                {{ key }}: {{ choice|safe }}
-            </label><br>
+
+{% if lesson.is_task_based %}
+    <!-- Task Submission Section -->
+    <h2>Task for Lesson: {{ lesson.title }}</h2>
+    <p><strong>Task Description:</strong>{{ tasks.first.description|safe }}</p>
+    <form method="post" action="{% url 'lessons:take_lesson_test' lesson.id %}" enctype="multipart/form-data">
+        {% csrf_token %}
+        <label for="task_file">Submit your code:</label><br>
+        <input type="file" name="task_file" id="task_file" accept=".py"><br><br>
+        <button type="submit">Submit Task</button>
+    </form>
+{% else %}
+    <!-- Quiz Section -->
+    <form method="post" action="{% url 'lessons:take_lesson_test' lesson.id %}" id="quizForm">
+        {% csrf_token %}
+        <ul>
+            {% for quiz in quizzes %}
+            <li>
+                <strong>Question:</strong> {{ quiz.question|safe }}<br>
+                {% for key, choice in quiz.answer_choices.items %}
+                <label>
+                    <input type="radio" name="quiz_{{ quiz.id }}" value="{{ key }}">
+                    {{ key }}: {{ choice|safe }}
+                </label><br>
+                {% endfor %}
+            </li>
+            {% empty %}
+            <li>No test available for this lesson.</li>
             {% endfor %}
-        </li>
-        {% empty %}
-        <li>No test available for this lesson.</li>
-        {% endfor %}
-    </ul>
-    <button type="submit">Submit Answers</button>
-</form>
+        </ul>
+        <button type="submit">Submit Answers</button>
+    </form>
+{% endif %}
+
 <div id="feedback"></div>
 <br>
 <a href="{% url 'lessons:view_lessons' 1 lesson.id %}">Back to Lessons</a>

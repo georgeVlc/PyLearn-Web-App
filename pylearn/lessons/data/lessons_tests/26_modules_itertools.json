@@ -1,0 +1,52 @@
+[
+    {
+        "question": "Which itertools function generates numbers starting from a specified value?",
+        "answer_choices": {
+            "a": "count()",
+            "b": "cycle()",
+            "c": "repeat()",
+            "d": "combinations()"
+        },
+        "correct_answer": "a"
+    },
+    {
+        "question": "What does the cycle() function do?",
+        "answer_choices": {
+            "a": "Generates a sequence of random numbers.",
+            "b": "Cycles through an iterable indefinitely.",
+            "c": "Returns the Cartesian product of multiple iterables.",
+            "d": "Generates combinations of an iterable."
+        },
+        "correct_answer": "b"
+    },
+    {
+        "question": "Which itertools function is used to create all possible combinations of a specified length from an iterable?",
+        "answer_choices": {
+            "a": "combinations()",
+            "b": "permutations()",
+            "c": "product()",
+            "d": "chain()"
+        },
+        "correct_answer": "a"
+    },
+    {
+        "question": "What is the output of itertools.permutations(['A', 'B', 'C'], 2)?",
+        "answer_choices": {
+            "a": "('A', 'B'), ('B', 'A'), ('A', 'C'), ('C', 'A'), ('B', 'C'), ('C', 'B')",
+            "b": "('A', 'B'), ('A', 'C'), ('B', 'C')",
+            "c": "('A',), ('B',), ('C',)",
+            "d": "A, B, C"
+        },
+        "correct_answer": "a"
+    },
+    {
+        "question": "Which itertools function is used to combine multiple iterables into a single iterable?",
+        "answer_choices": {
+            "a": "chain()",
+            "b": "zip_longest()",
+            "c": "repeat()",
+            "d": "combinations()"
+        },
+        "correct_answer": "a"
+    }
+]

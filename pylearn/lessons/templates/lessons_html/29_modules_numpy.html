@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Working with NumPy in Python</title>
+</head>
+<body>
+    <h1>Working with NumPy in Python</h1>
+    <p>In this final lesson of the "Modules" chapter, we will explore <strong>NumPy</strong>, one of the most important third-party modules in Python. NumPy provides support for arrays, matrices, and a large collection of mathematical functions that are useful for numerical computations.</p>
+
+    <h2>What is NumPy?</h2>
+    <p>NumPy is a fundamental package for numerical computing in Python. It introduces the <strong>ndarray</strong> (N-dimensional array) object, which allows for fast and efficient storage and manipulation of large datasets. NumPy also provides a collection of mathematical functions that can be used for operations on arrays.</p>
+
+    <h3>Installing NumPy</h3>
+    <p>To install NumPy, use <code>pip</code>, the Python package installer:</p>
+    <pre><code>pip install numpy</code></pre>
+
+    <h2>Creating NumPy Arrays</h2>
+    <p>To create a NumPy array, we use the <code>numpy.array()</code> function:</p>
+    <pre><code># Importing NumPy
+import numpy as np
+
+# Creating a 1D array (vector)
+arr = np.array([1, 2, 3, 4, 5])
+print(arr)  # Output: [1 2 3 4 5]
+
+# Creating a 2D array (matrix)
+arr_2d = np.array([[1, 2, 3], [4, 5, 6]])
+print(arr_2d)
+# Output:
+# [[1 2 3]
+#  [4 5 6]]</code></pre>
+
+    <h2>Array Operations</h2>
+    <p>Once we have NumPy arrays, we can perform a variety of mathematical operations on them:</p>
+    <pre><code># Element-wise addition
+arr = np.array([1, 2, 3])
+result = arr + 5
+print(result)  # Output: [6 7 8]
+
+# Element-wise multiplication
+result = arr * 3
+print(result)  # Output: [3 6 9]
+
+# Array multiplication (matrix multiplication)
+arr_2d = np.array([[1, 2], [3, 4]])
+result = arr_2d.dot(arr_2d)
+print(result)
+# Output:
+# [[ 7 10]
+#  [15 22]]</code></pre>
+
+    <h2>Array Reshaping</h2>
+    <p>NumPy provides methods to reshape arrays, which can be useful for machine learning and data manipulation tasks:</p>
+    <pre><code># Reshaping a 1D array to a 2D array
+arr = np.array([1, 2, 3, 4, 5, 6])
+reshaped_arr = arr.reshape(2, 3)
+print(reshaped_arr)
+# Output:
+# [[1 2 3]
+#  [4 5 6]]</code></pre>
+
+    <h2>Commonly Used NumPy Functions</h2>
+    <p>Here are some commonly used NumPy functions:</p>
+    <ul>
+        <li><code>np.arange(start, stop, step)</code> - Creates an array with evenly spaced values.</li>
+        <li><code>np.linspace(start, stop, num)</code> - Generates an array of evenly spaced numbers over a specified range.</li>
+        <li><code>np.mean(arr)</code> - Computes the mean (average) of the elements in the array.</li>
+        <li><code>np.std(arr)</code> - Computes the standard deviation of the array.</li>
+        <li><code>np.sum(arr)</code> - Returns the sum of the array elements.</li>
+    </ul>
+
+    <h3>Example: Creating an Array with arange</h3>
+    <pre><code># Create an array with values from 0 to 10 (exclusive), with step size of 2
+arr = np.arange(0, 10, 2)
+print(arr)  # Output: [0 2 4 6 8]</code></pre>
+
+    <h3>Example: Calculating the Mean and Standard Deviation</h3>
+    <pre><code># Calculating the mean and standard deviation of an array
+arr = np.array([1, 2, 3, 4, 5])
+mean = np.mean(arr)
+std_dev = np.std(arr)
+
+print("Mean:", mean)  # Output: 3.0
+print("Standard Deviation:", std_dev)  # Output: 1.4142135623730951</code></pre>
+
+    <h2>Conclusion</h2>
+    <p>In this lesson, we introduced NumPy and explored how to create and manipulate arrays. NumPy is a powerful tool for any Python developer working with numerical data, and it serves as the foundation for many other libraries in data science and machine learning. We hope you now have a solid understanding of how to use NumPy for array manipulation and mathematical operations.</p>
+</body>
+</html>

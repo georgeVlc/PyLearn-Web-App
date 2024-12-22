@@ -1,0 +1,52 @@
+[
+    {
+        "question": "Which Python package is used for numerical computing and working with arrays?",
+        "answer_choices": {
+            "a": "numpy",
+            "b": "matplotlib",
+            "c": "pandas",
+            "d": "requests"
+        },
+        "correct_answer": "a"
+    },
+    {
+        "question": "What is the output of the following code: <code>np.array([1, 2, 3]) + 5</code>?",
+        "answer_choices": {
+            "a": "[6, 7, 8]",
+            "b": "[1, 2, 3, 5]",
+            "c": "[1, 2, 3, 5, 10]",
+            "d": "Error"
+        },
+        "correct_answer": "a"
+    },
+    {
+        "question": "Which function is used to reshape a NumPy array?",
+        "answer_choices": {
+            "a": "np.change_shape()",
+            "b": "np.reshape()",
+            "c": "np.resize()",
+            "d": "np.new_shape()"
+        },
+        "correct_answer": "b"
+    },
+    {
+        "question": "What does the <code>np.dot()</code> function do?",
+        "answer_choices": {
+            "a": "Performs element-wise addition",
+            "b": "Multiplies two arrays element-wise",
+            "c": "Performs matrix multiplication",
+            "d": "Calculates the sum of an array"
+        },
+        "correct_answer": "c"
+    },
+    {
+        "question": "What does the <code>np.arange(0, 10, 2)</code> function do?",
+        "answer_choices": {
+            "a": "Creates an array of numbers from 0 to 10 with step size of 1",
+            "b": "Creates an array of numbers from 0 to 10 with step size of 2",
+            "c": "Creates a matrix with 10 rows and 2 columns",
+            "d": "Creates an empty array"
+        },
+        "correct_answer": "b"
+    }
+]

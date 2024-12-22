@@ -1,15 +1,15 @@
 import os
 import json
-from .models import Lesson, Quiz
+from .models import Lesson, Quiz, Task
 from users.models import UserProgress, QuizAttempt
 from django.db.utils import OperationalError
 from difflib import SequenceMatcher
 
 
-def load_lessons_and_quizzes():
+def load_local_data():
     lessons_path = "lessons/templates/lessons_html/"
-    quizzes_path = "lessons/data/lessons_quizzes/"
-
+    tests_path = "lessons/data/lessons_tests/"
+    
     try:
         # Iterate through all lesson HTML files
         for lesson_file in os.listdir(lessons_path):
@@ -18,11 +18,13 @@ def load_lessons_and_quizzes():
                 lesson_tokens = lesson_tokens[0].split("_") # Splitting on '_' and excluding the file extention
                 lesson_id = int(lesson_tokens[0])  # Extract lesson ID from filename
                 lesson_title = ' '.join([token.capitalize() for token in lesson_tokens[1:]])  # Capitalize each token
-                print(f'{lesson_id=}, {lesson_title=}')
+                # print(f'{lesson_id=}, {lesson_title=}')
                 
                 with open(os.path.join(lessons_path, lesson_file), "r") as file:
                     content = file.read()
 
+                is_task_based = is_task_based_lesson(lesson_title)
+                print(f'{lesson_title=}, {is_task_based=}')
                 # Create or update the lesson in the database
                 lesson, created = Lesson.objects.update_or_create(
                     id=lesson_id,
@@ -30,24 +32,39 @@ def load_lessons_and_quizzes():
                         "title": lesson_title,
                         "content": content,
                         "order": lesson_id,
+                        "is_task_based": is_task_based
                     },
                 )
 
-                # Load quizzes for this lesson
-                quiz_file_path = os.path.join(quizzes_path, f"{('_').join(lesson_tokens)}.json")
-                if os.path.exists(quiz_file_path):
-                    with open(quiz_file_path, "r") as file:
-                        quiz_data = json.load(file)
-
-                    for quiz in quiz_data:
-                        Quiz.objects.update_or_create(
-                            lesson=lesson,
-                            question=quiz["question"],
-                            defaults={
-                                "answer_choices": quiz["answer_choices"],
-                                "correct_answer": quiz["correct_answer"],
-                            },
-                        )
+                # Load test for this lesson
+                test_file_path = os.path.join(tests_path, f"{('_').join(lesson_tokens)}.json")
+                if os.path.exists(test_file_path):
+                    with open(test_file_path, "r") as file:
+                        test_data = json.load(file)
+                    
+                    if lesson.is_task_based:
+                        print(f'HEREEE, :{lesson.title}')
+                        # Load tasks
+                        for task in test_data:
+                            Task.objects.update_or_create(
+                                lesson=lesson,
+                                description=task["description"],
+                                code_stub=task["code_stub"],
+                                correct_code=task["correct_code"],
+                                expected_output=task["expected_output"]
+                            )
+                    else:
+                        # Load quizzes
+                        for quiz in test_data:
+                            Quiz.objects.update_or_create(
+                                lesson=lesson,
+                                question=quiz["question"],
+                                defaults={
+                                    "answer_choices": quiz["answer_choices"],
+                                    "correct_answer": quiz["correct_answer"],
+                                },
+                            )
+                
     except OperationalError:
         # Handle the case where the database is not ready (e.g., during migrations)
         print("Database not ready. Skipping lesson preloading.")
@@ -85,6 +102,33 @@ def update_quiz_attempts(request, quizzes, user_progress, lesson):
                 attempts=lesson_attempts
             )    
 
+def update_task_attempts(request, tasks, user_progress, lesson):
+    lesson_attempts = TaskAttempt.objects.filter(
+        user_progress=user_progress, task__lesson=lesson
+    ).values('user_progress').distinct().count()
+        
+    for task in tasks:
+        user_answer_key = 'Empty'
+        # user_answer_key = request.POST.get(f'quiz_{quiz.id}')  # Key chosen by user
+        correct_answer_key = task.correct_code  # Key for the correct answer
+        passed = user_answer_key == correct_answer_key
+
+        # Update or create quiz attempts
+        existing_attempt = TaskAttempt.objects.filter(user_progress=user_progress, task=task).first()
+        if existing_attempt:
+            existing_attempt.score = 1 if passed else 0
+            existing_attempt.passed = passed
+            existing_attempt.attempts = lesson_attempts  # Track by lesson attempt
+            existing_attempt.save()
+        else:
+            TaskAttempt.objects.create(
+                user_progress=user_progress,
+                task=task,
+                score=1 if passed else 0,
+                passed=passed,
+                attempts=lesson_attempts
+            )    
+    
 def track_test_results(request, quizzes):
     correct_count = 0
     mistakes = []
@@ -113,6 +157,8 @@ def track_test_results(request, quizzes):
 def is_recap_lesson(lesson):
     return "recap" in lesson.title.lower()
 
+def is_task_based_lesson(lesson_title):
+    return ("project" in lesson_title.lower()) == True
 
 def match_question_to_lessons(question, lessons):
     """

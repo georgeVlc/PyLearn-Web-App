@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Using the os Module in Python</title>
+</head>
+<body>
+    <h1>Welcome to Python Modules: Mastering Useful Built-in Modules</h1>
+    <p>This chapter will explore some of Python's most useful built-in modules. These modules provide ready-to-use functionality that simplifies common programming tasks, helping you write efficient and clean code. The first module we’ll cover is <strong>os</strong>, a powerful tool for interacting with your operating system.</p>
+
+    <h2>What is the os Module?</h2>
+    <p>The <code>os</code> module allows you to interact with the operating system in a platform-independent way. You can perform tasks like creating directories, listing files, retrieving environment variables, and more.</p>
+
+    <h2>Common Functions in the os Module</h2>
+    <p>Here are some key functions provided by the <code>os</code> module:</p>
+    <ul>
+        <li><code>os.getcwd()</code>: Returns the current working directory.</li>
+        <li><code>os.listdir(path)</code>: Lists all files and directories in the given path.</li>
+        <li><code>os.mkdir(path)</code>: Creates a new directory at the specified path.</li>
+        <li><code>os.remove(path)</code>: Deletes the file at the specified path.</li>
+        <li><code>os.environ</code>: Provides access to environment variables.</li>
+    </ul>
+
+    <h3>Example: Using os to Manage Directories</h3>
+    <p>Let’s look at an example that demonstrates some common <code>os</code> module functions:</p>
+    <pre><code># Importing the os module
+import os
+
+# Get the current working directory
+cwd = os.getcwd()
+print("Current Directory:", cwd)
+
+# Create a new directory
+os.mkdir("new_folder")
+print("new_folder created!")
+
+# List all files and directories
+contents = os.listdir(".")
+print("Directory Contents:", contents)
+
+# Remove the created directory
+os.rmdir("new_folder")
+print("new_folder removed!")</code></pre>
+
+    <h3>Using Environment Variables</h3>
+    <p>You can use <code>os.environ</code> to access or modify environment variables:</p>
+    <pre><code># Access an environment variable
+import os
+home_directory = os.environ.get("HOME")
+print("Home Directory:", home_directory)
+
+# Set a new environment variable
+os.environ["MY_VAR"] = "Hello"
+print("MY_VAR:", os.environ["MY_VAR"])</code></pre>
+
+    <h2>Conclusion</h2>
+    <p>The <code>os</code> module is an essential tool for interacting with your operating system. Whether you’re managing files, directories, or environment variables, <code>os</code> provides the functionality you need. In the next lesson, we’ll explore the <code>sys</code> module and learn how to interact with system-specific parameters.</p>
+</body>
+</html>

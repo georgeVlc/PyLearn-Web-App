@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Using the datetime Module in Python</title>
+</head>
+<body>
+    <h1>Exploring the datetime Module in Python</h1>
+    <p>The <code>datetime</code> module in Python allows you to work with dates and times in a variety of ways. It provides tools to manipulate dates, times, and even perform date arithmetic.</p>
+
+    <h2>Key Features of the datetime Module</h2>
+    <p>The <code>datetime</code> module has several classes and methods to work with dates and times:</p>
+    <ul>
+        <li><code>datetime.datetime</code>: Represents both the date and time.</li>
+        <li><code>datetime.date</code>: Represents a date (year, month, day) without time.</li>
+        <li><code>datetime.time</code>: Represents a time without a date.</li>
+        <li><code>datetime.timedelta</code>: Represents a difference between two dates or times (i.e., duration).</li>
+        <li><code>datetime.now()</code>: Returns the current date and time.</li>
+        <li><code>datetime.today()</code>: Returns the current local date without the time component.</li>
+        <li><code>datetime.strftime()</code>: Converts a datetime object to a string with a specified format.</li>
+    </ul>
+
+    <h3>Example: Getting the Current Date and Time</h3>
+    <p>The <code>datetime.now()</code> function returns the current date and time:</p>
+    <pre><code># Get current date and time
+import datetime
+
+current_datetime = datetime.datetime.now()
+print(f"Current date and time: {current_datetime}")</code></pre>
+
+    <h3>Example: Working with Date Only</h3>
+    <p>If you want to work with the date only, you can use the <code>date</code> class:</p>
+    <pre><code># Get current date
+import datetime
+
+current_date = datetime.date.today()
+print(f"Today's date: {current_date}")</code></pre>
+
+    <h3>Example: Formatting Dates and Times</h3>
+    <p>You can format a <code>datetime</code> object into a string using <code>strftime</code>:</p>
+    <pre><code># Formatting date and time
+import datetime
+
+current_datetime = datetime.datetime.now()
+formatted_datetime = current_datetime.strftime("%Y-%m-%d %H:%M:%S")
+print(f"Formatted date and time: {formatted_datetime}")</code></pre>
+
+    <h3>Example: Date Arithmetic</h3>
+    <p>You can perform date arithmetic using <code>timedelta</code> to add or subtract time:</p>
+    <pre><code># Date arithmetic using timedelta
+import datetime
+
+current_datetime = datetime.datetime.now()
+one_week_later = current_datetime + datetime.timedelta(weeks=1)
+print(f"One week later: {one_week_later}")</code></pre>
+
+    <h2>Conclusion</h2>
+    <p>The <code>datetime</code> module is a powerful tool for working with dates and times. You can easily get the current date, format it, and even perform date arithmetic. In the next lesson, we’ll explore the <code>os</code> module, which will allow us to work with files and directories.</p>
+</body>
+</html>

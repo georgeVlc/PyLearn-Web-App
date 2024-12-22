@@ -28,7 +28,7 @@
         <p><strong>Order:</strong> {{ current_lesson.order }}</p>
 
         <!-- Test options -->
-        {% if current_lesson.quizzes.all %}
+        {% if current_lesson.quizzes.all or current_lesson.tasks.all %}
         <p>
             <a href="{% url 'lessons:view_lesson_test' current_lesson.id %}" class="btn">View Lesson's Test</a>
             <a href="{% url 'lessons:take_lesson_test' current_lesson.id %}" class="btn">Take Lesson's Test</a>
