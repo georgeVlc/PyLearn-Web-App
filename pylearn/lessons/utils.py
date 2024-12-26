@@ -1,9 +1,8 @@
 import os
 import json
-from .models import Lesson, Quiz, Task
-from users.models import UserProgress, QuizAttempt
-from django.db.utils import OperationalError
-from difflib import SequenceMatcher
+from .models import Lesson, Quiz, Task, chapter_size
+from users.models import UserProgress, QuizAttempt, TaskAttempt
+from .code_eval import *
 
 
 def load_local_data():
@@ -70,17 +69,27 @@ def load_local_data():
         print("Database not ready. Skipping lesson preloading.")
         # Path to lessons and quizzes data
 
-
-def delete_all_lessons_and_quizzes():
+def delete_all_lessons_quizzes_tasks():
     Quiz.objects.all().delete()
+    Task.objects.all().delete()
     Lesson.objects.all().delete()
-    print("All lessons and quizzes have been deleted from the database.")
+    print("All lessons quizzes and tasks have been deleted from the database.")
+
+def get_chapter_number_for_lesson(lesson_id):
+    lesson = Lesson.objects.get(id=lesson_id)
+    lessons = Lesson.objects.order_by('order')
+    chapter_number = 1
+    for idx, lesson_in_chapter in enumerate(lessons):
+        if lesson_in_chapter.id == lesson.id:
+            return (idx // chapter_size) + 1
+    return None
 
 def update_quiz_attempts(request, quizzes, user_progress, lesson):
     lesson_attempts = QuizAttempt.objects.filter(
         user_progress=user_progress, quiz__lesson=lesson
     ).values('user_progress').distinct().count()
-        
+    
+    info = []
     for quiz in quizzes:
         user_answer_key = request.POST.get(f'quiz_{quiz.id}')  # Key chosen by user
         correct_answer_key = quiz.correct_answer  # Key for the correct answer
@@ -89,7 +98,7 @@ def update_quiz_attempts(request, quizzes, user_progress, lesson):
         # Update or create quiz attempts
         existing_attempt = QuizAttempt.objects.filter(user_progress=user_progress, quiz=quiz).first()
         if existing_attempt:
-            existing_attempt.score = 1 if passed else 0
+            existing_attempt.points = 1 if passed else 0
             existing_attempt.passed = passed
             existing_attempt.attempts = lesson_attempts  # Track by lesson attempt
             existing_attempt.save()
@@ -97,44 +106,61 @@ def update_quiz_attempts(request, quizzes, user_progress, lesson):
             QuizAttempt.objects.create(
                 user_progress=user_progress,
                 quiz=quiz,
-                score=1 if passed else 0,
+                points=1 if passed else 0,
                 passed=passed,
                 attempts=lesson_attempts
-            )    
+            ) 
+        info.append({
+            'user_answer_key': user_answer_key,
+            'passed': passed
+        })   
+    return info
 
 def update_task_attempts(request, tasks, user_progress, lesson):
     lesson_attempts = TaskAttempt.objects.filter(
         user_progress=user_progress, task__lesson=lesson
     ).values('user_progress').distinct().count()
-        
-    for task in tasks:
-        user_answer_key = 'Empty'
-        # user_answer_key = request.POST.get(f'quiz_{quiz.id}')  # Key chosen by user
-        correct_answer_key = task.correct_code  # Key for the correct answer
-        passed = user_answer_key == correct_answer_key
-
-        # Update or create quiz attempts
-        existing_attempt = TaskAttempt.objects.filter(user_progress=user_progress, task=task).first()
-        if existing_attempt:
-            existing_attempt.score = 1 if passed else 0
-            existing_attempt.passed = passed
-            existing_attempt.attempts = lesson_attempts  # Track by lesson attempt
-            existing_attempt.save()
-        else:
-            TaskAttempt.objects.create(
-                user_progress=user_progress,
-                task=task,
-                score=1 if passed else 0,
-                passed=passed,
-                attempts=lesson_attempts
-            )    
     
-def track_test_results(request, quizzes):
+    info = []
+    for task in tasks:
+        uploaded_file = request.FILES.get('task_file')
+
+        if uploaded_file:
+            if uploaded_file.name.endswith('.py'):
+                # Read the file content
+                user_code = uploaded_file.read().decode('utf-8')
+                accuracy = evaluate_code(user_code, task.correct_code)
+                print(f'{accuracy=}')
+                passed = 1 if accuracy >= 50 else 0
+                                
+                existing_attempt = TaskAttempt.objects.filter(user_progress=user_progress, task=task).first()
+                if existing_attempt:
+                    existing_attempt.points = 1 if passed else 0
+                    existing_attempt.passed = passed
+                    existing_attempt.attempts = lesson_attempts  # Track by lesson attempt
+                    existing_attempt.save()
+                else:
+                    TaskAttempt.objects.create(
+                        user_progress=user_progress,
+                        task=task,
+                        points=1 if passed else 0,
+                        accuracy=accuracy,
+                        passed=passed,
+                        attempts=lesson_attempts
+                    )    
+                info.append({
+                    'user_code': user_code,
+                    'accuracy': accuracy,
+                    'passed': passed
+                })
+    return info 
+    
+def track_quiz_test_results(request, quizzes, info):
     correct_count = 0
     mistakes = []
     
-    for quiz in quizzes:
-        user_answer_key = request.POST.get(f'quiz_{quiz.id}')  # Key chosen by user
+    for i, quiz in enumerate(quizzes):
+        user_answer_key = info[i]['user_answer_key']
         correct_answer_key = quiz.correct_answer  # Key for the correct answer
         passed = user_answer_key == correct_answer_key
         
@@ -154,6 +180,30 @@ def track_test_results(request, quizzes):
             })
     return correct_count, mistakes
 
+def track_task_test_results(request, tasks, info):
+    correct_count = 0
+    results = []
+    
+    for i, task in enumerate(tasks):
+        user_code = info[i]['user_code']
+        print(f'USER CODE: {user_code}')
+        correct_code = task.correct_code
+        task_accuracy = info[i]['accuracy']
+        passed = info[i]['passed']
+        
+        if passed:
+            correct_count += 1
+
+        results.append({
+            'task': f'task {i}',
+            'user_answer': user_code,
+            'correct_answer': correct_code,
+            'feedback': generate_feedback(user_code, correct_code, task_accuracy),
+            'accuracy': task_accuracy
+        })
+        
+    return correct_count, results
+
 def is_recap_lesson(lesson):
     return "recap" in lesson.title.lower()
 
@@ -165,15 +215,15 @@ def match_question_to_lessons(question, lessons):
     Match a quiz question to the most relevant lessons.
     """
     best_match = None
-    best_score = 0
+    best_points = 0
 
     for lesson in lessons:
         similarity = SequenceMatcher(None, question.lower(), lesson.title.lower()).ratio()
-        if similarity > best_score:
-            best_score = similarity
+        if similarity > best_points:
+            best_points = similarity
             best_match = lesson
 
-    return best_match, best_score
+    return best_match, best_points
 
 def generate_recommendations(mistakes, all_lessons):
     """

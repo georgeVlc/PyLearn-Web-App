@@ -6,33 +6,80 @@
     <title>User Attempts Overview</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
     <style>
+        /* General Styling */
+        body {
+            background-color: #f4f7f6;
+        }
         .card {
             margin: 1rem auto;
             max-width: 900px;
+            border-radius: 15px;
         }
         .stat-header {
             text-align: center;
             margin-bottom: 2rem;
+            color: #2c3e50;
         }
         .lesson-box {
             margin-bottom: 1.5rem;
         }
         .lesson-box .card-body {
-            background: #f8f9fa;
+            background: #ffffff;
             border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .lesson-box .card-header {
+            background-color: #3498db;
+            color: #ffffff;
+            font-weight: bold;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
         }
         .overall-stats {
-            padding: 1rem;
+            padding: 1.5rem;
             background-color: #e3f2fd;
-            border-radius: 10px;
+            border-radius: 15px;
             margin-bottom: 2rem;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
         .table {
             margin-top: 1rem;
         }
+
+        /* Custom Button Styles */
+        .retake-button {
+            background-color: #3498db;
+            color: white;
+            border-radius: 5px;
+            padding: 5px 15px;
+            text-decoration: none;
+        }
+        .retake-button:hover {
+            background-color: #2980b9;
+        }
+
+        /* Section Headers */
+        .section-header {
+            background-color: #f1f8ff;
+            padding: 10px 15px;
+            border-radius: 10px;
+            margin-bottom: 1.5rem;
+            font-size: 1.25rem;
+            font-weight: bold;
+            color: #3498db;
+        }
+
+        /* Lesson Cards Styling */
+        .lesson-box .card-body p {
+            font-size: 1.1rem;
+            margin-bottom: 0.75rem;
+        }
+        .lesson-box .card-body p strong {
+            color: #2c3e50;
+        }
     </style>
 </head>
-<body class="bg-light">
+<body>
     <div class="container py-4">
         <!-- Header -->
         <div class="stat-header">
@@ -48,27 +95,50 @@
             <p><strong>Overall Accuracy:</strong> {{ overall_accuracy }}%</p>
         </div>
 
-        <!-- Lessons with Attempts -->
-        <h3>Lesson Breakdown</h3>
-        {% if lessons_with_attempts %}
-            {% for lesson in lessons_with_attempts %}
+        <!-- Quiz Lessons -->
+        <div class="section-header">Quiz Lessons</div>
+        {% if quiz_lessons %}
+            {% for lesson in quiz_lessons %}
                 <div class="lesson-box">
                     <div class="card">
                         <div class="card-header">
-                            <h4>Chapter {{lesson.chapter_id}}: {{ lesson.title }}</h4>
+                            <h4>Chapter {{ lesson.chapter_id }}: {{ lesson.title }}</h4>
                         </div>
                         <div class="card-body">
                             <p><strong>Total Questions:</strong> {{ lesson.total_quizzes }}</p>
                             <p><strong>Correct Answers:</strong> {{ lesson.correct_answers }}</p>
                             <p><strong>Passed:</strong> {{ lesson.passed }}</p>
-                            <p><strong>Retake Test? </strong><a href="{% url 'lessons:take_lesson_test' lesson.id %}">{{ lesson.title }}</a> </p>
+                            <p><strong>Retake Test? </strong><a href="{% url 'lessons:take_lesson_test' lesson.id %}" class="retake-button">Retake</a></p>
                             <p><strong>Accuracy:</strong> {{ lesson.accuracy }}%</p>
                         </div>
                     </div>
                 </div>
             {% endfor %}
         {% else %}
-            <p>No attempts recorded for this user yet.</p>
+            <p>No quiz attempts recorded for this user yet.</p>
+        {% endif %}
+
+        <!-- Task Lessons -->
+        <div class="section-header">Task Lessons</div>
+        {% if task_lessons %}
+            {% for lesson in task_lessons %}
+                <div class="lesson-box">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4>Chapter {{ lesson.chapter_id }}: {{ lesson.title }}</h4>
+                        </div>
+                        <div class="card-body">
+                            <p><strong>Total Tasks:</strong> {{ lesson.total_tasks }}</p>
+                            <p><strong>Tasks Passed:</strong> {{ lesson.accuracy }}%</p>
+                            <p><strong>Passed:</strong> {{ lesson.passed }}</p>
+                            <p><strong>Retake Tasks? </strong><a href="{% url 'lessons:take_lesson_test' lesson.id %}" class="retake-button">Retake</a></p>
+                            <p><strong>Accuracy:</strong> {{ lesson.accuracy }}%</p>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        {% else %}
+            <p>No task attempts recorded for this user yet.</p>
         {% endif %}
     </div>
 

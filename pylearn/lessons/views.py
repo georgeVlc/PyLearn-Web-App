@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from lessons.models import Lesson, Quiz, chapter_size, chapter_titles, chapter_difficulties
-from users.models import UserProgress, QuizAttempt
+from users.models import UserProgress, QuizAttempt, TaskAttempt
 from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
 from .utils import *
@@ -74,41 +74,44 @@ def take_lesson_test(request, lesson_id):
     lesson = get_object_or_404(Lesson, pk=lesson_id)
     quizzes = lesson.quizzes.all()
     tasks = lesson.tasks.all()
-    # print(f'{lesson.title=}')
     
     if request.method == 'POST':
         user_progress, created = UserProgress.objects.get_or_create(user=request.user)
+        
         if lesson.is_task_based:
-            update_task_attempts(request)
-            # correct_count, mistakes = track_test_results(request, quizzes)
-        else:
-            update_quiz_attempts(request, quizzes, user_progress, lesson)
-            correct_count, mistakes = track_test_results(request, quizzes)
+            info = update_task_attempts(request, tasks, user_progress, lesson)
+            correct_count, results = track_task_test_results(request, tasks, info)
+            passed_count = sum(1 for result in results if result['accuracy'] >= 80)
+            if correct_count >= len(tasks) // 2:
+                user_progress.completed_lessons.add(lesson)
             
-        
-        # Calculate score percentage for the entire lesson
-        total_quizzes = len(quizzes)
-        score_percentage = (correct_count / total_quizzes) * 100
+            context = {
+                'lesson': lesson,
+                'results': results,
+                'passed_count': passed_count
+            }
+            return render(request, 'view_task_test_results.html', context)
+        else:
+            info = update_quiz_attempts(request, quizzes, user_progress, lesson)
+            correct_count, mistakes = track_quiz_test_results(request, quizzes, info)
+            score_percentage = (correct_count / len(quizzes)) * 100
+            if correct_count >= len(quizzes) // 2:
+                user_progress.completed_lessons.add(lesson)
 
-        # Mark lesson as completed if the majority of quizzes are correct
-        if correct_count >= total_quizzes // 2:
-            user_progress.completed_lessons.add(lesson)
-
-        # Pass results to the template
-        context = {
-            'lesson': lesson,
-            'score_percentage': score_percentage,
-            'mistakes': mistakes,
-            'total_quizzes': total_quizzes,
-            'correct_count': correct_count,
-        }
-        
-        if is_recap_lesson(lesson):
-            recommendations = generate_recommendations(mistakes, Lesson.objects.all())
-            print(f'{recommendations=}')
-            context['recommendations'] = recommendations
-
-        return render(request, 'view_test_results.html', context)
+            context = {
+                'lesson': lesson,
+                'score_percentage': score_percentage,
+                'mistakes': mistakes,
+                'total_quizzes': len(quizzes),
+                'total_tasks': len(tasks),
+                'correct_count': correct_count,
+            }
+            
+            if is_recap_lesson(lesson):
+                recommendations = generate_recommendations(mistakes, Lesson.objects.all())
+                print(f'{recommendations=}')
+                context['recommendations'] = recommendations
+            return render(request, 'view_quiz_test_results.html', context)
 
     # If not POST, render the test page
     return render(request, 'take_lesson_test.html', {'lesson': lesson, 'quizzes': quizzes, 'tasks': tasks})

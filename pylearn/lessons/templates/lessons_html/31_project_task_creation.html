@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 2: Implementing Task Creation</title>
+</head>
+<body>
+    <h1>Lesson 2: Implementing Task Creation</h1>
+    <p>In this lesson, you will learn how to implement a function to create new tasks in the Task Management System. We will also focus on validating user input to ensure that important fields such as <code>title</code> and <code>priority</code> are provided correctly.</p>
+
+    <h2>What Will You Learn?</h2>
+    <p>By the end of this lesson, you will be able to:</p>
+    <ul>
+        <li>Create a function to add new tasks to the task list.</li>
+        <li>Validate user input to ensure the task has all required fields.</li>
+        <li>Handle missing or invalid inputs and provide helpful error messages.</li>
+    </ul>
+
+    <h2>Task Creation Function</h2>
+    <p>To create tasks, we will write a function called <code>add_task()</code>. This function will:</p>
+    <ul>
+        <li>Take input from the user for task details such as <code>title</code>, <code>description</code>, <code>priority</code>, and <code>deadline</code>.</li>
+        <li>Ensure that the <code>title</code> and <code>priority</code> fields are provided (non-empty).</li>
+        <li>Add the task to the task list if all fields are valid.</li>
+    </ul>
+
+    <h3>Task Addition Code Template</h3>
+    <p>Here is a basic structure for the <code>add_task()</code> function:</p>
+    <pre><code>def add_task(title, description, priority, deadline, task_list):
+    if not title or not priority:
+        print("Error: Title and priority are required fields!")
+        return None
+    task = Task(title, description, priority, deadline)
+    task_list.append(task)
+    return task</code></pre>
+    <p>In the code above:</p>
+    <ul>
+        <li>The function checks if the <code>title</code> and <code>priority</code> are provided. If they are missing, it shows an error message.</li>
+        <li>If the fields are valid, it creates a new task and appends it to the <code>task_list</code>.</li>
+    </ul>
+
+    <h3>Your Task</h3>
+    <p>Your task is to implement the <code>add_task()</code> function. Once you have done that, test the function by adding a few tasks to the task list.</p>
+
+    <h2>Next Steps</h2>
+    <p>Once you’ve implemented the <code>add_task()</code> function and verified it works as expected, you’ll be ready for the next lesson where we will learn how to display the tasks in a user-friendly format.</p>
+</body>
+</html>

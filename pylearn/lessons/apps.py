@@ -6,8 +6,10 @@ class LessonsConfig(AppConfig):
 
     def ready(self):
         try:
-            from .utils import load_local_data, delete_all_lessons_and_quizzes
-            # delete_all_lessons_and_quizzes()
+            from .utils import load_local_data, delete_all_lessons_quizzes_tasks
+            from users.utils import delete_all_progress_and_attempts
+            # delete_all_progress_and_attempts()
+            # delete_all_lessons_quizzes_tasks()
             load_local_data()
         except Exception as e:
             print(f"Error during lesson preloading: {e}")

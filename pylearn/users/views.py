@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.contrib.auth.models import User
 from django.shortcuts import render, get_object_or_404
-from .models import UserProgress, QuizAttempt
+from .models import UserProgress, QuizAttempt, TaskAttempt
 from lessons.models import chapter_size
 from django.contrib.auth import authenticate, login,  logout
 from django.contrib.auth import authenticate, login as auth_login 
@@ -11,6 +11,7 @@ from django.db.models import Avg, Count, Sum, Q, F
 from django.contrib.auth.decorators import login_required
 from lessons.models import Lesson, Quiz
 from math import ceil
+from lessons.utils import get_chapter_number_for_lesson
 # Create your views here.
 
 def view_users(request):
@@ -21,59 +22,83 @@ def view_users(request):
 def view_user_attempts(request, user_id):
     user_progress = get_object_or_404(UserProgress, user_id=user_id)
 
-    # Group quiz attempts by lesson (test level)
-    lessons_with_attempts = Lesson.objects.filter(
-        quizzes__quizattempt__user_progress=user_progress
+    # Separate quiz-based and task-based lessons
+    quiz_lessons = Lesson.objects.filter(
+        quizzes__quizattempt__user_progress=user_progress,
+        is_task_based=False
     ).annotate(
         total_attempts=Count('quizzes__quizattempt', distinct=True),
         total_quizzes=Count('quizzes', distinct=True)
     ).distinct()
 
-    # Calculate lesson-level accuracy
-    for lesson in lessons_with_attempts:
+    task_lessons = Lesson.objects.filter(
+        tasks__taskattempt__user_progress=user_progress,
+        is_task_based=True
+    ).annotate(
+        total_attempts=Count('tasks__taskattempt', distinct=True),
+        total_tasks=Count('tasks', distinct=True)
+    ).distinct()
+
+    all_lessons = list(quiz_lessons) + list(task_lessons)
+    
+    # Process quiz-based lessons
+    for lesson in quiz_lessons:
         user_correct_answers = QuizAttempt.objects.filter(
             user_progress=user_progress,
             quiz__lesson=lesson
-        ).aggregate(total_correct=Sum('score'))['total_correct'] or 0
+        ).aggregate(total_correct=Sum('passed'))['total_correct'] or 0
 
-        total_attempts = lesson.total_attempts
         total_quizzes = lesson.total_quizzes
-        
-        # Calculate accuracy for each lesson
         lesson.accuracy = (
             (user_correct_answers / total_quizzes) * 100
-            if total_attempts and total_quizzes > 0
+            if total_quizzes > 0
             else 0
         )
         lesson.accuracy = round(lesson.accuracy, 2)
         lesson.correct_answers = user_correct_answers
-        lesson.passed = True if lesson.accuracy >= 50 else False
-        print(f'{lesson.accuracy=}, {lesson.passed=}')
-        lesson.chapter_id = lesson.id // (chapter_size) + 1
-        
-    # Calculate overall stats across all lessons (quiz-level stats)
-    overall_attempts = QuizAttempt.objects.filter(user_progress=user_progress)
-    total_quizzes_attempted = overall_attempts.values('quiz').distinct().count()  # Distinct quizzes
-    total_correct_answers = overall_attempts.aggregate(total_correct=Sum('score'))['total_correct'] or 0
+        lesson.passed = lesson.accuracy >= 50
+        lesson.chapter_id = get_chapter_number_for_lesson(lesson.id)
 
-    # Overall accuracy
-    overall_accuracy = (
-        (total_correct_answers / total_quizzes_attempted) * 100
-        if total_quizzes_attempted > 0
-        else 0
-    )
+    # Process task-based lessons
+    for lesson in task_lessons:
+        user_attempts = TaskAttempt.objects.filter(
+            user_progress=user_progress,
+            task__lesson=lesson,
+        )
 
-    # Prepare context data
+        total_tasks = lesson.total_tasks            
+        lesson.accuracy = sum([attempt.accuracy for attempt in user_attempts ]) / total_tasks
+        lesson.accuracy = round(lesson.accuracy, 2)
+        lesson.passed = lesson.accuracy >= 50
+        lesson.chapter_id = get_chapter_number_for_lesson(lesson.id)
+
+    # Calculate overall stats
+    total_quizzes_attempted = QuizAttempt.objects.filter(user_progress=user_progress).count()
+    total_correct_quizzes = QuizAttempt.objects.filter(user_progress=user_progress).aggregate(
+        total_correct=Sum('passed')
+    )['total_correct'] or 0
+
+    total_tasks_attempted = TaskAttempt.objects.filter(user_progress=user_progress).count()
+    total_passed_tasks = TaskAttempt.objects.filter(user_progress=user_progress, passed=True).count()
+    total_lesson_attempts_count = len(quiz_lessons) + len(task_lessons)
+    
+    passed_quiz_lessons = [lesson for lesson in quiz_lessons if lesson.passed]
+    passed_task_lessons = [lesson for lesson in task_lessons if lesson.passed]
+    all_passed_lessons = passed_quiz_lessons + passed_task_lessons
+    
+    overall_accuracy = sum([lesson.accuracy for lesson in all_lessons]) / len(all_lessons)
+    overall_accuracy = round(overall_accuracy, 2)
+    # Prepare context
     context = {
         'user_progress': user_progress,
-        'lessons_with_attempts': lessons_with_attempts,
-        'overall_accuracy': round(overall_accuracy, 2),
-        'total_attempts_count': lessons_with_attempts.aggregate(total_attempts=Count('total_attempts'))['total_attempts'] or 0,
-        'total_lessons_passed': len([lesson for lesson in lessons_with_attempts if lesson.passed])
+        'quiz_lessons': quiz_lessons,
+        'task_lessons': task_lessons,
+        'overall_accuracy': overall_accuracy,
+        'total_attempts_count': total_lesson_attempts_count,
+        'total_lessons_passed': len(all_passed_lessons)
     }
 
     return render(request, 'view_user_attempts.html', context)
-
     
 def signup(request):
     if request.method == 'POST':
