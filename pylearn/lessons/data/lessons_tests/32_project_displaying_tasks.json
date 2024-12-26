@@ -1,0 +1,8 @@
+[
+    {
+        "description": "<p>Your task is to implement two functions:</p>\n<ul>\n    <li><code>display_tasks()</code>: This function will display the details of all tasks in the <code>task_list</code>.</li>\n    <li><code>sort_tasks()</code>: This function will sort the tasks based on a specified attribute (e.g., <code>priority</code> or <code>deadline</code>) and return the sorted list.</li>\n</ul>\n<p>The <code>Task</code> class should already have the <code>display()</code> method defined from previous lessons.</p>",
+        "code_stub": "<pre><code>def display_tasks(task_list):\n    # Display each task's details\n    pass\n\n\ndef sort_tasks(task_list, key='priority'):\n    # Sort tasks based on key (e.g., priority or deadline)\n    pass</code></pre>",
+        "correct_code": "<pre><code>def display_tasks(task_list):\n    for task in task_list:\n        task.display()\n\n\ndef sort_tasks(task_list, key='priority'):\n    return sorted(task_list, key=lambda task: getattr(task, key))</code></pre>",
+        "expected_output": "<pre><code>Task 'Complete Homework' displayed.\nTask 'Buy Groceries' displayed.\nTask 'Complete Homework' sorted by priority.</code></pre>"
+    }
+]

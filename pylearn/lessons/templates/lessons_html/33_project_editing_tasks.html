@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 4: Editing Tasks</title>
+</head>
+<body>
+    <h1>Lesson 4: Editing Tasks</h1>
+    <p>In this lesson, you will learn how to edit specific tasks in the Task Management System. You will modify attributes such as <code>title</code>, <code>description</code>, <code>priority</code>, <code>deadline</code>, and <code>status</code>.</p>
+
+    <h2>What Will You Learn?</h2>
+    <p>By the end of this lesson, you will be able to:</p>
+    <ul>
+        <li>Access and modify attributes of a specific task in the task list.</li>
+        <li>Write a function that updates a task based on user input.</li>
+        <li>Handle errors gracefully if the task is not found.</li>
+    </ul>
+
+    <h2>Editing Tasks</h2>
+    <p>To edit a task, we will need to implement a function that takes the task's identifier (e.g., title or ID) and allows the user to modify its attributes.</p>
+
+    <h3>Task Editing Code Template</h3>
+    <p>Below is a basic structure for the <code>edit_task()</code> function:</p>
+    <pre><code>def edit_task(task_list, task_id, title=None, description=None, priority=None, deadline=None, completed=None):
+    task = next((t for t in task_list if t.title == task_id), None)  # Find task by title (or ID if applicable)
+    if not task:
+        print(f"Error: Task with title '{task_id}' not found!")
+        return None
+
+    # Update attributes if provided
+    if title:
+        task.title = title
+    if description:
+        task.description = description
+    if priority:
+        task.priority = priority
+    if deadline:
+        task.deadline = deadline
+    if completed is not None:
+        task.completed = completed
+
+    return task</code></pre>
+    <p>In the code above:</p>
+    <ul>
+        <li>The function checks if the task exists using a generator expression that looks for a task with a matching title (or ID).</li>
+        <li>If the task is found, it updates the attributes that were passed as arguments.</li>
+        <li>If the task is not found, it displays an error message.</li>
+    </ul>
+
+    <h3>Your Task</h3>
+    <p>Your task is to implement the <code>edit_task()</code> function. Once you've implemented this function, test it by editing some tasks in your task list.</p>
+
+    <h2>Next Steps</h2>
+    <p>Once you've implemented the task editing functionality, you'll be ready for the next lesson, where we will learn how to delete tasks from the list.</p>
+</body>
+</html>

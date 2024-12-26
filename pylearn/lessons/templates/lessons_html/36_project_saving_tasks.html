@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 7: Saving Tasks to a File</title>
+</head>
+<body>
+    <h1>Lesson 7: Saving Tasks to a File</h1>
+    <p>In this lesson, you will learn how to save tasks to a file so that your data persists even after the program stops running. This is an essential feature for any task management system.</p>
+
+    <h2>What Will You Learn?</h2>
+    <p>By the end of this lesson, you will be able to:</p>
+    <ul>
+        <li>Save a list of tasks to a file in a structured format.</li>
+        <li>Read tasks back into the program from a file.</li>
+    </ul>
+
+    <h2>Saving Tasks to a File</h2>
+    <p>We will use the <code>JSON</code> format for saving tasks because it is easy to read and write, and it integrates well with Python.</p>
+
+    <h3>Code Template</h3>
+    <p>Here is a basic function to save tasks to a file:</p>
+    <pre><code>import json
+
+def save_tasks_to_file(task_list, filename):
+    tasks = [task.to_dict() for task in task_list]
+    with open(filename, 'w') as file:
+        json.dump(tasks, file, indent=4)
+    print(f\"Tasks saved to {filename}\")</code></pre>
+
+    <p>In the code above:</p>
+    <ul>
+        <li>Each task is converted to a dictionary using a <code>to_dict()</code> method.</li>
+        <li>The list of dictionaries is saved to a file using the <code>json.dump()</code> function.</li>
+    </ul>
+
+    <h2>Reading Tasks from a File</h2>
+    <p>To load tasks back into the program, we need a function that reads the file and converts the data into task objects.</p>
+
+    <h3>Code Template</h3>
+    <p>Here is a basic function to read tasks from a file:</p>
+    <pre><code>def load_tasks_from_file(filename):
+    try:
+        with open(filename, 'r') as file:
+            tasks_data = json.load(file)
+        return [Task.from_dict(data) for data in tasks_data]
+    except FileNotFoundError:
+        print(f\"Error: {filename} not found.\")
+        return []</code></pre>
+
+    <p>In the code above:</p>
+    <ul>
+        <li>The file is read and its contents are parsed as JSON.</li>
+        <li>Each dictionary is converted back into a task object using the <code>Task.from_dict()</code> method.</li>
+        <li>If the file does not exist, an empty list is returned.</li>
+    </ul>
+
+    <h3>Task Object Conversion</h3>
+    <p>The <code>Task</code> class needs two additional methods:</p>
+    <pre><code>class Task:
+    def to_dict(self):
+        return {
+            'title': self.title,
+            'description': self.description,
+            'completed': self.completed
+        }
+
+    @classmethod
+    def from_dict(cls, data):
+        return cls(data['title'], data['description'], data['completed'])</code></pre>
+
+    <h2>Practice</h2>
+    <p>Your task is to implement and test the following:</p>
+    <ul>
+        <li><code>save_tasks_to_file()</code>: Save a list of tasks to a file.</li>
+        <li><code>load_tasks_from_file()</code>: Load tasks back into the program from a file.</li>
+    </ul>
+
+    <h2>Next Steps</h2>
+    <p>In the next lesson, we will integrate all the functionalities to create a fully functional Task Management System.</p>
+</body>
+</html>

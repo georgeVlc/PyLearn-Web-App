@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 3: Displaying Tasks</title>
+</head>
+<body>
+    <h1>Lesson 3: Displaying Tasks</h1>
+    <p>In this lesson, you will learn how to format and display tasks in a user-friendly way. You will also learn how to sort tasks based on different attributes like <code>priority</code> and <code>deadline</code>.</p>
+
+    <h2>What Will You Learn?</h2>
+    <p>By the end of this lesson, you will be able to:</p>
+    <ul>
+        <li>Format and display tasks in a readable format.</li>
+        <li>Sort tasks based on priority or deadline.</li>
+        <li>Implement a filtering mechanism to view tasks based on status or other attributes.</li>
+    </ul>
+
+    <h2>Displaying Tasks</h2>
+    <p>To display tasks in a user-friendly way, we will use the <code>display()</code> method in the <code>Task</code> class that we created earlier. However, we will extend this functionality to list multiple tasks.</p>
+
+    <h3>Task Display Code Template</h3>
+    <p>Below is a template for displaying a list of tasks:</p>
+    <pre><code>def display_tasks(task_list):
+    for task in task_list:
+        task.display()</code></pre>
+    <p>The <code>display_tasks()</code> function will iterate through a list of tasks and call the <code>display()</code> method on each task, printing its details.</p>
+
+    <h2>Sorting Tasks</h2>
+    <p>We will also learn how to sort tasks based on attributes like <code>priority</code> or <code>deadline</code>. Here is a basic template for sorting:</p>
+    <pre><code>def sort_tasks(task_list, key='priority'):
+    return sorted(task_list, key=lambda task: getattr(task, key))</code></pre>
+    <p>This function takes a list of tasks and a sorting key (e.g., <code>'priority'</code> or <code>'deadline'</code>) and returns the list sorted by the specified attribute.</p>
+
+    <h3>Your Task</h3>
+    <p>Your task is to implement the <code>display_tasks()</code> function to display the task details and the <code>sort_tasks()</code> function to sort tasks based on priority or deadline. Once you’ve implemented these functions, test them by displaying and sorting your tasks.</p>
+
+    <h2>Next Steps</h2>
+    <p>Once you've implemented the task display and sorting functionality, you'll be ready for the next lesson, where we will learn how to edit tasks in our system.</p>
+</body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 6: Marking Tasks as Complete</title>
+</head>
+<body>
+    <h1>Lesson 6: Marking Tasks as Complete</h1>
+    <p>In this lesson, you will learn how to mark tasks as complete in the Task Management System and filter tasks based on their completion status. This feature helps in organizing tasks and tracking progress.</p>
+
+    <h2>What Will You Learn?</h2>
+    <p>By the end of this lesson, you will be able to:</p>
+    <ul>
+        <li>Update the <code>completed</code> attribute of a task to <code>True</code>.</li>
+        <li>Filter and display completed and incomplete tasks separately.</li>
+    </ul>
+
+    <h2>Marking Tasks as Complete</h2>
+    <p>We will implement a function named <code>mark_task_complete()</code> to update the status of a specific task. This function will:</p>
+    <ul>
+        <li>Search for a task by its title or ID.</li>
+        <li>If found, set its <code>completed</code> attribute to <code>True</code>.</li>
+        <li>If not found, display an appropriate error message.</li>
+    </ul>
+
+    <h3>Code Template</h3>
+    <p>Here is a basic structure for the <code>mark_task_complete()</code> function:</p>
+    <pre><code>def mark_task_complete(task_list, task_id):
+    for task in task_list:
+        if task.title == task_id:  # Replace with task ID if applicable
+            task.mark_as_complete()
+            print(f\"Task '{task_id}' marked as complete.\")
+            return True
+    print(f\"Error: Task with title '{task_id}' not found!\")
+    return False</code></pre>
+    <p>In the code above:</p>
+    <ul>
+        <li>The function searches for a task with the given title or ID.</li>
+        <li>If the task exists, it calls the <code>mark_as_complete()</code> method on the task object.</li>
+        <li>If the task does not exist, an error message is displayed.</li>
+    </ul>
+
+    <h2>Filtering Tasks by Completion Status</h2>
+    <p>To filter tasks, we will implement a function named <code>filter_tasks_by_status()</code>. This function will:</p>
+    <ul>
+        <li>Take a list of tasks and a <code>status</code> (e.g., <code>True</code> for completed or <code>False</code> for incomplete).</li>
+        <li>Return a list of tasks matching the specified status.</li>
+    </ul>
+
+    <h3>Code Template</h3>
+    <p>Here is a basic structure for the <code>filter_tasks_by_status()</code> function:</p>
+    <pre><code>def filter_tasks_by_status(task_list, status):
+    return [task for task in task_list if task.completed == status]</code></pre>
+    <p>In the code above:</p>
+    <ul>
+        <li>The function uses a list comprehension to filter tasks based on the <code>completed</code> attribute.</li>
+        <li>It returns the filtered list.</li>
+    </ul>
+
+    <h3>Your Task</h3>
+    <p>Your task is to implement both the <code>mark_task_complete()</code> and <code>filter_tasks_by_status()</code> functions. Once done, test these functions by marking tasks as complete and filtering them by their completion status.</p>
+
+    <h2>Next Steps</h2>
+    <p>After implementing these functions, you’ll be ready for the next lesson, where we’ll focus on saving tasks to a file so that they can persist between program runs.</p>
+</body>
+</html>

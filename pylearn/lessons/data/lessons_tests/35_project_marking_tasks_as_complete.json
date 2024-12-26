@@ -1,0 +1,8 @@
+[
+    {
+        "description": "<p>Your task is to implement two Python functions: <code>mark_task_complete()</code> and <code>filter_tasks_by_status()</code>. These functions should:</p>\n<ul>\n    <li><code>mark_task_complete()</code>: Mark a task as complete by setting its <code>completed</code> attribute to <code>True</code>. Search for the task by title or ID.</li>\n    <li><code>filter_tasks_by_status()</code>: Filter tasks based on their <code>completed</code> status (<code>True</code> or <code>False</code>).</li>\n</ul>\n<p>Use the following templates to implement these functions.</p>",
+        "code_stub": "<pre><code>def mark_task_complete(task_list, task_id):\n    # Find task by title or ID and mark it as complete\n    pass\n\ndef filter_tasks_by_status(task_list, status):\n    # Filter tasks by their completion status\n    pass</code></pre>",
+        "correct_code": "<pre><code>def mark_task_complete(task_list, task_id):\n    for task in task_list:\n        if task.title == task_id:  # Replace with task ID if applicable\n            task.mark_as_complete()\n            print(f\"Task '{task_id}' marked as complete.\")\n            return True\n    print(f\"Error: Task with title '{task_id}' not found!\")\n    return False\n\ndef filter_tasks_by_status(task_list, status):\n    return [task for task in task_list if task.completed == status]</code></pre>",
+        "expected_output": "<pre><code>Task 'Complete Homework' marked as complete.\nError: Task with title 'NonExistentTask' not found!\nFiltered Tasks (Completed): ['Complete Homework']\nFiltered Tasks (Incomplete): ['Buy Groceries']</code></pre>"
+    }
+]

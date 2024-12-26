@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 8: Final Task Management System</title>
+</head>
+<body>
+    <h1>Lesson 8: Final Task Management System</h1>
+    <p>Welcome to the final lesson! You will now build a complete task management system by combining all the functionalities we've covered so far.</p>
+
+    <h2>What Will You Create?</h2>
+    <p>A console-based application where users can:</p>
+    <ul>
+        <li>Add tasks</li>
+        <li>View tasks</li>
+        <li>Mark tasks as complete</li>
+        <li>Delete tasks</li>
+        <li>Save and load tasks to/from a file</li>
+    </ul>
+
+    <h2>Code Structure</h2>
+    <p>Here is the overall structure of your program:</p>
+    <pre><code>Task Management System
+|-- Task Class
+|-- Add Task
+|-- View Tasks
+|-- Mark as Complete
+|-- Delete Task
+|-- Save to File
+|-- Load from File
+|-- Main Menu</code></pre>
+
+    <h3>Code Template</h3>
+    <p>Below is the main program outline:</p>
+    <pre><code>import json
+
+class Task:
+    def __init__(self, title, description, completed=False):
+        self.title = title
+        self.description = description
+        self.completed = completed
+
+    def to_dict(self):
+        return {
+            'title': self.title,
+            'description': self.description,
+            'completed': self.completed
+        }
+
+    @classmethod
+    def from_dict(cls, data):
+        return cls(data['title'], data['description'], data['completed'])
+
+# Utility functions
+def add_task(tasks):
+    # Implementation for adding a task
+    pass
+
+def view_tasks(tasks):
+    # Implementation for viewing tasks
+    pass
+
+def mark_task_complete(tasks):
+    # Implementation for marking a task as complete
+    pass
+
+def delete_task(tasks):
+    # Implementation for deleting a task
+    pass
+
+def save_tasks_to_file(task_list, filename):
+    # Implementation for saving tasks to file
+    pass
+
+def load_tasks_from_file(filename):
+    # Implementation for loading tasks from file
+    return []
+
+# Main menu
+def main():
+    tasks = load_tasks_from_file('tasks.json')
+    while True:
+        print(\"\\nTask Management System\\n\")
+        print(\"1. Add Task\")
+        print(\"2. View Tasks\")
+        print(\"3. Mark Task as Complete\")
+        print(\"4. Delete Task\")
+        print(\"5. Save and Exit\")
+        choice = input(\"Choose an option: \")
+        
+        if choice == '1':
+            add_task(tasks)
+        elif choice == '2':
+            view_tasks(tasks)
+        elif choice == '3':
+            mark_task_complete(tasks)
+        elif choice == '4':
+            delete_task(tasks)
+        elif choice == '5':
+            save_tasks_to_file(tasks, 'tasks.json')
+            print(\"Tasks saved. Goodbye!\")
+            break
+        else:
+            print(\"Invalid choice. Please try again.\")
+            
+if __name__ == \"__main__\":
+    main()</code></pre>
+
+    <h2>Practice</h2>
+    <p>Implement each function to make the system work:</p>
+    <ul>
+        <li><code>add_task()</code></li>
+        <li><code>view_tasks()</code></li>
+        <li><code>mark_task_complete()</code></li>
+        <li><code>delete_task()</code></li>
+        <li><code>save_tasks_to_file()</code> (from previous lesson)</li>
+        <li><code>load_tasks_from_file()</code> (from previous lesson)</li>
+    </ul>
+
+    <h2>Key Considerations</h2>
+    <ul>
+        <li>Handle invalid inputs gracefully.</li>
+        <li>Ensure tasks persist by saving them to a file before exiting.</li>
+        <li>Display tasks in a readable format when viewing them.</li>
+    </ul>
+
+    <h2>Congratulations!</h2>
+    <p>Once you finish this lesson, you'll have a complete task management system. Well done!</p>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 5: Deleting Tasks</title>
+</head>
+<body>
+    <h1>Lesson 5: Deleting Tasks</h1>
+    <p>In this lesson, you will learn how to safely remove tasks from the task list in the Task Management System. This involves finding the specific task to delete and handling cases where the task is not found.</p>
+
+    <h2>What Will You Learn?</h2>
+    <p>By the end of this lesson, you will be able to:</p>
+    <ul>
+        <li>Search for a task in the task list by its title or ID.</li>
+        <li>Safely remove the task from the list if it exists.</li>
+        <li>Handle cases where the specified task does not exist.</li>
+    </ul>
+
+    <h2>Deleting Tasks</h2>
+    <p>To delete a task, we will implement a function called <code>delete_task()</code> that takes the task's identifier (e.g., title or ID) as input and removes the task from the task list if it exists.</p>
+
+    <h3>Task Deletion Code Template</h3>
+    <p>Below is a basic structure for the <code>delete_task()</code> function:</p>
+    <pre><code>def delete_task(task_list, task_id):
+    for task in task_list:
+        if task.title == task_id:  # Replace with task ID if applicable
+            task_list.remove(task)
+            print(f\"Task '{task_id}' has been deleted.\")
+            return True
+    print(f\"Error: Task with title '{task_id}' not found!\")
+    return False</code></pre>
+    <p>In the code above:</p>
+    <ul>
+        <li>The function iterates over the task list to find a task with the matching title or ID.</li>
+        <li>If the task is found, it is removed from the list, and a success message is displayed.</li>
+        <li>If the task is not found, an error message is shown.</li>
+    </ul>
+
+    <h3>Your Task</h3>
+    <p>Your task is to implement the <code>delete_task()</code> function. Once you’ve implemented this function, test it by deleting some tasks from your task list.</p>
+
+    <h2>Next Steps</h2>
+    <p>Once you’ve implemented the task deletion functionality, you’ll be ready for the next lesson, where we will learn how to mark tasks as complete and filter them by their completion status.</p>
+</body>
+</html>

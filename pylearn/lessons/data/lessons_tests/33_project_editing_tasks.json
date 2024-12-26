@@ -1,0 +1,8 @@
+[
+    {
+        "description": "<p>Your task is to implement a Python function named <code>edit_task()</code> that will allow the user to edit an existing task in the <code>task_list</code>. The function should:</p>\n<ul>\n    <li>Search for a task by title (or task ID, depending on your design).</li>\n    <li>If the task is found, update its attributes such as <code>title</code>, <code>description</code>, <code>priority</code>, <code>deadline</code>, or <code>status</code> based on the provided arguments.</li>\n    <li>If the task is not found, return an error message.</li>\n</ul>\n<p>Use the following template to implement the <code>edit_task()</code> function.</p>",
+        "code_stub": "<pre><code>def edit_task(task_list, task_id, title=None, description=None, priority=None, deadline=None, completed=None):\n    # Find task by title or ID\n    pass\n\n    # Update task attributes\n    pass</code></pre>",
+        "correct_code": "<pre><code>def edit_task(task_list, task_id, title=None, description=None, priority=None, deadline=None, completed=None):\n    task = next((t for t in task_list if t.title == task_id), None)  # Find task by title\n    if not task:\n        print(f\"Error: Task with title '{task_id}' not found!\")\n        return None\n\n    if title:\n        task.title = title\n    if description:\n        task.description = description\n    if priority:\n        task.priority = priority\n    if deadline:\n        task.deadline = deadline\n    if completed is not None:\n        task.completed = completed\n\n    return task</code></pre>",
+        "expected_output": "<pre><code>Task with title 'Complete Homework' has been updated.\nError: Task with title 'NonExistentTask' not found!</code></pre>"
+    }
+]

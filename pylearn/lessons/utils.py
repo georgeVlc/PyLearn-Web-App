@@ -64,9 +64,9 @@ def load_local_data():
                                 },
                             )
                 
-    except OperationalError:
+    except Exception as e:
         # Handle the case where the database is not ready (e.g., during migrations)
-        print("Database not ready. Skipping lesson preloading.")
+        print("Database not ready. Skipping lesson preloading." + e)
         # Path to lessons and quizzes data
 
 def delete_all_lessons_quizzes_tasks():
