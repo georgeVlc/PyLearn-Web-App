@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'lessons',  # lessons app
     'users',    # users app
+    'djangocodemirror' # codemirror for browser-code environment 
 ]
 
 MIDDLEWARE = [

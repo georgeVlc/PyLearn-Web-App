@@ -16,7 +16,7 @@ class UserProgress(models.Model):
 class QuizAttempt(models.Model):
     user_progress = models.ForeignKey(UserProgress, on_delete=models.CASCADE)
     quiz = models.ForeignKey(Quiz, on_delete=models.CASCADE)
-    points = models.IntegerField()
+    points = models.IntegerField(default=0)
     attempts = models.IntegerField(default=1)  # number of retries
     passed = models.BooleanField(default=False)
 
@@ -26,7 +26,7 @@ class QuizAttempt(models.Model):
 class TaskAttempt(models.Model):
     user_progress = models.ForeignKey(UserProgress, on_delete=models.CASCADE)
     task = models.ForeignKey(Task, on_delete=models.CASCADE)
-    points = models.IntegerField()
+    points = models.IntegerField(default=0)
     accuracy = models.FloatField(default=0.0)
     attempts = models.IntegerField(default=1)  # number of retries
     passed = models.BooleanField(default=False)

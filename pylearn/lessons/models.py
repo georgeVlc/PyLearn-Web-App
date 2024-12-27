@@ -10,7 +10,7 @@ class Lesson(models.Model):
     content = models.TextField()  # HTML or Markdown for lesson content
     order = models.IntegerField()  # Lesson order in the curriculum
     is_task_based = models.BooleanField(default=False)  # True for tasks, False for quizzes
-
+    
     def __str__(self):
         print(f'Title: {self.title}\nContent: {self.content}')
         return self.title
@@ -20,7 +20,8 @@ class Quiz(models.Model):
     question = models.TextField()
     answer_choices = models.JSONField()  # Store multiple choices as JSON
     correct_answer = models.CharField(max_length=100)
-
+    points = models.IntegerField(default=0)
+    
     def __str__(self):
         return f"Quiz for {self.lesson.title}"
 
@@ -30,6 +31,7 @@ class Task(models.Model):
     code_stub = models.TextField(blank=True, null=True)  # Starter code for the user
     correct_code = models.TextField()  # The correct solution for the task
     expected_output = models.TextField()  # Expected output after running correct code
-
+    points = models.IntegerField(default=0)
+    
     def __str__(self):
         return f"Task for {self.lesson.title}"

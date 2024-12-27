@@ -1,10 +1,33 @@
 import os
 import json
+import random
 from .models import Lesson, Quiz, Task, chapter_size
 from users.models import UserProgress, QuizAttempt, TaskAttempt
 from .code_eval import *
 
+def add_xp():
+    tests_path = "lessons/data/lessons_tests/"
 
+    try:
+        for file_name in os.listdir(tests_path):
+            file_path = os.path.join(tests_path, file_name)
+            with open(file_path, "r") as f:
+                    data = json.load(f)
+            
+            tokens = file_name.split(".")
+            tokens = tokens[0].split("_")
+            _id = int(tokens[0])
+            _title = ' '.join([token.capitalize() for token in tokens[1:]])
+            xp = calculate_xp(_id, _title)
+            
+            for x in data:
+                x['points'] = calculate_xp(_id, _title)            
+            
+            with open(file_path, "w") as f:
+                json.dump(xp, f, indent=4)
+    except Exception as e:
+        pass
+    
 def load_local_data():
     lessons_path = "lessons/templates/lessons_html/"
     tests_path = "lessons/data/lessons_tests/"
@@ -17,13 +40,11 @@ def load_local_data():
                 lesson_tokens = lesson_tokens[0].split("_") # Splitting on '_' and excluding the file extention
                 lesson_id = int(lesson_tokens[0])  # Extract lesson ID from filename
                 lesson_title = ' '.join([token.capitalize() for token in lesson_tokens[1:]])  # Capitalize each token
-                # print(f'{lesson_id=}, {lesson_title=}')
                 
                 with open(os.path.join(lessons_path, lesson_file), "r") as file:
                     content = file.read()
 
                 is_task_based = is_task_based_lesson(lesson_title)
-                print(f'{lesson_title=}, {is_task_based=}')
                 # Create or update the lesson in the database
                 lesson, created = Lesson.objects.update_or_create(
                     id=lesson_id,
@@ -31,7 +52,7 @@ def load_local_data():
                         "title": lesson_title,
                         "content": content,
                         "order": lesson_id,
-                        "is_task_based": is_task_based
+                        "is_task_based": is_task_based,
                     },
                 )
 
@@ -42,7 +63,6 @@ def load_local_data():
                         test_data = json.load(file)
                     
                     if lesson.is_task_based:
-                        print(f'HEREEE, :{lesson.title}')
                         # Load tasks
                         for task in test_data:
                             Task.objects.update_or_create(
@@ -63,7 +83,7 @@ def load_local_data():
                                     "correct_answer": quiz["correct_answer"],
                                 },
                             )
-                
+        add_xp()
     except Exception as e:
         # Handle the case where the database is not ready (e.g., during migrations)
         print("Database not ready. Skipping lesson preloading." + e)
@@ -84,6 +104,16 @@ def get_chapter_number_for_lesson(lesson_id):
             return (idx // chapter_size) + 1
     return None
 
+def calculate_xp(lesson_id, lesson_title):
+    if is_task_based_lesson(lesson_title):
+        lower = 50 + lesson_id * 2
+        upper = 75 + lesson_id * 3
+    else:        
+        lower = 10 + lesson_id * 1
+        upper = 15 + lesson_id * 2
+        
+    return random.randint(lower, upper)
+
 def update_quiz_attempts(request, quizzes, user_progress, lesson):
     lesson_attempts = QuizAttempt.objects.filter(
         user_progress=user_progress, quiz__lesson=lesson
@@ -98,7 +128,7 @@ def update_quiz_attempts(request, quizzes, user_progress, lesson):
         # Update or create quiz attempts
         existing_attempt = QuizAttempt.objects.filter(user_progress=user_progress, quiz=quiz).first()
         if existing_attempt:
-            existing_attempt.points = 1 if passed else 0
+            existing_attempt.points = quiz.points if passed else 0
             existing_attempt.passed = passed
             existing_attempt.attempts = lesson_attempts  # Track by lesson attempt
             existing_attempt.save()
@@ -106,13 +136,14 @@ def update_quiz_attempts(request, quizzes, user_progress, lesson):
             QuizAttempt.objects.create(
                 user_progress=user_progress,
                 quiz=quiz,
-                points=1 if passed else 0,
+                points=quiz.points if passed else 0,
                 passed=passed,
                 attempts=lesson_attempts
             ) 
         info.append({
             'user_answer_key': user_answer_key,
-            'passed': passed
+            'passed': passed,
+            'points': quiz.points
         })   
     return info
 
@@ -123,36 +154,32 @@ def update_task_attempts(request, tasks, user_progress, lesson):
     
     info = []
     for task in tasks:
-        uploaded_file = request.FILES.get('task_file')
-
-        if uploaded_file:
-            if uploaded_file.name.endswith('.py'):
-                # Read the file content
-                user_code = uploaded_file.read().decode('utf-8')
-                accuracy = evaluate_code(user_code, task.correct_code)
-                print(f'{accuracy=}')
-                passed = 1 if accuracy >= 50 else 0
-                                
-                existing_attempt = TaskAttempt.objects.filter(user_progress=user_progress, task=task).first()
-                if existing_attempt:
-                    existing_attempt.points = 1 if passed else 0
-                    existing_attempt.passed = passed
-                    existing_attempt.attempts = lesson_attempts  # Track by lesson attempt
-                    existing_attempt.save()
-                else:
-                    TaskAttempt.objects.create(
-                        user_progress=user_progress,
-                        task=task,
-                        points=1 if passed else 0,
-                        accuracy=accuracy,
-                        passed=passed,
-                        attempts=lesson_attempts
-                    )    
-                info.append({
-                    'user_code': user_code,
-                    'accuracy': accuracy,
-                    'passed': passed
-                })
+        user_code = request.POST['task_code']
+        accuracy = evaluate_code(user_code, task.correct_code)
+        print(f'{accuracy=}')
+        passed = 1 if accuracy >= 50 else 0
+                        
+        existing_attempt = TaskAttempt.objects.filter(user_progress=user_progress, task=task).first()
+        if existing_attempt:
+            existing_attempt.points = task.points if passed else 0
+            existing_attempt.passed = passed
+            existing_attempt.attempts = lesson_attempts  # Track by lesson attempt
+            existing_attempt.save()
+        else:
+            TaskAttempt.objects.create(
+                user_progress=user_progress,
+                task=task,
+                points=task.points if passed else 0,
+                accuracy=accuracy,
+                passed=passed,
+                attempts=lesson_attempts
+            )    
+        info.append({
+            'user_code': user_code,
+            'accuracy': accuracy,
+            'passed': passed,
+            'points': task.points
+        })
     return info 
     
 def track_quiz_test_results(request, quizzes, info):
