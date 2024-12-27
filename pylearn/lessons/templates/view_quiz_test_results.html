@@ -11,6 +11,8 @@
         <h2>Test Results for "{{ lesson.title }}"</h2>
         <p class="score">Your Score: {{ score_percentage|floatformat:2 }}%</p>
         <p>Correct Answers: {{ correct_count }} / {{ total_quizzes }}</p>
+        <p>Points Earned: {{ points_earned }}</p>
+        <p>Points Available: {{ points_available }}</p>
 
         {% if mistakes %}
             <div class="incorrect-answers">

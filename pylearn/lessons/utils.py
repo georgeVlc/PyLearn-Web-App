@@ -123,6 +123,7 @@ def update_quiz_attempts(request, quizzes, user_progress, lesson):
         info.append({
             'user_answer_key': user_answer_key,
             'passed': passed,
+            'points': quiz.points
         })   
     return info
 
@@ -157,6 +158,7 @@ def update_task_attempts(request, tasks, user_progress, lesson):
             'user_code': user_code,
             'accuracy': accuracy,
             'passed': passed,
+            'points': task.points
         })
     return info 
     

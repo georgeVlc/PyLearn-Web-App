@@ -57,6 +57,14 @@
         .accuracy {
             font-weight: bold;
         }
+
+        .points_earned {
+            font-weight: bold;
+        }
+        
+        .points_available {
+            font-weight: bold;
+        }
     </style>
 </head>
 <body>
@@ -69,6 +77,8 @@
         <div class="task-result {% if result.accuracy >= 80 %}passed{% else %}failed{% endif %}">
             <h2>{{ result.task }}</h2>
             <p><span class="accuracy">Accuracy:</span> {{ result.accuracy }}%</p>
+            <p><span class="points_earned">Points Earned:</span> {{ points_earned }}</p>
+            <p><span class="points_available">Points Available:</span> {{ points_available }}</p>
             <p><span class="accuracy">Status:</span> {% if result.accuracy >= 80 %}Passed{% else %}Failed{% endif %}</p>
             
             <h3>User Code:</h3>

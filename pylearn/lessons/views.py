@@ -82,19 +82,27 @@ def take_lesson_test(request, lesson_id):
             info = update_task_attempts(request, tasks, user_progress, lesson)
             correct_count, results = track_task_test_results(request, tasks, info)
             passed_count = sum(1 for result in results if result['accuracy'] >= 80)
+            points_earned = sum([x['points'] for x in info if x['passed']])
+            points_available = sum([x['points'] for x in info])
+
             if correct_count >= len(tasks) // 2:
                 user_progress.completed_lessons.add(lesson)
             
             context = {
                 'lesson': lesson,
                 'results': results,
-                'passed_count': passed_count
+                'passed_count': passed_count,
+                'points_earned': points_earned,
+                'points_available': points_available
             }
             return render(request, 'view_task_test_results.html', context)
         else:
             info = update_quiz_attempts(request, quizzes, user_progress, lesson)
             correct_count, mistakes = track_quiz_test_results(request, quizzes, info)
             score_percentage = (correct_count / len(quizzes)) * 100
+            points_earned = sum([x['points'] for x in info if x['passed']])
+            points_available = sum([x['points'] for x in info])
+            
             if correct_count >= len(quizzes) // 2:
                 user_progress.completed_lessons.add(lesson)
 
@@ -105,6 +113,8 @@ def take_lesson_test(request, lesson_id):
                 'total_quizzes': len(quizzes),
                 'total_tasks': len(tasks),
                 'correct_count': correct_count,
+                'points_earned': points_earned,
+                'points_available': points_available
             }
             
             if is_recap_lesson(lesson):
