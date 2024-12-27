@@ -7,7 +7,8 @@
             "c": "Trying to open a non-existent file",
             "d": "Using the wrong type of argument in a function"
         },
-        "correct_answer": "b"
+        "correct_answer": "b",
+        "points": 23
     },
     {
         "question": "Which block in a try-except statement is executed regardless of an exception occurring?",
@@ -17,7 +18,8 @@
             "c": "try",
             "d": "raise"
         },
-        "correct_answer": "b"
+        "correct_answer": "b",
+        "points": 24
     },
     {
         "question": "What type of error is raised when an operation is performed on an inappropriate type of object?",
@@ -27,7 +29,8 @@
             "c": "FileNotFoundError",
             "d": "IndexError"
         },
-        "correct_answer": "b"
+        "correct_answer": "b",
+        "points": 19
     },
     {
         "question": "How do you manually raise an exception in Python?",
@@ -37,7 +40,8 @@
             "c": "error.raise()",
             "d": "raise error"
         },
-        "correct_answer": "a"
+        "correct_answer": "a",
+        "points": 18
     },
     {
         "question": "What happens if you put code inside the finally block of a try-except statement?",
@@ -47,6 +51,7 @@
             "c": "It only executes if an exception occurs",
             "d": "It does nothing"
         },
-        "correct_answer": "b"
+        "correct_answer": "b",
+        "points": 20
     }
 ]

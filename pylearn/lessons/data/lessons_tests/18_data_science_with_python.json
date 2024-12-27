@@ -7,7 +7,8 @@
             "c": "matplotlib",
             "d": "seaborn"
         },
-        "correct_answer": "b"
+        "correct_answer": "b",
+        "points": 37
     },
     {
         "question": "What is the primary use of the `describe()` method in pandas?",
@@ -17,7 +18,8 @@
             "c": "To get basic statistics of a DataFrame.",
             "d": "To filter data based on conditions."
         },
-        "correct_answer": "c"
+        "correct_answer": "c",
+        "points": 40
     },
     {
         "question": "How can you create a time series plot using pandas?",
@@ -27,7 +29,8 @@
             "c": "Using the `plot()` method on a DataFrame.",
             "d": "Using the `plot_time_series()` method."
         },
-        "correct_answer": "c"
+        "correct_answer": "c",
+        "points": 34
     },
     {
         "question": "What is the main benefit of using Seaborn for visualization?",
@@ -37,7 +40,8 @@
             "c": "It works better with categorical data.",
             "d": "It supports interactive plots."
         },
-        "correct_answer": "b"
+        "correct_answer": "b",
+        "points": 28
     },
     {
         "question": "Which of the following can be used for time series analysis in pandas?",
@@ -47,6 +51,7 @@
             "c": "Both DataFrame and Series",
             "d": "None of the above"
         },
-        "correct_answer": "c"
+        "correct_answer": "c",
+        "points": 39
     }
 ]

@@ -7,7 +7,8 @@
             "c": "Generate random numbers",
             "d": "Work with date and time"
         },
-        "correct_answer": "b"
+        "correct_answer": "b",
+        "points": 53
     },
     {
         "question": "What is stored in sys.argv?",
@@ -17,7 +18,8 @@
             "c": "The Python version",
             "d": "System environment variables"
         },
-        "correct_answer": "b"
+        "correct_answer": "b",
+        "points": 51
     },
     {
         "question": "Which attribute of the sys module provides the Python version?",
@@ -27,7 +29,8 @@
             "c": "sys.path",
             "d": "sys.info"
         },
-        "correct_answer": "a"
+        "correct_answer": "a",
+        "points": 32
     },
     {
         "question": "What does sys.exit() do?",
@@ -37,7 +40,8 @@
             "c": "Clears all imported modules",
             "d": "Restarts the Python runtime"
         },
-        "correct_answer": "b"
+        "correct_answer": "b",
+        "points": 32
     },
     {
         "question": "Which of the following contains a list of directories Python searches for modules?",
@@ -47,6 +51,7 @@
             "c": "sys.version",
             "d": "sys.modules"
         },
-        "correct_answer": "b"
+        "correct_answer": "b",
+        "points": 42
     }
 ]

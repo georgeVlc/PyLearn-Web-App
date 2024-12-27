@@ -7,7 +7,8 @@
             "c": "pandas",
             "d": "requests"
         },
-        "correct_answer": "a"
+        "correct_answer": "a",
+        "points": 54
     },
     {
         "question": "What is the output of the following code: <code>np.array([1, 2, 3]) + 5</code>?",
@@ -17,7 +18,8 @@
             "c": "[1, 2, 3, 5, 10]",
             "d": "Error"
         },
-        "correct_answer": "a"
+        "correct_answer": "a",
+        "points": 43
     },
     {
         "question": "Which function is used to reshape a NumPy array?",
@@ -27,7 +29,8 @@
             "c": "np.resize()",
             "d": "np.new_shape()"
         },
-        "correct_answer": "b"
+        "correct_answer": "b",
+        "points": 58
     },
     {
         "question": "What does the <code>np.dot()</code> function do?",
@@ -37,7 +40,8 @@
             "c": "Performs matrix multiplication",
             "d": "Calculates the sum of an array"
         },
-        "correct_answer": "c"
+        "correct_answer": "c",
+        "points": 39
     },
     {
         "question": "What does the <code>np.arange(0, 10, 2)</code> function do?",
@@ -47,6 +51,7 @@
             "c": "Creates a matrix with 10 rows and 2 columns",
             "d": "Creates an empty array"
         },
-        "correct_answer": "b"
+        "correct_answer": "b",
+        "points": 42
     }
 ]

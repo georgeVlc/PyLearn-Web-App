@@ -7,7 +7,8 @@
             "c": "__init__() and __str__()",
             "d": "__len__() and __getitem__()"
         },
-        "correct_answer": "a"
+        "correct_answer": "a",
+        "points": 23
     },
     {
         "question": "What keyword is used to create a generator in Python?",
@@ -17,7 +18,8 @@
             "c": "def",
             "d": "lambda"
         },
-        "correct_answer": "b"
+        "correct_answer": "b",
+        "points": 27
     },
     {
         "question": "Which of the following statements is true about generators?",
@@ -27,7 +29,8 @@
             "c": "Generators cannot be used in for-loops.",
             "d": "Generators do not implement the __next__() method."
         },
-        "correct_answer": "b"
+        "correct_answer": "b",
+        "points": 25
     },
     {
         "question": "What happens when a generator function reaches the end of its code?",
@@ -37,7 +40,8 @@
             "c": "It raises a StopIteration exception.",
             "d": "It continues indefinitely."
         },
-        "correct_answer": "c"
+        "correct_answer": "c",
+        "points": 28
     },
     {
         "question": "Which of these use cases is a good fit for a generator?",
@@ -47,6 +51,7 @@
             "c": "Finding the maximum of a list.",
             "d": "Computing factorials in a loop."
         },
-        "correct_answer": "a"
+        "correct_answer": "a",
+        "points": 24
     }
 ]

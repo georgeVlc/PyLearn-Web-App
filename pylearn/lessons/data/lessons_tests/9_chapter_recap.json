@@ -7,7 +7,8 @@
             "c": "/* */",
             "d": "<!-- -->"
         },
-        "correct_answer": "b"
+        "correct_answer": "b",
+        "points": 19
     },
     {
         "question": "Which data structure is used to store key-value pairs in Python?",
@@ -17,7 +18,8 @@
             "c": "Set",
             "d": "Dictionary"
         },
-        "correct_answer": "d"
+        "correct_answer": "d",
+        "points": 27
     },
     {
         "question": "Which of the following is a valid Python function definition?",
@@ -27,7 +29,8 @@
             "c": "function myFunction():",
             "d": "def myFunction() ->"
         },
-        "correct_answer": "b"
+        "correct_answer": "b",
+        "points": 21
     },
     {
         "question": "What does the <code>open()</code> function do in Python?",
@@ -37,7 +40,8 @@
             "c": "Opens a new Python shell",
             "d": "Opens a module"
         },
-        "correct_answer": "b"
+        "correct_answer": "b",
+        "points": 20
     },
     {
         "question": "What is the output of the following code?\n\n<pre><code>print(2 ** 3)</code></pre>",
@@ -47,7 +51,8 @@
             "c": "9",
             "d": "12"
         },
-        "correct_answer": "b"
+        "correct_answer": "b",
+        "points": 33
     },
     {
         "question": "What will the following code do?\n\n<pre><code>try:\n    x = 10 / 0\nexcept ZeroDivisionError:\n    print(\"Cannot divide by zero!\")</code></pre>",
@@ -57,7 +62,8 @@
             "c": "Print nothing",
             "d": "Exit the program"
         },
-        "correct_answer": "b"
+        "correct_answer": "b",
+        "points": 20
     },
     {
         "question": "How do you iterate over a list in Python?",
@@ -67,7 +73,8 @@
             "c": "for i of list",
             "d": "for i in my_list"
         },
-        "correct_answer": "d"
+        "correct_answer": "d",
+        "points": 28
     },
     {
         "question": "What is the purpose of the <code>self</code> keyword in a Python class?",
@@ -77,7 +84,8 @@
             "c": "It is used to declare static methods.",
             "d": "It is a placeholder for class variables."
         },
-        "correct_answer": "a"
+        "correct_answer": "a",
+        "points": 32
     },
     {
         "question": "Which of these is a correct way to create a list comprehension?",
@@ -87,7 +95,8 @@
             "c": "(x for x in range(5))",
             "d": "x for x in range(5)"
         },
-        "correct_answer": "a"
+        "correct_answer": "a",
+        "points": 23
     },
     {
         "question": "Which function is used to read an entire file into a string in Python?",
@@ -97,7 +106,8 @@
             "c": "readlines()",
             "d": "input()"
         },
-        "correct_answer": "a"
+        "correct_answer": "a",
+        "points": 23
     },
     {
         "question": "Which of the following is used to import a specific function from a module?",
@@ -107,7 +117,8 @@
             "c": "from module import function",
             "d": "import function from module"
         },
-        "correct_answer": "c"
+        "correct_answer": "c",
+        "points": 24
     },
     {
         "question": "What is the primary benefit of using packages in Python?",
@@ -117,7 +128,8 @@
             "c": "To create larger projects",
             "d": "To reduce file size"
         },
-        "correct_answer": "a"
+        "correct_answer": "a",
+        "points": 19
     },
     {
         "question": "What is the purpose of inheritance in OOP?",
@@ -127,6 +139,7 @@
             "c": "To reuse properties and methods",
             "d": "To perform calculations"
         },
-        "correct_answer": "c"
+        "correct_answer": "c",
+        "points": 31
     }
 ]

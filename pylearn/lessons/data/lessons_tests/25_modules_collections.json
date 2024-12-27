@@ -7,7 +7,8 @@
             "c": "OrderedDict",
             "d": "deque"
         },
-        "correct_answer": "b"
+        "correct_answer": "b",
+        "points": 63
     },
     {
         "question": "What does defaultdict provide that a normal dict does not?",
@@ -17,7 +18,8 @@
             "c": "A way to count elements",
             "d": "A tuple subclass with named fields"
         },
-        "correct_answer": "b"
+        "correct_answer": "b",
+        "points": 48
     },
     {
         "question": "Which class from the collections module maintains the order of keys as they are added?",
@@ -27,7 +29,8 @@
             "c": "deque",
             "d": "defaultdict"
         },
-        "correct_answer": "b"
+        "correct_answer": "b",
+        "points": 42
     },
     {
         "question": "Which function creates a tuple subclass with named fields?",
@@ -37,7 +40,8 @@
             "c": "OrderedDict",
             "d": "namedtuple"
         },
-        "correct_answer": "d"
+        "correct_answer": "d",
+        "points": 38
     },
     {
         "question": "What is the main benefit of using deque over a regular list?",
@@ -47,6 +51,7 @@
             "c": "It counts elements in an iterable.",
             "d": "It maintains the order of insertion."
         },
-        "correct_answer": "a"
+        "correct_answer": "a",
+        "points": 54
     }
 ]

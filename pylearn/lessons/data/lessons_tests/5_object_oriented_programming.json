@@ -7,7 +7,8 @@
             "c": "Object-Oriented Programming",
             "d": "Declarative Programming"
         },
-        "correct_answer": "c"
+        "correct_answer": "c",
+        "points": 23
     },
     {
         "question": "What is a class in Python?",
@@ -17,7 +18,8 @@
             "c": "A blueprint for creating objects",
             "d": "A collection of functions"
         },
-        "correct_answer": "c"
+        "correct_answer": "c",
+        "points": 18
     },
     {
         "question": "What is an object in OOP?",
@@ -27,7 +29,8 @@
             "c": "A variable",
             "d": "A method"
         },
-        "correct_answer": "b"
+        "correct_answer": "b",
+        "points": 22
     },
     {
         "question": "How do you call a method from an object in Python?",
@@ -37,7 +40,8 @@
             "c": "call object.method",
             "d": "method(object)"
         },
-        "correct_answer": "a"
+        "correct_answer": "a",
+        "points": 25
     },
     {
         "question": "What is the purpose of inheritance in OOP?",
@@ -47,6 +51,7 @@
             "c": "To reuse properties and methods",
             "d": "To perform calculations"
         },
-        "correct_answer": "c"
+        "correct_answer": "c",
+        "points": 15
     }
 ]

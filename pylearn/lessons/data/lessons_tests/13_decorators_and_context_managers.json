@@ -7,7 +7,8 @@
             "c": "Change the output of a function.",
             "d": "Override function arguments."
         },
-        "correct_answer": "b"
+        "correct_answer": "b",
+        "points": 32
     },
     {
         "question": "Which of these is a valid use case for a decorator?",
@@ -17,7 +18,8 @@
             "c": "Handling exceptions inside a function.",
             "d": "Raising an exception within a function."
         },
-        "correct_answer": "a"
+        "correct_answer": "a",
+        "points": 41
     },
     {
         "question": "What are the two essential methods a context manager must implement?",
@@ -27,7 +29,8 @@
             "c": "__exit__() and __str__()",
             "d": "__init__() and __exit__()"
         },
-        "correct_answer": "b"
+        "correct_answer": "b",
+        "points": 24
     },
     {
         "question": "Why is it recommended to use context managers over exceptions for resource management?",
@@ -37,7 +40,8 @@
             "c": "They automatically manage resource cleanup.",
             "d": "They are more flexible."
         },
-        "correct_answer": "c"
+        "correct_answer": "c",
+        "points": 26
     },
     {
         "question": "What does a decorator return when applied to a function?",
@@ -47,6 +51,7 @@
             "c": "The same function with altered arguments.",
             "d": "The original function with an additional parameter."
         },
-        "correct_answer": "b"
+        "correct_answer": "b",
+        "points": 35
     }
 ]

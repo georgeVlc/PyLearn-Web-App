@@ -76,7 +76,7 @@
     <!-- Task Submission Section -->
     <h2>Task for Lesson: {{ lesson.title }}</h2>
     <p><strong>Task Description:</strong> {{ tasks.first.description|safe }}</p>
-    
+    <p><strong>Points:</strong> {{ tasks.first.points }}</p>
     <form method="post" action="{% url 'lessons:take_lesson_test' lesson.id %}" id="taskForm">
         {% csrf_token %}
         <label for="task_code">Write your code:</label>
@@ -92,7 +92,8 @@
         <div>
             {% for quiz in quizzes %}
             <div class="quiz-question">
-                <strong>Question:</strong> {{ quiz.question|safe }}
+                <strong>Question:</strong> {{ quiz.question|safe }}<br>
+                <strong>Points:</strong> {{ quiz.points }}
                 {% for key, choice in quiz.answer_choices.items %}
                 <label>
                     <input type="radio" name="quiz_{{ quiz.id }}" value="{{ key }}">

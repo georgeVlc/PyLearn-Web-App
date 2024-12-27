@@ -7,7 +7,8 @@
             "c": "System-level parameters and functions",
             "d": "Functions for working with files and directories"
         },
-        "correct_answer": "b"
+        "correct_answer": "b",
+        "points": 34
     },
     {
         "question": "What does math.sqrt(x) do?",
@@ -17,17 +18,19 @@
             "c": "Calculates the square root of x",
             "d": "Calculates x raised to the power of 2"
         },
-        "correct_answer": "c"
+        "correct_answer": "c",
+        "points": 57
     },
     {
-        "question": "Which constant represents the value of π in the math module?",
+        "question": "Which constant represents the value of \u039f\u20ac in the math module?",
         "answer_choices": {
             "a": "math.e",
             "b": "math.pi",
             "c": "math.infinity",
             "d": "math.euler"
         },
-        "correct_answer": "b"
+        "correct_answer": "b",
+        "points": 53
     },
     {
         "question": "How do you calculate the factorial of a number in the math module?",
@@ -37,7 +40,8 @@
             "c": "math.compute_factorial(x)",
             "d": "math.multiply(x)"
         },
-        "correct_answer": "a"
+        "correct_answer": "a",
+        "points": 35
     },
     {
         "question": "What is the default base for the math.log(x) function?",
@@ -47,6 +51,7 @@
             "c": "Base e",
             "d": "Base x"
         },
-        "correct_answer": "c"
+        "correct_answer": "c",
+        "points": 52
     }
 ]

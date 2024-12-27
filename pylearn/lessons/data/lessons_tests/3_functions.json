@@ -7,7 +7,8 @@
             "c": "create function myFunc()",
             "d": "func myFunc()"
         },
-        "correct_answer": "b"
+        "correct_answer": "b",
+        "points": 16
     },
     {
         "question": "What is the purpose of the `return` keyword in a function?",
@@ -17,7 +18,8 @@
             "c": "To send data back to the caller",
             "d": "To declare a variable"
         },
-        "correct_answer": "c"
+        "correct_answer": "c",
+        "points": 19
     },
     {
         "question": "What happens to variables defined inside a function?",
@@ -27,7 +29,8 @@
             "c": "They are global variables",
             "d": "They are ignored"
         },
-        "correct_answer": "b"
+        "correct_answer": "b",
+        "points": 14
     },
     {
         "question": "Which of the following is an example of a positional argument in a function?",
@@ -37,7 +40,8 @@
             "c": "add(5, y=10)",
             "d": "add(x=5, y=5)"
         },
-        "correct_answer": "b"
+        "correct_answer": "b",
+        "points": 14
     },
     {
         "question": "How can you pass multiple arguments to a function in Python?",
@@ -47,6 +51,7 @@
             "c": "Using a combination of both",
             "d": "Using global variables"
         },
-        "correct_answer": "c"
+        "correct_answer": "c",
+        "points": 17
     }
 ]

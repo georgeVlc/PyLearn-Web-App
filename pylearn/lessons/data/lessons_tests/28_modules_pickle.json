@@ -7,7 +7,8 @@
             "c": "pickle.dumps()",
             "d": "pickle.loads()"
         },
-        "correct_answer": "b"
+        "correct_answer": "b",
+        "points": 60
     },
     {
         "question": "Which pickle function is used to deserialize a byte stream from a file and convert it back into a Python object?",
@@ -17,7 +18,8 @@
             "c": "pickle.dumps()",
             "d": "pickle.loads()"
         },
-        "correct_answer": "a"
+        "correct_answer": "a",
+        "points": 68
     },
     {
         "question": "What is the output of pickle.dumps({'name': 'Alice', 'age': 30})?",
@@ -27,7 +29,8 @@
             "c": "The Python object itself",
             "d": "None of the above"
         },
-        "correct_answer": "a"
+        "correct_answer": "a",
+        "points": 40
     },
     {
         "question": "Which function should be used to read a serialized object from a file and convert it back into a Python object?",
@@ -37,7 +40,8 @@
             "c": "pickle.dumps()",
             "d": "pickle.loads()"
         },
-        "correct_answer": "a"
+        "correct_answer": "a",
+        "points": 62
     },
     {
         "question": "What is the primary benefit of using the pickle module?",
@@ -47,6 +51,7 @@
             "c": "To handle large amounts of data",
             "d": "To compress Python objects"
         },
-        "correct_answer": "a"
+        "correct_answer": "a",
+        "points": 69
     }
 ]

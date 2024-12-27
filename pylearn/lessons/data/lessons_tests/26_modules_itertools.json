@@ -7,7 +7,8 @@
             "c": "repeat()",
             "d": "combinations()"
         },
-        "correct_answer": "a"
+        "correct_answer": "a",
+        "points": 43
     },
     {
         "question": "What does the cycle() function do?",
@@ -17,7 +18,8 @@
             "c": "Returns the Cartesian product of multiple iterables.",
             "d": "Generates combinations of an iterable."
         },
-        "correct_answer": "b"
+        "correct_answer": "b",
+        "points": 45
     },
     {
         "question": "Which itertools function is used to create all possible combinations of a specified length from an iterable?",
@@ -27,7 +29,8 @@
             "c": "product()",
             "d": "chain()"
         },
-        "correct_answer": "a"
+        "correct_answer": "a",
+        "points": 67
     },
     {
         "question": "What is the output of itertools.permutations(['A', 'B', 'C'], 2)?",
@@ -37,7 +40,8 @@
             "c": "('A',), ('B',), ('C',)",
             "d": "A, B, C"
         },
-        "correct_answer": "a"
+        "correct_answer": "a",
+        "points": 62
     },
     {
         "question": "Which itertools function is used to combine multiple iterables into a single iterable?",
@@ -47,6 +51,7 @@
             "c": "repeat()",
             "d": "combinations()"
         },
-        "correct_answer": "a"
+        "correct_answer": "a",
+        "points": 61
     }
 ]

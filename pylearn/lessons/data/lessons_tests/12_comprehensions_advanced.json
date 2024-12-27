@@ -7,7 +7,8 @@
             "c": "To write complex algorithms.",
             "d": "To manipulate file data directly."
         },
-        "correct_answer": "b"
+        "correct_answer": "b",
+        "points": 37
     },
     {
         "question": "Which of the following is a valid set comprehension?",
@@ -17,7 +18,8 @@
             "c": "x: x**2 for x in range(5)",
             "d": "x -> x**2 for x in range(5)"
         },
-        "correct_answer": "a"
+        "correct_answer": "a",
+        "points": 33
     },
     {
         "question": "How can you create a dictionary with keys from a list and values as their squares?",
@@ -27,7 +29,8 @@
             "c": "dict(range(5))",
             "d": "set(x**2 for x in range(5))"
         },
-        "correct_answer": "a"
+        "correct_answer": "a",
+        "points": 26
     },
     {
         "question": "Which of the following correctly demonstrates a conditional dictionary comprehension?",
@@ -37,7 +40,8 @@
             "c": "{k: v for k, v in zip(range(5), range(5)) if k > 2}",
             "d": "dict(x**2 for x in range(5) if x > 2)"
         },
-        "correct_answer": "a"
+        "correct_answer": "a",
+        "points": 23
     },
     {
         "question": "What does a dictionary comprehension provide that a regular dictionary creation statement does not?",
@@ -47,6 +51,7 @@
             "c": "Ability to filter elements.",
             "d": "Access to private data."
         },
-        "correct_answer": "b"
+        "correct_answer": "b",
+        "points": 33
     }
 ]

@@ -7,7 +7,8 @@
             "c": "Manages large datasets efficiently.",
             "d": "Reduces memory usage."
         },
-        "correct_answer": "a"
+        "correct_answer": "a",
+        "points": 43
     },
     {
         "question": "Which module is used for creating threads in Python?",
@@ -17,7 +18,8 @@
             "c": "threading",
             "d": "time"
         },
-        "correct_answer": "c"
+        "correct_answer": "c",
+        "points": 30
     },
     {
         "question": "What is a deadlock in multithreading?",
@@ -27,7 +29,8 @@
             "c": "A race condition.",
             "d": "An unresponsive thread."
         },
-        "correct_answer": "a"
+        "correct_answer": "a",
+        "points": 27
     },
     {
         "question": "How can deadlocks be prevented?",
@@ -37,7 +40,8 @@
             "c": "By reducing the number of threads.",
             "d": "By using a sleep function."
         },
-        "correct_answer": "b"
+        "correct_answer": "b",
+        "points": 26
     },
     {
         "question": "What is the purpose of the `join()` method in threads?",
@@ -47,6 +51,7 @@
             "c": "To terminate a thread.",
             "d": "To block the main thread indefinitely."
         },
-        "correct_answer": "b"
+        "correct_answer": "b",
+        "points": 37
     }
 ]

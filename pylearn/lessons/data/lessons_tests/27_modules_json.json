@@ -7,7 +7,8 @@
             "c": "json.load()",
             "d": "json.loads()"
         },
-        "correct_answer": "b"
+        "correct_answer": "b",
+        "points": 63
     },
     {
         "question": "Which json function is used to deserialize a JSON string into a Python object?",
@@ -17,7 +18,8 @@
             "c": "json.loads()",
             "d": "json.dumps()"
         },
-        "correct_answer": "c"
+        "correct_answer": "c",
+        "points": 64
     },
     {
         "question": "Which function is used to serialize a Python object and write it to a file?",
@@ -27,7 +29,8 @@
             "c": "json.dump()",
             "d": "json.loads()"
         },
-        "correct_answer": "c"
+        "correct_answer": "c",
+        "points": 59
     },
     {
         "question": "What is the result of using json.loads('{\"name\": \"Alice\", \"age\": 30}')?",
@@ -37,7 +40,8 @@
             "c": "{'name': 'Alice', 'age': 30, 'city': 'New York'}",
             "d": "{'name': 'Alice', 'age': '30', 'city': 'New York'}"
         },
-        "correct_answer": "a"
+        "correct_answer": "a",
+        "points": 62
     },
     {
         "question": "Which json function is used to read a JSON string from a file and deserialize it into a Python object?",
@@ -47,6 +51,7 @@
             "c": "json.loads()",
             "d": "json.dumps()"
         },
-        "correct_answer": "a"
+        "correct_answer": "a",
+        "points": 67
     }
 ]

@@ -7,7 +7,8 @@
             "c": "A function to comment out code",
             "d": "A keyword used in Python"
         },
-        "correct_answer": "b"
+        "correct_answer": "b",
+        "points": 17
     },
     {
         "question": "Which operator is used for addition in Python?",
@@ -17,7 +18,8 @@
             "c": "*",
             "d": "/"
         },
-        "correct_answer": "a"
+        "correct_answer": "a",
+        "points": 17
     },
     {
         "question": "How do you create a string variable in Python?",
@@ -27,7 +29,8 @@
             "c": "var name = 'Alice'",
             "d": "x = 'Alice'"
         },
-        "correct_answer": "b"
+        "correct_answer": "b",
+        "points": 16
     },
     {
         "question": "What does the `%` symbol do in Python?",
@@ -37,7 +40,8 @@
             "c": "Modulus (remainder)",
             "d": "Assignment"
         },
-        "correct_answer": "c"
+        "correct_answer": "c",
+        "points": 16
     },
     {
         "question": "What is the purpose of comments in Python?",
@@ -47,6 +51,7 @@
             "c": "To indicate functions",
             "d": "To mark the end of a block"
         },
-        "correct_answer": "b"
+        "correct_answer": "b",
+        "points": 16
     }
 ]

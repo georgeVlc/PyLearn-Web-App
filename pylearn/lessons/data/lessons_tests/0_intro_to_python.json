@@ -7,7 +7,8 @@
             "c": "Being a database management system",
             "d": "Complicated error handling"
         },
-        "correct_answer": "b"
+        "correct_answer": "b",
+        "points": 12
     },
     {
         "question": "Which function is used to print output in Python?",
@@ -17,7 +18,8 @@
             "c": "print()",
             "d": "show()"
         },
-        "correct_answer": "c"
+        "correct_answer": "c",
+        "points": 13
     },
     {
         "question": "What symbol is used for comments in Python?",
@@ -27,7 +29,8 @@
             "c": "<!-- -->",
             "d": "%"
         },
-        "correct_answer": "b"
+        "correct_answer": "b",
+        "points": 12
     },
     {
         "question": "Which of the following is a valid variable declaration in Python?",
@@ -37,16 +40,18 @@
             "c": "declare x = 5;",
             "d": "var x = 5;"
         },
-        "correct_answer": "b"
+        "correct_answer": "b",
+        "points": 10
     },
     {
-        "question": "What happens if you don’t indent a block of code properly in Python?",
+        "question": "What happens if you don\u03b2\u20ac\u2122t indent a block of code properly in Python?",
         "answer_choices": {
             "a": "The program runs but gives incorrect output",
             "b": "The program runs without errors",
             "c": "The program raises an error",
             "d": "The program ignores the block"
         },
-        "correct_answer": "c"
+        "correct_answer": "c",
+        "points": 11
     }
 ]

@@ -5,28 +5,6 @@ from .models import Lesson, Quiz, Task, chapter_size
 from users.models import UserProgress, QuizAttempt, TaskAttempt
 from .code_eval import *
 
-def add_xp():
-    tests_path = "lessons/data/lessons_tests/"
-
-    try:
-        for file_name in os.listdir(tests_path):
-            file_path = os.path.join(tests_path, file_name)
-            with open(file_path, "r") as f:
-                    data = json.load(f)
-            
-            tokens = file_name.split(".")
-            tokens = tokens[0].split("_")
-            _id = int(tokens[0])
-            _title = ' '.join([token.capitalize() for token in tokens[1:]])
-            xp = calculate_xp(_id, _title)
-            
-            for x in data:
-                x['points'] = calculate_xp(_id, _title)            
-            
-            with open(file_path, "w") as f:
-                json.dump(xp, f, indent=4)
-    except Exception as e:
-        pass
     
 def load_local_data():
     lessons_path = "lessons/templates/lessons_html/"
@@ -41,6 +19,7 @@ def load_local_data():
                 lesson_id = int(lesson_tokens[0])  # Extract lesson ID from filename
                 lesson_title = ' '.join([token.capitalize() for token in lesson_tokens[1:]])  # Capitalize each token
                 
+                # Load lesson content                
                 with open(os.path.join(lessons_path, lesson_file), "r") as file:
                     content = file.read()
 
@@ -58,34 +37,35 @@ def load_local_data():
 
                 # Load test for this lesson
                 test_file_path = os.path.join(tests_path, f"{('_').join(lesson_tokens)}.json")
-                if os.path.exists(test_file_path):
-                    with open(test_file_path, "r") as file:
-                        test_data = json.load(file)
-                    
-                    if lesson.is_task_based:
-                        # Load tasks
-                        for task in test_data:
-                            Task.objects.update_or_create(
-                                lesson=lesson,
-                                description=task["description"],
-                                code_stub=task["code_stub"],
-                                correct_code=task["correct_code"],
-                                expected_output=task["expected_output"]
-                            )
-                    else:
-                        # Load quizzes
-                        for quiz in test_data:
-                            Quiz.objects.update_or_create(
-                                lesson=lesson,
-                                question=quiz["question"],
-                                defaults={
-                                    "answer_choices": quiz["answer_choices"],
-                                    "correct_answer": quiz["correct_answer"],
-                                },
-                            )
-        add_xp()
+                with open(test_file_path, "r") as file:
+                    test_data = json.load(file)
+                
+                if lesson.is_task_based:
+                    # Load tasks
+                    for task in test_data:
+                        Task.objects.update_or_create(
+                            lesson=lesson,
+                            description=task["description"],
+                            code_stub=task["code_stub"],
+                            correct_code=task["correct_code"],
+                            expected_output=task["expected_output"],
+                            points=task["points"]
+                        )
+                        print(f'{task["points"]=}')
+                else:
+                    # Load quizzes
+                    for quiz in test_data:
+                        Quiz.objects.update_or_create(
+                            lesson=lesson,
+                            question=quiz["question"],
+                            defaults={
+                                "answer_choices": quiz["answer_choices"],
+                                "correct_answer": quiz["correct_answer"],
+                            },
+                            points=quiz["points"]
+                        )
+                        print(f'{quiz["points"]=}')
     except Exception as e:
-        # Handle the case where the database is not ready (e.g., during migrations)
         print("Database not ready. Skipping lesson preloading." + e)
         # Path to lessons and quizzes data
 
@@ -143,7 +123,6 @@ def update_quiz_attempts(request, quizzes, user_progress, lesson):
         info.append({
             'user_answer_key': user_answer_key,
             'passed': passed,
-            'points': quiz.points
         })   
     return info
 
@@ -178,7 +157,6 @@ def update_task_attempts(request, tasks, user_progress, lesson):
             'user_code': user_code,
             'accuracy': accuracy,
             'passed': passed,
-            'points': task.points
         })
     return info 
     
@@ -203,7 +181,8 @@ def track_quiz_test_results(request, quizzes, info):
                 'correct_answer': {
                     'option': correct_answer_key,
                     'answer': quiz.answer_choices.get(correct_answer_key)
-                }
+                },
+                'points': quiz.points
             })
     return correct_count, mistakes
 
@@ -226,7 +205,8 @@ def track_task_test_results(request, tasks, info):
             'user_answer': user_code,
             'correct_answer': correct_code,
             'feedback': generate_feedback(user_code, correct_code, task_accuracy),
-            'accuracy': task_accuracy
+            'accuracy': task_accuracy,
+            'points': task.points
         })
         
     return correct_count, results

@@ -7,7 +7,8 @@
             "c": "A method for error handling.",
             "d": "A data structure for storing large datasets."
         },
-        "correct_answer": "b"
+        "correct_answer": "b",
+        "points": 50
     },
     {
         "question": "Which of the following is a valid list comprehension?",
@@ -17,7 +18,8 @@
             "c": "{x: x**2 for x in range(1, 6)}",
             "d": "all(x ** 2 for x in range(1, 6))"
         },
-        "correct_answer": "a"
+        "correct_answer": "a",
+        "points": 42
     },
     {
         "question": "What is the purpose of a decorator in Python?",
@@ -27,7 +29,8 @@
             "c": "To enhance functions or methods.",
             "d": "To handle exceptions globally."
         },
-        "correct_answer": "c"
+        "correct_answer": "c",
+        "points": 30
     },
     {
         "question": "What is a context manager?",
@@ -37,7 +40,8 @@
             "c": "A method for managing resources.",
             "d": "A library for handling errors."
         },
-        "correct_answer": "c"
+        "correct_answer": "c",
+        "points": 40
     },
     {
         "question": "When should the `finally` block be used in exception handling?",
@@ -47,7 +51,8 @@
             "c": "To prevent exceptions.",
             "d": "To modify the exception object."
         },
-        "correct_answer": "b"
+        "correct_answer": "b",
+        "points": 51
     },
     {
         "question": "How can you create a time series plot using pandas?",
@@ -57,7 +62,8 @@
             "c": "Using the `plot()` method on a DataFrame.",
             "d": "Using the `plot_time_series()` method."
         },
-        "correct_answer": "c"
+        "correct_answer": "c",
+        "points": 48
     },
     {
         "question": "What is the main benefit of using Seaborn for visualization?",
@@ -67,7 +73,8 @@
             "c": "It works better with categorical data.",
             "d": "It supports interactive plots."
         },
-        "correct_answer": "b"
+        "correct_answer": "b",
+        "points": 34
     },
     {
         "question": "Which library is primarily used for data manipulation in Python?",
@@ -77,7 +84,8 @@
             "c": "matplotlib",
             "d": "seaborn"
         },
-        "correct_answer": "b"
+        "correct_answer": "b",
+        "points": 42
     },
     {
         "question": "What is a key feature of lists in Python?",
@@ -87,7 +95,8 @@
             "c": "Ordered and mutable",
             "d": "Unordered and immutable"
         },
-        "correct_answer": "c"
+        "correct_answer": "c",
+        "points": 46
     },
     {
         "question": "How do you remove an element from a set?",
@@ -97,7 +106,8 @@
             "c": "delete()",
             "d": "discard()"
         },
-        "correct_answer": "a"
+        "correct_answer": "a",
+        "points": 35
     },
     {
         "question": "What is the primary purpose of exception handling in Python?",
@@ -107,7 +117,8 @@
             "c": "To create more readable code.",
             "d": "To catch specific types of errors only."
         },
-        "correct_answer": "a"
+        "correct_answer": "a",
+        "points": 29
     },
     {
         "question": "What is the purpose of the `with` statement in Python?",
@@ -117,7 +128,8 @@
             "c": "To iterate through lists.",
             "d": "To handle exceptions."
         },
-        "correct_answer": "a"
+        "correct_answer": "a",
+        "points": 52
     },
     {
         "question": "Which of the following is not a valid exception type in Python?",
@@ -127,7 +139,8 @@
             "c": "FileNotFoundException",
             "d": "ValueError"
         },
-        "correct_answer": "c"
+        "correct_answer": "c",
+        "points": 35
     },
     {
         "question": "How can you catch an exception without crashing the program?",
@@ -137,6 +150,7 @@
             "c": "Use a `while` loop.",
             "d": "Use a `with` statement."
         },
-        "correct_answer": "a"
+        "correct_answer": "a",
+        "points": 36
     }
 ]

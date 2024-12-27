@@ -7,7 +7,8 @@
             "c": "Enforce access control.",
             "d": "Enable multiple inheritance."
         },
-        "correct_answer": "a"
+        "correct_answer": "a",
+        "points": 37
     },
     {
         "question": "Which of these is true about method resolution order (MRO)?",
@@ -17,7 +18,8 @@
             "c": "It determines the constructor of a class.",
             "d": "It ensures single inheritance."
         },
-        "correct_answer": "b"
+        "correct_answer": "b",
+        "points": 40
     },
     {
         "question": "What is the 'Diamond Problem' in multiple inheritance?",
@@ -27,7 +29,8 @@
             "c": "Handling multiple polymorphic methods.",
             "d": "Implementing method resolution order."
         },
-        "correct_answer": "a"
+        "correct_answer": "a",
+        "points": 29
     },
     {
         "question": "Which of the following is an example of polymorphism?",
@@ -37,7 +40,8 @@
             "c": "Creating multiple constructors.",
             "d": "Managing multiple inheritance."
         },
-        "correct_answer": "b"
+        "correct_answer": "b",
+        "points": 39
     },
     {
         "question": "What is a potential downside of multiple inheritance?",
@@ -47,6 +51,7 @@
             "c": "It can lead to conflicts in method resolution order.",
             "d": "It simplifies method overriding."
         },
-        "correct_answer": "c"
+        "correct_answer": "c",
+        "points": 30
     }
 ]

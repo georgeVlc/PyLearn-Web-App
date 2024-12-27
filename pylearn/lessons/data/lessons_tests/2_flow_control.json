@@ -7,7 +7,8 @@
             "c": "To declare variables",
             "d": "To handle exceptions"
         },
-        "correct_answer": "b"
+        "correct_answer": "b",
+        "points": 17
     },
     {
         "question": "How does a `for` loop work in Python?",
@@ -17,7 +18,8 @@
             "c": "It waits for user input",
             "d": "It exits immediately after the first iteration"
         },
-        "correct_answer": "b"
+        "correct_answer": "b",
+        "points": 16
     },
     {
         "question": "What is the purpose of the `and` logical operator in Python?",
@@ -27,7 +29,8 @@
             "c": "To combine multiple conditions",
             "d": "To repeat a block of code"
         },
-        "correct_answer": "c"
+        "correct_answer": "c",
+        "points": 14
     },
     {
         "question": "What happens if a condition in an `if` statement is false?",
@@ -37,7 +40,8 @@
             "c": "An error occurs",
             "d": "The code block executes regardless"
         },
-        "correct_answer": "a"
+        "correct_answer": "a",
+        "points": 18
     },
     {
         "question": "What is the result of the following code? `x = 5; y = 10; if x > 0 and y > 0:`",
@@ -47,6 +51,7 @@
             "c": "The code block does not execute",
             "d": "The program exits"
         },
-        "correct_answer": "a"
+        "correct_answer": "a",
+        "points": 16
     }
 ]

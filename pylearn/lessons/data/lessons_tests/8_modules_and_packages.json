@@ -7,7 +7,8 @@
             "c": "A package",
             "d": "A class"
         },
-        "correct_answer": "b"
+        "correct_answer": "b",
+        "points": 25
     },
     {
         "question": "How do you import a module in Python?",
@@ -17,7 +18,8 @@
             "c": "import module",
             "d": "import from module"
         },
-        "correct_answer": "a"
+        "correct_answer": "a",
+        "points": 19
     },
     {
         "question": "What must be present in a directory for it to be considered a package?",
@@ -27,7 +29,8 @@
             "c": "A script file",
             "d": "A documentation file"
         },
-        "correct_answer": "a"
+        "correct_answer": "a",
+        "points": 18
     },
     {
         "question": "Which of the following is used to import a specific function from a module?",
@@ -37,7 +40,8 @@
             "c": "from module import function",
             "d": "import function from module"
         },
-        "correct_answer": "c"
+        "correct_answer": "c",
+        "points": 25
     },
     {
         "question": "What is the primary benefit of using packages in Python?",
@@ -47,6 +51,7 @@
             "c": "To create larger projects",
             "d": "To reduce file size"
         },
-        "correct_answer": "a"
+        "correct_answer": "a",
+        "points": 29
     }
 ]

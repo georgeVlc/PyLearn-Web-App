@@ -7,7 +7,8 @@
             "c": "Selects a random item from a sequence",
             "d": "Shuffles a list"
         },
-        "correct_answer": "b"
+        "correct_answer": "b",
+        "points": 34
     },
     {
         "question": "How do you generate a random integer between 1 and 10 using the random module?",
@@ -17,7 +18,8 @@
             "c": "random.randint(1, 10)",
             "d": "random.number(1, 10)"
         },
-        "correct_answer": "c"
+        "correct_answer": "c",
+        "points": 50
     },
     {
         "question": "Which function is used to shuffle a list in place?",
@@ -27,7 +29,8 @@
             "c": "random.choice()",
             "d": "random.sample()"
         },
-        "correct_answer": "a"
+        "correct_answer": "a",
+        "points": 61
     },
     {
         "question": "What does random.choice(sequence) do?",
@@ -37,7 +40,8 @@
             "c": "Shuffles a sequence in place",
             "d": "Returns a list of random items from a sequence"
         },
-        "correct_answer": "b"
+        "correct_answer": "b",
+        "points": 61
     },
     {
         "question": "Which function generates a random float between two specified values?",
@@ -47,6 +51,7 @@
             "c": "random.uniform()",
             "d": "random.sample()"
         },
-        "correct_answer": "c"
+        "correct_answer": "c",
+        "points": 43
     }
 ]

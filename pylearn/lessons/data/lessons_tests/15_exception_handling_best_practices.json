@@ -7,7 +7,8 @@
             "c": "To raise exceptions.",
             "d": "To execute code unconditionally."
         },
-        "correct_answer": "b"
+        "correct_answer": "b",
+        "points": 38
     },
     {
         "question": "What is a good practice when handling exceptions?",
@@ -17,7 +18,8 @@
             "c": "Use <code>except</code> without specifying an exception type.",
             "d": "Handle all exceptions generically."
         },
-        "correct_answer": "b"
+        "correct_answer": "b",
+        "points": 32
     },
     {
         "question": "Which block is always executed regardless of an exception in a `try` block?",
@@ -27,7 +29,8 @@
             "c": "else",
             "d": "catch"
         },
-        "correct_answer": "a"
+        "correct_answer": "a",
+        "points": 42
     },
     {
         "question": "What is the main difference between <code>try-except</code> and <code>try-except-finally</code>?",
@@ -37,7 +40,8 @@
             "c": "The <code>except</code> block catches all exceptions.",
             "d": "The <code>try-except</code> block is used for catching syntax errors only."
         },
-        "correct_answer": "b"
+        "correct_answer": "b",
+        "points": 28
     },
     {
         "question": "When should exceptions be raised in a program?",
@@ -47,6 +51,7 @@
             "c": "When input is invalid.",
             "d": "All of the above."
         },
-        "correct_answer": "b"
+        "correct_answer": "b",
+        "points": 32
     }
 ]

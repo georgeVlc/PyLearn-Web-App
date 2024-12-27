@@ -10,6 +10,6 @@ class LessonsConfig(AppConfig):
             from users.utils import delete_all_progress_and_attempts
             # delete_all_progress_and_attempts()
             # delete_all_lessons_quizzes_tasks()
-            load_local_data()
+            # load_local_data()
         except Exception as e:
             print(f"Error during lesson preloading: {e}")

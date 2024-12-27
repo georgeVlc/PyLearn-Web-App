@@ -7,7 +7,8 @@
             "c": "To write to a file.",
             "d": "To delete a file after reading."
         },
-        "correct_answer": "a"
+        "correct_answer": "a",
+        "points": 27
     },
     {
         "question": "Which module can be used for reading and writing CSV files?",
@@ -17,7 +18,8 @@
             "c": "file",
             "d": "json"
         },
-        "correct_answer": "b"
+        "correct_answer": "b",
+        "points": 45
     },
     {
         "question": "What is the main difference between binary and text files?",
@@ -27,7 +29,8 @@
             "c": "Binary files store data in binary format.",
             "d": "Text files cannot be read line by line."
         },
-        "correct_answer": "c"
+        "correct_answer": "c",
+        "points": 36
     },
     {
         "question": "How can you read a binary file in Python?",
@@ -37,7 +40,8 @@
             "c": "Using the `write()` method.",
             "d": "Using the `readlines()` method."
         },
-        "correct_answer": "a"
+        "correct_answer": "a",
+        "points": 41
     },
     {
         "question": "What method can be used to append data to a binary file?",
@@ -47,6 +51,7 @@
             "c": "append()",
             "d": "writelines()"
         },
-        "correct_answer": "b"
+        "correct_answer": "b",
+        "points": 32
     }
 ]

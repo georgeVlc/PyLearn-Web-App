@@ -3,6 +3,7 @@
         "description": "<p>Your task is to implement a Python function named <code>delete_task()</code> that will remove a task from the <code>task_list</code>. The function should:</p>\n<ul>\n    <li>Search for a task by its title (or ID, depending on your design).</li>\n    <li>If the task is found, remove it from the list and display a success message.</li>\n    <li>If the task is not found, return an error message.</li>\n</ul>\n<p>Use the following template to implement the <code>delete_task()</code> function.</p>",
         "code_stub": "<pre><code>def delete_task(task_list, task_id):\n    # Find and remove task by title or ID\n    pass</code></pre>",
         "correct_code": "<pre><code>def delete_task(task_list, task_id):\n    for task in task_list:\n        if task.title == task_id:  # Replace with task ID if applicable\n            task_list.remove(task)\n            print(f\"Task '{task_id}' has been deleted.\")\n            return True\n    print(f\"Error: Task with title '{task_id}' not found!\")\n    return False</code></pre>",
-        "expected_output": "<pre><code>Task 'Complete Homework' has been deleted.\nError: Task with title 'NonExistentTask' not found!</code></pre>"
+        "expected_output": "<pre><code>Task 'Complete Homework' has been deleted.\nError: Task with title 'NonExistentTask' not found!</code></pre>",
+        "points": 123
     }
 ]

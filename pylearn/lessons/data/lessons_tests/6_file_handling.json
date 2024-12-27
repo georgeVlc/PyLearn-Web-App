@@ -7,7 +7,8 @@
             "c": "open('file.txt', 'a')",
             "d": "open('file.txt', 'x')"
         },
-        "correct_answer": "a"
+        "correct_answer": "a",
+        "points": 23
     },
     {
         "question": "Which mode should you use to write to a file in Python?",
@@ -17,7 +18,8 @@
             "c": "'a'",
             "d": "'b'"
         },
-        "correct_answer": "b"
+        "correct_answer": "b",
+        "points": 18
     },
     {
         "question": "How can you read all lines from a file into a list?",
@@ -27,7 +29,8 @@
             "c": "file.readlines()",
             "d": "file.write()"
         },
-        "correct_answer": "c"
+        "correct_answer": "c",
+        "points": 16
     },
     {
         "question": "What method is used to close a file in Python?",
@@ -37,7 +40,8 @@
             "c": "read()",
             "d": "open()"
         },
-        "correct_answer": "a"
+        "correct_answer": "a",
+        "points": 24
     },
     {
         "question": "What is the purpose of the 'a' mode when opening a file?",
@@ -47,6 +51,7 @@
             "c": "To append data to the end of the file",
             "d": "To delete the file"
         },
-        "correct_answer": "c"
+        "correct_answer": "c",
+        "points": 26
     }
 ]

@@ -18,6 +18,8 @@ def view_users(request):
     users = User.objects.all()  # List users
     return render(request, 'view_users.html', {'users': users})
 
+from django.db.models import Sum, F
+
 @login_required
 def view_user_attempts(request, user_id):
     user_progress = get_object_or_404(UserProgress, user_id=user_id)
@@ -40,6 +42,7 @@ def view_user_attempts(request, user_id):
     ).distinct()
 
     all_lessons = list(quiz_lessons) + list(task_lessons)
+    total_points_earned = 0
     
     # Process quiz-based lessons
     for lesson in quiz_lessons:
@@ -58,6 +61,18 @@ def view_user_attempts(request, user_id):
         lesson.correct_answers = user_correct_answers
         lesson.passed = lesson.accuracy >= 50
         lesson.chapter_id = get_chapter_number_for_lesson(lesson.id)
+        
+        lesson.points_earned = QuizAttempt.objects.filter(
+            user_progress=user_progress,
+            quiz__lesson=lesson,
+            passed=True
+        ).aggregate(total_points=Sum(F('quiz__points')))['total_points'] or 0
+        total_points_earned += lesson.points_earned
+        
+        lesson.points_available = QuizAttempt.objects.filter(
+            user_progress=user_progress,
+            quiz__lesson=lesson
+        ).aggregate(total_points=Sum(F('quiz__points')))['total_points'] or 0
 
     # Process task-based lessons
     for lesson in task_lessons:
@@ -67,11 +82,24 @@ def view_user_attempts(request, user_id):
         )
 
         total_tasks = lesson.total_tasks            
-        lesson.accuracy = sum([attempt.accuracy for attempt in user_attempts ]) / total_tasks
+        lesson.accuracy = sum([attempt.accuracy for attempt in user_attempts]) / total_tasks
         lesson.accuracy = round(lesson.accuracy, 2)
         lesson.passed = lesson.accuracy >= 50
         lesson.chapter_id = get_chapter_number_for_lesson(lesson.id)
 
+        lesson.points_earned = TaskAttempt.objects.filter(
+            user_progress=user_progress,
+            task__lesson=lesson,
+            passed=True
+        ).aggregate(total_points=Sum(F('task__points')))['total_points'] or 0
+        total_points_earned += lesson.points_earned
+        
+        lesson.points_available = TaskAttempt.objects.filter(
+            user_progress=user_progress,
+            task__lesson=lesson
+        ).aggregate(total_points=Sum(F('task__points')))['total_points'] or 0
+        print(f'{lesson.points_earned=}, {lesson.points_available}')
+                
     # Calculate overall stats
     total_quizzes_attempted = QuizAttempt.objects.filter(user_progress=user_progress).count()
     total_correct_quizzes = QuizAttempt.objects.filter(user_progress=user_progress).aggregate(
@@ -88,6 +116,7 @@ def view_user_attempts(request, user_id):
     
     overall_accuracy = sum([lesson.accuracy for lesson in all_lessons]) / len(all_lessons)
     overall_accuracy = round(overall_accuracy, 2)
+
     # Prepare context
     context = {
         'user_progress': user_progress,
@@ -95,7 +124,8 @@ def view_user_attempts(request, user_id):
         'task_lessons': task_lessons,
         'overall_accuracy': overall_accuracy,
         'total_attempts_count': total_lesson_attempts_count,
-        'total_lessons_passed': len(all_passed_lessons)
+        'total_lessons_passed': len(all_passed_lessons),
+        'total_points_earned': total_points_earned
     }
 
     return render(request, 'view_user_attempts.html', context)
