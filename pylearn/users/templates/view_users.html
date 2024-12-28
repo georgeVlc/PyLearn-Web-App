@@ -1,19 +1,118 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h2>Users</h2>
-<ul>
-{% for user in users %}
-    <li>
-        <strong>Username:</strong> {{ user.username }}<br>
-        <strong>Progress:</strong>
-        {% if user.userprogress %}
-            Completed Lessons: {{ user.userprogress.completed_lessons.count }}<br>
-            Quiz Attempts: {{ user.userprogress.quiz_attempts.count }}
-        {% else %}
-            No progress data available.
-        {% endif %}
-    </li>
-{% endfor %}
-</ul>
+    <div class="container py-5">
+        <h2 class="text-center mb-4" style="color: #2c3e50; font-weight: bold;">Users Leaderboard</h2>
+
+        <!-- Leaderboard Table -->
+        <div class="card shadow-lg rounded-3">
+            <div class="card-header" style="background-color: #3498db; color: white;">
+                <h4 class="mb-0">Top Users</h4>
+            </div>
+            <div class="card-body">
+                <table class="table table-hover table-bordered">
+                    <thead>
+                        <tr class="text-center" style="background-color: #f4f7f6;">
+                            <th>#</th>
+                            <th>Username</th>
+                            <th>Total Points</th>
+                            <th>Progress</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for user_data in user_points %}
+                            <tr class="{% if user_data.user == request.user %}table-success{% endif %}">
+                                <td class="text-center">{{ forloop.counter }}</td>
+                                <td>{{ user_data.user.username }}</td>
+                                <td class="text-center" style="font-weight: bold;">{{ user_data.total_points }}</td>
+                                <td class="text-center">
+                                    {% if user_data.total_points > 0 %}
+                                        <a href="{% url 'view_user_attempts' user_data.user.id %}" class="btn btn-outline-info btn-sm">View Progress</a>
+                                    {% else %}
+                                        <span class="text-muted">No progress data</span>
+                                    {% endif %}
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Current User Rank Display -->
+        <div class="alert alert-info mt-4 rounded-3 shadow-sm">
+            <strong>Your Rank:</strong> #{{ current_user_rank }} of {{ user_points|length }} users.
+        </div>
+    </div>
+
+    <!-- Custom Styles -->
+    <style>
+        body {
+            background-color: #ecf0f1;
+            font-family: 'Arial', sans-serif;
+        }
+
+        .card {
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .card-header {
+            font-size: 1.25rem;
+            font-weight: bold;
+            text-align: center;
+            border-bottom: 3px solid #3498db;
+        }
+
+        .table {
+            font-size: 1rem;
+            color: #2c3e50;
+        }
+
+        .table th {
+            text-align: center;
+            background-color: #f7f7f7;
+        }
+
+        .table td {
+            vertical-align: middle;
+        }
+
+        .table-hover tbody tr:hover {
+            background-color: #f1f8ff;
+        }
+
+        .btn-outline-info {
+            border-radius: 20px;
+            padding: 5px 15px;
+            font-weight: bold;
+        }
+
+        .alert {
+            font-size: 1.1rem;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        .alert-info {
+            background-color: #d6eaf8;
+            border-color: #a9c6e5;
+        }
+
+        .table td, .table th {
+            padding: 12px 20px;
+        }
+
+        .table th, .table td {
+            text-align: center;
+        }
+
+        .table-success {
+            background-color: #a2d5f2 !important;
+        }
+
+        .container {
+            max-width: 1000px;
+        }
+    </style>
 {% endblock %}

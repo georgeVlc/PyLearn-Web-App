@@ -15,10 +15,51 @@ from lessons.utils import get_chapter_number_for_lesson
 from .utils import *
 # Create your views here.
 
+
+from django.contrib.auth.decorators import login_required
+from django.shortcuts import render
+from django.db.models import Sum
+
 @login_required
 def view_users(request):
-    users = User.objects.all()  # List users
-    return render(request, 'view_users.html', {'users': users})
+    users = User.objects.all()  # List all users
+    user_points = []  # List to store each user's total points
+
+    for user in users:
+        try:
+            user_progress = UserProgress.objects.get(user=user)  # Try to get the UserProgress
+            quiz_lessons = get_quiz_lessons(user_progress)
+            task_lessons = get_task_lessons(user_progress)
+
+            total_points = 0
+            total_points += process_quiz_lessons(quiz_lessons, user_progress)
+            total_points += process_task_lessons(task_lessons, user_progress)
+
+            user_points.append({
+                'user': user,
+                'total_points': total_points
+            })
+        except UserProgress.DoesNotExist:
+            # If no UserProgress exists, assign 0 points and skip the user
+            user_points.append({
+                'user': user,
+                'total_points': 0
+            })
+    
+    # Sort users by total points in descending order
+    user_points = sorted(user_points, key=lambda x: x['total_points'], reverse=True)
+    
+    # Find the rank of the current user
+    current_user_points = next(item for item in user_points if item['user'] == request.user)
+    current_user_rank = user_points.index(current_user_points) + 1  # Rank is 1-based index
+    
+    # Pass the sorted users and the current user's rank to the template
+    context = {
+        'user_points': user_points,
+        'current_user_rank': current_user_rank
+    }
+
+    return render(request, 'view_users.html', context)
 
 from datetime import datetime
 
