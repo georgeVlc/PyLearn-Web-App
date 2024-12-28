@@ -20,6 +20,15 @@ def view_users(request):
     users = User.objects.all()  # List users
     return render(request, 'view_users.html', {'users': users})
 
+from datetime import datetime
+
+class DateTimeEncoder(json.JSONEncoder):
+    def default(self, obj):
+        if isinstance(obj, datetime):
+            return obj.isoformat()  # Converts datetime to ISO 8601 string
+        return super().default(obj)
+
+
 @login_required
 def view_user_attempts(request, user_id):
     user_progress = get_object_or_404(UserProgress, user_id=user_id)
@@ -33,7 +42,13 @@ def view_user_attempts(request, user_id):
     total_points_earned += process_task_lessons(task_lessons, user_progress)
     
     overall_accuracy, total_attempts_count, total_lessons_passed = calculate_overall_stats(quiz_lessons, task_lessons)  
- 
+    time_series_data = get_progress_time_series(user_id)
+    quiz_data = time_series_data['quiz_progress']
+    task_data = time_series_data['task_progress']
+    quiz_data_serialized = json.dumps(quiz_data, cls=DateTimeEncoder)
+    task_data_serialized = json.dumps(task_data, cls=DateTimeEncoder)
+
+    print(task_data_serialized, quiz_data_serialized)
     context = {
         'user_progress': user_progress,
         'quiz_lessons': quiz_lessons,
@@ -41,7 +56,9 @@ def view_user_attempts(request, user_id):
         'overall_accuracy': overall_accuracy,
         'total_attempts_count': total_attempts_count,
         'total_lessons_passed': total_lessons_passed,
-        'total_points_earned': total_points_earned
+        'total_points_earned': total_points_earned,
+        'quiz_data': quiz_data_serialized,
+        'task_data': task_data_serialized
     }
 
     return render(request, 'view_user_attempts.html', context)

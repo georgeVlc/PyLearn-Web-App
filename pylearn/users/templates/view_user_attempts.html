@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User Attempts Overview</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.3.0/dist/chart.umd.min.js"></script>
     <style>
         /* General Styling */
         body {
@@ -93,7 +94,17 @@
             <p><strong>Total Test Attempts:</strong> {{ total_attempts_count }}</p>
             <p><strong>Total Tests Passed:</strong> {{ total_lessons_passed }}</p>
             <p><strong>Total Points Earned:</strong> {{ total_points_earned }}</p>
-            <p><strong>Overall Accuracy:</strong> {{ overall_accuracy }}%</p>
+            <p><strong>Overall Accuracy:</strong> {{ overall_accuracy }}</p>
+        </div>
+
+        <!-- Progress Chart -->
+        <div class="card">
+            <div class="card-header">
+                <h3>Progress Over Time</h3>
+            </div>
+            <div class="card-body">
+                <canvas id="progressChart"></canvas>
+            </div>
         </div>
 
         <!-- Quiz Lessons -->
@@ -112,7 +123,7 @@
                             <p><strong>Earned Points:</strong> {{ lesson.points_earned }}</p>
                             <p><strong>Total Points:</strong> {{ lesson.points_available }}</p>
                             <p><strong>Retake Test? </strong><a href="{% url 'lessons:take_lesson_test' lesson.id %}" class="retake-button">Retake</a></p>
-                            <p><strong>Accuracy:</strong> {{ lesson.accuracy }}%</p>
+                            <p><strong>Accuracy:</strong> {{ lesson.accuracy }}</p>
                         </div>
                     </div>
                 </div>
@@ -132,7 +143,7 @@
                         </div>
                         <div class="card-body">
                             <p><strong>Total Tasks:</strong> {{ lesson.total_tasks }}</p>
-                            <p><strong>Tasks Passed:</strong> {{ lesson.accuracy }}%</p>
+                            <p><strong>Tasks Passed:</strong> {{ lesson.accuracy }}</p>
                             <p><strong>Passed:</strong> {{ lesson.passed }}</p>
                             <p><strong>Earned Points:</strong> {{ lesson.points_earned }}</p>
                             <p><strong>Total Points:</strong> {{ lesson.points_available }}</p>
@@ -147,6 +158,128 @@
         {% endif %}
     </div>
 
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns"></script>
+
+    <script id="quiz-data" type="application/json">
+        {{ quiz_data|safe }}
+    </script>
+    <script id="task-data" type="application/json">
+        {{ task_data|safe }}
+    </script>
+
+    <script>
+        const quizProgress = JSON.parse(document.getElementById('quiz-data').textContent);
+        const taskProgress = JSON.parse(document.getElementById('task-data').textContent);
+    
+        // Parse timestamps into Date objects
+        const quizLabels = quizProgress.map(data => new Date(data.timestamp));
+        const taskLabels = taskProgress.map(data => new Date(data.timestamp));
+        const quizPoints = quizProgress.map(data => data.points);
+        const taskPoints = taskProgress.map(data => data.points);
+    
+        // Combine quiz and task timestamps into a single x-axis array and sort them
+        const allLabels = [...quizLabels, ...taskLabels]
+            .filter((value, index, self) => self.findIndex(v => v.getTime() === value.getTime()) === index) // Remove duplicates
+            .sort((a, b) => a - b);
+    
+        // Create datasets with points matched to the corresponding timestamps
+        const quizDataset = allLabels.map(label => {
+            const idx = quizLabels.findIndex(l => l.getTime() === label.getTime());
+            return idx !== -1 ? quizPoints[idx] : null;
+        });
+    
+        const taskDataset = allLabels.map(label => {
+            const idx = taskLabels.findIndex(l => l.getTime() === label.getTime());
+            return idx !== -1 ? taskPoints[idx] : null;
+        });
+    
+        // Prepare data for the chart
+        const ctx = document.getElementById('progressChart').getContext('2d');
+        const chart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: allLabels, // Use Date objects directly
+                datasets: [
+                    {
+                        label: 'Quiz Points',
+                        data: quizDataset,
+                        borderColor: 'blue',
+                        backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                        borderWidth: 2,
+                        pointRadius: 5,
+                        pointBackgroundColor: 'blue',
+                        pointBorderColor: 'white',
+                        spanGaps: true // Allow gaps in the data
+                    },
+                    {
+                        label: 'Task Points',
+                        data: taskDataset,
+                        borderColor: 'green',
+                        backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                        borderWidth: 2,
+                        pointRadius: 5,
+                        pointBackgroundColor: 'green',
+                        pointBorderColor: 'white',
+                        spanGaps: true // Allow gaps in the data
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    tooltip: {
+                        callbacks: {
+                            title: function(tooltipItem) {
+                                return new Date(tooltipItem[0].label).toLocaleString(); // Format the date
+                            },
+                            label: function(context) {
+                                // Determine which dataset the point belongs to (quiz or task)
+                                const isQuiz = context.dataset.label === 'Quiz Points';
+                                const data = context.raw;
+                                const lessonType = isQuiz ? 'Quiz' : 'Task';
+                                const content = isQuiz ? quizProgress[context.dataIndex].quiz : taskProgress[context.dataIndex].task;
+                                const lessonName = isQuiz ? quizProgress[context.dataIndex].lesson : taskProgress[context.dataIndex].lesson;
+                                return `${lessonType}: ${content}\nLesson: ${lessonName}, Points: ${data}`;
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    x: {
+                        type: 'time',
+                        title: {
+                            display: true,
+                            text: 'Timestamp',
+                            font: {
+                                size: 14
+                            }
+                        },
+                        time: {
+                            tooltipFormat: 'MMM dd, yyyy, HH:mm', // Format in tooltips
+                        },
+                        grid: {
+                            display: true,
+                            drawOnChartArea: false
+                        }
+                    },
+                    y: {
+                        title: {
+                            display: true,
+                            text: 'Points',
+                            font: {
+                                size: 14
+                            }
+                        },
+                        grid: {
+                            display: true,
+                            color: 'rgba(200, 200, 200, 0.2)'
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+            
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

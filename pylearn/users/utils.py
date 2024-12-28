@@ -100,3 +100,33 @@ def calculate_overall_stats(quiz_lessons, task_lessons):
     overall_accuracy = round(overall_accuracy, 2)
 
     return overall_accuracy, total_lessons, len(all_passed_lessons)
+
+def get_progress_time_series(user_id):
+    quiz_attempts = QuizAttempt.objects.filter(user_progress__user_id=user_id).order_by('created_at')
+    task_attempts = TaskAttempt.objects.filter(user_progress__user_id=user_id).order_by('created_at')
+
+    data = {
+        'quiz_progress': [],
+        'task_progress': []
+    }
+
+    for attempt in quiz_attempts:
+        data['quiz_progress'].append({
+            'timestamp': attempt.created_at,
+            'points': attempt.points,
+            'attempt_number': attempt.attempts,
+            'quiz': attempt.quiz.question,
+            'lesson': attempt.quiz.lesson.title
+        })
+
+    for attempt in task_attempts:
+        data['task_progress'].append({
+            'timestamp': attempt.created_at,
+            'points': attempt.points,
+            'accuracy': attempt.accuracy,
+            'attempt_number': attempt.attempts,
+            'task': attempt.task.description if len(attempt.task.description) < 30 else attempt.task.description[:30],
+            'lesson': attempt.task.lesson.title
+        })
+
+    return data

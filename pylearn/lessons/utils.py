@@ -4,6 +4,7 @@ import random
 from .models import Lesson, Quiz, Task, chapter_size
 from users.models import UserProgress, QuizAttempt, TaskAttempt
 from .code_eval import *
+from django.utils.timezone import now
 
     
 def load_local_data():
@@ -111,6 +112,7 @@ def update_quiz_attempts(request, quizzes, user_progress, lesson):
             existing_attempt.points = quiz.points if passed else 0
             existing_attempt.passed = passed
             existing_attempt.attempts = lesson_attempts  # Track by lesson attempt
+            existing_attempt.created_at = now()
             existing_attempt.save()
         else:
             QuizAttempt.objects.create(
@@ -118,7 +120,8 @@ def update_quiz_attempts(request, quizzes, user_progress, lesson):
                 quiz=quiz,
                 points=quiz.points if passed else 0,
                 passed=passed,
-                attempts=lesson_attempts
+                attempts=lesson_attempts,
+                created_at=now()
             ) 
         info.append({
             'user_answer_key': user_answer_key,
@@ -144,6 +147,7 @@ def update_task_attempts(request, tasks, user_progress, lesson):
             existing_attempt.points = task.points if passed else 0
             existing_attempt.passed = passed
             existing_attempt.attempts = lesson_attempts  # Track by lesson attempt
+            existing_attempt.created_at = now()
             existing_attempt.save()
         else:
             TaskAttempt.objects.create(
@@ -152,7 +156,8 @@ def update_task_attempts(request, tasks, user_progress, lesson):
                 points=task.points if passed else 0,
                 accuracy=accuracy,
                 passed=passed,
-                attempts=lesson_attempts
+                attempts=lesson_attempts,
+                created_at=now()
             )    
         info.append({
             'user_code': user_code,

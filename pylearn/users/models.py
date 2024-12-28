@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from lessons.models import Lesson, Quiz, Task
+from django.utils.timezone import now
 
 # Create your models here.
 
@@ -19,7 +20,8 @@ class QuizAttempt(models.Model):
     points = models.IntegerField(default=0)
     attempts = models.IntegerField(default=1)  # number of retries
     passed = models.BooleanField(default=False)
-
+    created_at = models.DateTimeField(default=now)
+    
     def __str__(self):
         return f"Attempt by {self.user_progress.user.username} on {self.quiz}"
 
@@ -30,6 +32,7 @@ class TaskAttempt(models.Model):
     accuracy = models.FloatField(default=0.0)
     attempts = models.IntegerField(default=1)  # number of retries
     passed = models.BooleanField(default=False)
-
+    created_at = models.DateTimeField(default=now)
+    
     def __str__(self):
         return f"Attempt by {self.user_progress.user.username} on {self.task}"
