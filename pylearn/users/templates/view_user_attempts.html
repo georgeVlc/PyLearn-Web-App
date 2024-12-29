@@ -232,14 +232,38 @@
                             title: function(tooltipItem) {
                                 return new Date(tooltipItem[0].label).toLocaleString(); // Format the date
                             },
-                            label: function(context) {
-                                // Determine which dataset the point belongs to (quiz or task)
+                            label: function (context) {
+                                // Tooltip timestamp as a Date object
+                                const currentDate = new Date(context.label);
+                                const currentTimestamp = currentDate.getTime();
                                 const isQuiz = context.dataset.label === 'Quiz Points';
-                                const data = context.raw;
-                                const lessonType = isQuiz ? 'Quiz' : 'Task';
-                                const content = isQuiz ? quizProgress[context.dataIndex].quiz : taskProgress[context.dataIndex].task;
-                                const lessonName = isQuiz ? quizProgress[context.dataIndex].lesson : taskProgress[context.dataIndex].lesson;
-                                return `${lessonType}: ${content}\nLesson: ${lessonName}, Points: ${data}`;
+
+                                // Convert progress data ISO 8601 timestamps to milliseconds
+                                const progressData = (isQuiz ? quizProgress : taskProgress).map(entry => ({
+                                    ...entry,
+                                    timestamp: new Date(entry.timestamp).getTime() // Convert to milliseconds
+                                }));
+
+                                // tolerance range +-65000 ms or 65 seconds
+                                const TOLERANCE = 65000;
+
+                                // Find the closest matching entry within the tolerance range
+                                const matchingEntry = progressData.find(
+                                    (entry) => Math.abs(entry.timestamp - currentTimestamp) <= TOLERANCE
+                                );
+
+                                // Debugging: Log the tooltip timestamp, progress data, and matching logic
+                                console.log('Tooltip Timestamp (ms):', currentTimestamp);
+                                console.log('Progress Data (ms):', progressData.map(entry => entry.timestamp));
+
+                                if (matchingEntry) {
+                                    const lessonType = isQuiz ? 'Quiz' : 'Task';
+                                    const content = isQuiz ? matchingEntry.quiz : matchingEntry.task;
+                                    const lessonName = matchingEntry.lesson;
+                                    return `${lessonType}: ${content}\nLesson: ${lessonName}, Points: ${context.raw}`;
+                                }
+
+                                return `No matching data for timestamp: ${context.label}`;
                             }
                         }
                     }
