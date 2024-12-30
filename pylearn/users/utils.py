@@ -5,7 +5,18 @@ from lessons.models import Lesson, Quiz, Task
 from django.db.utils import OperationalError
 from django.db.models import Avg, Count, Sum, Q, F
 from lessons.utils import get_chapter_number_for_lesson
+import re
 
+def remove_html_tags(input_string):
+    """
+    Removes all HTML tags from a string, leaving only the plain text.
+
+    :param input_string: The string containing HTML tags.
+    :return: The plain text without HTML tags.
+    """
+    # Regular expression to match HTML tags
+    clean_text = re.sub(r'<[^>]*>', '', input_string)
+    return clean_text
 
 def delete_all_progress_and_attempts():
     UserProgress.objects.all().delete()
@@ -120,12 +131,15 @@ def get_progress_time_series(user_id):
         })
 
     for attempt in task_attempts:
+        task_desc = remove_html_tags(attempt.task.description)
+        task_desc = task_desc if len(task_desc) < 50 else task_desc[:50] + '...'
+        
         data['task_progress'].append({
             'timestamp': attempt.created_at,
             'points': attempt.points,
             'accuracy': attempt.accuracy,
             'attempt_number': attempt.attempts,
-            'task': attempt.task.description if len(attempt.task.description) < 30 else attempt.task.description[:30],
+            'task': task_desc,
             'lesson': attempt.task.lesson.title
         })
 

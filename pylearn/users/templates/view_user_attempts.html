@@ -228,6 +228,7 @@
                 responsive: true,
                 plugins: {
                     tooltip: {
+                        useHtml: true,
                         callbacks: {
                             title: function(tooltipItem) {
                                 return new Date(tooltipItem[0].label).toLocaleString(); // Format the date
@@ -252,18 +253,18 @@
                                     (entry) => Math.abs(entry.timestamp - currentTimestamp) <= TOLERANCE
                                 );
 
-                                // Debugging: Log the tooltip timestamp, progress data, and matching logic
-                                console.log('Tooltip Timestamp (ms):', currentTimestamp);
-                                console.log('Progress Data (ms):', progressData.map(entry => entry.timestamp));
-
                                 if (matchingEntry) {
                                     const lessonType = isQuiz ? 'Quiz' : 'Task';
                                     const content = isQuiz ? matchingEntry.quiz : matchingEntry.task;
                                     const lessonName = matchingEntry.lesson;
-                                    return `${lessonType}: ${content}\nLesson: ${lessonName}, Points: ${context.raw}`;
+                                    return [
+                                        `${lessonType}: ${content}`,
+                                        `Lesson: ${lessonName}`,
+                                        `Points: ${context.raw}`
+                                    ];
                                 }
 
-                                return `No matching data for timestamp: ${context.label}`;
+                                return [`No matching data for timestamp: ${context.label}`]
                             }
                         }
                     }

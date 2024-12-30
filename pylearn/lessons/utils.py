@@ -52,7 +52,6 @@ def load_local_data():
                             expected_output=task["expected_output"],
                             points=task["points"]
                         )
-                        print(f'{task["points"]=}')
                 else:
                     # Load quizzes
                     for quiz in test_data:
@@ -65,10 +64,8 @@ def load_local_data():
                             },
                             points=quiz["points"]
                         )
-                        print(f'{quiz["points"]=}')
     except Exception as e:
         print("Database not ready. Skipping lesson preloading." + e)
-        # Path to lessons and quizzes data
 
 def delete_all_lessons_quizzes_tasks():
     Quiz.objects.all().delete()
@@ -139,7 +136,6 @@ def update_task_attempts(request, tasks, user_progress, lesson):
     for task in tasks:
         user_code = request.POST['task_code']
         accuracy = evaluate_code(user_code, task.correct_code)
-        print(f'{accuracy=}')
         passed = 1 if accuracy >= 50 else 0
                         
         existing_attempt = TaskAttempt.objects.filter(user_progress=user_progress, task=task).first()
@@ -199,7 +195,6 @@ def track_task_test_results(request, tasks, info):
     
     for i, task in enumerate(tasks):
         user_code = info[i]['user_code']
-        print(f'USER CODE: {user_code}')
         correct_code = task.correct_code
         task_accuracy = info[i]['accuracy']
         passed = info[i]['passed']
