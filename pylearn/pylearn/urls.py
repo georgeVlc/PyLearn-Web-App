@@ -27,4 +27,5 @@ urlpatterns = [
     path('users/view_user_attempts/<int:user_id>/', user_views.view_user_attempts, name='view_user_attempts'),
     path('lessons/', include('lessons.urls')),  # Include the lessons URLs
     path('lessons/view_lessons/', lesson_views.view_lessons, name='view_lessons'),
+    path('about', pylearn_views.about, name='about'),
 ]

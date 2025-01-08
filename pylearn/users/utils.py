@@ -5,6 +5,18 @@ from lessons.models import Lesson, Quiz, Task
 from django.db.utils import OperationalError
 from django.db.models import Avg, Count, Sum, Q, F
 from lessons.utils import get_chapter_number_for_lesson
+import re
+
+def remove_html_tags(input_string):
+    """
+    Removes all HTML tags from a string, leaving only the plain text.
+
+    :param input_string: The string containing HTML tags.
+    :return: The plain text without HTML tags.
+    """
+    # Regular expression to match HTML tags
+    clean_text = re.sub(r'<[^>]*>', '', input_string)
+    return clean_text
 
 
 def delete_all_progress_and_attempts():
