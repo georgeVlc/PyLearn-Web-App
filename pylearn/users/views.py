@@ -89,7 +89,6 @@ def view_user_attempts(request, user_id):
     quiz_data_serialized = json.dumps(quiz_data, cls=DateTimeEncoder)
     task_data_serialized = json.dumps(task_data, cls=DateTimeEncoder)
 
-    print(task_data_serialized, quiz_data_serialized)
     context = {
         'user_progress': user_progress,
         'quiz_lessons': quiz_lessons,

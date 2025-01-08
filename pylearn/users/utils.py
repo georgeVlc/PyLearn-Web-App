@@ -18,7 +18,6 @@ def remove_html_tags(input_string):
     clean_text = re.sub(r'<[^>]*>', '', input_string)
     return clean_text
 
-
 def delete_all_progress_and_attempts():
     UserProgress.objects.all().delete()
     QuizAttempt.objects.all().delete()
@@ -132,12 +131,15 @@ def get_progress_time_series(user_id):
         })
 
     for attempt in task_attempts:
+        task_desc = remove_html_tags(attempt.task.description)
+        task_desc = task_desc if len(task_desc) < 50 else task_desc[:50] + '...'
+        
         data['task_progress'].append({
             'timestamp': attempt.created_at,
             'points': attempt.points,
             'accuracy': attempt.accuracy,
             'attempt_number': attempt.attempts,
-            'task': attempt.task.description if len(attempt.task.description) < 30 else attempt.task.description[:30],
+            'task': task_desc,
             'lesson': attempt.task.lesson.title
         })
 
